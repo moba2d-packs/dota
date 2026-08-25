@@ -1,0 +1,60 @@
+import { installEngineGlobalsForTests, installPackForTests } from '@moba2d/core/testing/setup';
+// `setActiveLanes` has no subpath of its own, so it comes from the barrel —
+// harmless *only* because nothing in this file, or in any test this setup
+// runs before, calls `vi.mock(...)`. The two imports above come from
+// `/testing/setup` specifically to dodge the trap this line is still in:
+// the barrel's `export *` eagerly evaluates its whole closure (real
+// `ContentApi`, real `AssetManager`) before a test file's own `vi.mock`
+// registers, so a mock aimed at something this setup file's import graph
+// already touched will not take. If a test in this pack ever needs
+// `vi.mock('.../AssetManager', ...)` or similar and mysteriously sees the
+// real implementation, look here first.
+import { buildTestApi, setActiveLanes } from '@moba2d/core/testing';
+import { setPackApi } from './packApi';
+import { data } from './pack';
+import { assetManifest } from './generated/assetManifest';
+
+/**
+ * Every test file's own environment, run once per file before its own
+ * top-level code. Imported from `@moba2d/core/testing/setup`, **not** from
+ * `@moba2d/core/testing` (the barrel that also re-exports these two): the
+ * barrel's `export *` eagerly evaluates its whole closure — including the
+ * real `ContentApi`/`AssetManager` — before any test file's own
+ * `vi.mock(...)` calls register. See that subpath's own header.
+ */
+installEngineGlobalsForTests();
+
+/**
+ * **First.** Every class in `spells/` is declared against `packApi.ts`'s
+ * `api` and reads it the moment its module evaluates — and a test file
+ * importing a spell is exactly that moment. Vitest runs this setup before it
+ * imports the test file, which is the only reason a test can `import
+ * Hero_Q from '../spells/Hero_Q'` like an ordinary module.
+ *
+ * Miss this and the failure is legible on purpose: `packApi.ts`'s proxy
+ * throws "pack api read before it was set" rather than an undefined-property
+ * error on a line that looks fine.
+ */
+setPackApi(buildTestApi());
+
+/**
+ * **The real manifest, not `{}`.** The scaffold hands `installPackForTests` an
+ * empty object, which is correct for exactly as long as no spell has an icon:
+ * `api.asset(key)` throws `Unknown asset key` at *class construction* time, so
+ * the first ability that declares `image = api.asset(...)` — which is every
+ * real one — takes every test in the pack down with it, from a stack that
+ * points at `AssetManager` rather than at this line. Registering the generated
+ * manifest here is the same thing the running game does at install.
+ */
+await installPackForTests({ id: data.manifest.id, assetManifest, data });
+
+/**
+ * This pack's own map as the active match's lane set, the same way core's
+ * own test setup installs a default so a test that reads lane waypoints
+ * without constructing a real `Game` still gets something real.
+ */
+const map = data.maps?.[0];
+if (map) {
+  const geometry = typeof map.geometry === 'function' ? await map.geometry() : map.geometry;
+  setActiveLanes(geometry.lanes ?? []);
+}

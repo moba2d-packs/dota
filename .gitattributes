@@ -1,0 +1,5 @@
+# The art is Valve's, fetched by `npm run art:import` and hash-recorded in
+# `assets/source-manifest.json`. Marking it binary keeps a re-import out of
+# a reviewer's diff as a wall of bytes — the manifest is the reviewable half.
+*.png binary
+*.webp binary
