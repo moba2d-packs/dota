@@ -145,18 +145,25 @@ async function shelfIcon(buffer) {
     .toBuffer();
   const mark = await sharp(band)
     .trim({ threshold: 1 })
-    .resize(Math.round(ICON_SIZE * 0.62), Math.round(ICON_SIZE * 0.62), {
+    // Nearly edge to edge. The pack shelf draws these small and the League
+    // pack's tile fills its own square the same way; a mark floating in the
+    // middle of a plate reads as a placeholder next to it.
+    .resize(Math.round(ICON_SIZE * 0.9), Math.round(ICON_SIZE * 0.9), {
       fit: 'inside',
       withoutEnlargement: false,
     })
     .toBuffer();
 
+  // Light, not dark. Valve's emblem is a brick red drawn to sit on the white of
+  // their own lockup, and on a near-black plate it goes muddy — the mark stops
+  // reading as the red square everyone recognises. The plate is the one part of
+  // this tile that is ours, so it is the part that moves.
   const plate = Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${ICON_SIZE}" height="${ICON_SIZE}">
        <defs>
          <linearGradient id="p" x1="0" y1="0" x2="1" y2="1">
-           <stop offset="0" stop-color="#1a1512"/>
-           <stop offset="1" stop-color="#2b1410"/>
+           <stop offset="0" stop-color="#ffffff"/>
+           <stop offset="1" stop-color="#e9e6e1"/>
          </linearGradient>
        </defs>
        <rect width="${ICON_SIZE}" height="${ICON_SIZE}" rx="52" fill="url(#p)"/>
