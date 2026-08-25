@@ -15,9 +15,7 @@
     "test": "vitest run",
     "build": "npm run assets:generate && npm run catalog:generate && vite build && node scripts/write-manifest.mjs",
     "manifest:write": "node scripts/write-manifest.mjs",
-    "verify": "npm run art:check && npm run icons:check && npm run assets:check && npm run catalog:check && npm run typecheck && npm run check-unused && npm run check-seams && npm run build && npm test",
-    "icons:render": "node scripts/render-icons.mjs",
-    "icons:check": "node scripts/render-icons.mjs --check",
+    "verify": "npm run art:check && npm run assets:check && npm run catalog:check && npm run typecheck && npm run check-unused && npm run check-seams && npm run build && npm test",
     "art:import": "node scripts/import-art.mjs",
     "art:check": "node scripts/import-art.mjs --check"
   },

@@ -47,9 +47,8 @@ npm run verify
 | `npm run verify` | Everything CI runs. Do this before opening a PR |
 | `npm test` | The unit suite (`npx vitest run tests/Pudge_Q.test.ts` for one file) |
 | `npm run build` | Builds `dist/` and writes `dist/manifest.json` |
-| `npm run art:import` | Re-fetches every champion and ability image from its real source |
+| `npm run art:import` | Re-fetches every champion image, ability icon and the shelf logo from its real source |
 | `npm run art:check` | Offline: re-hashes the committed art against `assets/source-manifest.json` |
-| `npm run icons:render` / `icons:check` | Rasterises `tools/icons/pack/icon.svg` into `public/icon.png` |
 | `npm run check-seams` | The source-scan rules — `pack-core-boundary`, `pack-asset-key`, and the rest |
 
 Adding an ability is `npx moba2d-pack-add spell <Name> --champion <Hero> --slot <Slot>`, but note a **playable** champion's kit is full at four: core refuses to install a fifth. [`docs/PACK_AUTHORING.md`](https://github.com/HoangTran0410/moba2d-core/blob/main/docs/PACK_AUTHORING.md) in core is the whole guide, and [`docs/ADDING_SPELLS.md`](https://github.com/HoangTran0410/moba2d-core/blob/main/docs/ADDING_SPELLS.md) is the spell mechanism.
@@ -65,8 +64,8 @@ This is a non-commercial, unofficial fan project. It is **not affiliated with, a
 
 Dota 2, its heroes, their names, their ability names, and all the artwork in `assets/images/` are the property of Valve Corporation. This repository claims no ownership over any of it.
 
-**Every image here is fetched, not redrawn, and every one records where it came from.** `npm run art:import` pulls hero portraits and ability icons from Valve's own CDN — the same files the Dota 2 client and the official web profile serve — and writes `assets/source-manifest.json` with the URL and a content hash per file. `npm run art:check` re-hashes what is committed against that manifest offline, so the art and its provenance cannot drift apart unnoticed.
+**Every image here is fetched, not redrawn, and every one records where it came from.** `npm run art:import` pulls hero portraits, ability icons and the shelf logo from Valve's own CDN — the same files the Dota 2 client and the official web profile serve — and writes `assets/source-manifest.json` with the URL and a content hash per file. `npm run art:check` re-hashes what is committed against that manifest offline, so the art and its provenance cannot drift apart unnoticed.
 
 That art lives here rather than in the engine on purpose. Core carries no third-party material at all — it draws every pixel it ships, so it stays installable and redistributable on its own — and this repository is the half where a licensed roster belongs. The game's packs screen names this pack for what it contains, because a player deciding whether to install something has to know what is in it.
 
-The one original image in this repository is `tools/icons/pack/icon.svg`, the shelf logo, which is a drawing of a map and belongs to this project.
+The shelf logo was a hand-drawn SVG of a map until it became Valve's own emblem, cropped out of the logo Valve publishes and composited onto a plate of ours. It is on the provenance ledger with everything else: a tile is what a player looks at to answer "which game is this", and a drawing of a map this pack does not ship yet was the wrong answer to that question.

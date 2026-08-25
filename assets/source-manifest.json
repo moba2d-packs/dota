@@ -4,7 +4,7 @@
   "sources": [
     {
       "contentHash": "95766384eabf4c8f7cb132d40c91e8dce5a953c1ecf56329d5072e2a7a33930f",
-      "fetchedAt": "2026-08-25T14:30:09.618Z",
+      "fetchedAt": "2026-08-25T17:11:13.228Z",
       "localAssetKey": "champ_crystalmaiden",
       "localPath": "assets/images/champions/crystalmaiden.png",
       "sourceHash": "fc58c02a6206837d4a7782bc6f3360f1be24292be954f756086d4da2ed8911d9",
@@ -12,7 +12,7 @@
     },
     {
       "contentHash": "31b2f91f2baf2c3d5d98daf49d1a59194e2635c77eb7a6a19226d37b366b9df2",
-      "fetchedAt": "2026-08-25T14:30:08.620Z",
+      "fetchedAt": "2026-08-25T17:11:12.810Z",
       "localAssetKey": "champ_juggernaut",
       "localPath": "assets/images/champions/juggernaut.png",
       "sourceHash": "7a625fbe444159987e43822abed400f60ee0309b8eafa8f11e876ed37878a651",
@@ -20,7 +20,7 @@
     },
     {
       "contentHash": "b4cf36606e2b87393242e34fdf9cf626262f685c2b2369410f3ab4df56cd6c7d",
-      "fetchedAt": "2026-08-25T14:30:06.821Z",
+      "fetchedAt": "2026-08-25T17:11:12.326Z",
       "localAssetKey": "champ_lina",
       "localPath": "assets/images/champions/lina.png",
       "sourceHash": "220a53e259ed4fa393c4e624ec2c283fa840346ed8e4fa2b159d186cbc060241",
@@ -28,7 +28,7 @@
     },
     {
       "contentHash": "e172a9421802e63c129ac535e5428bfccd79e71ce9f362813c8d1f2b903ef690",
-      "fetchedAt": "2026-08-25T14:30:05.028Z",
+      "fetchedAt": "2026-08-25T17:11:11.869Z",
       "localAssetKey": "champ_pudge",
       "localPath": "assets/images/champions/pudge.png",
       "sourceHash": "e841113d9c4d87c5c014755befe0c4faf028cd935f4ade6dbfe0a534b8efcb00",
@@ -36,7 +36,7 @@
     },
     {
       "contentHash": "b064ade58e1ea036a23db7152c0d16b892c955aafcd6d0e1addc5668990022f5",
-      "fetchedAt": "2026-08-25T14:30:09.799Z",
+      "fetchedAt": "2026-08-25T17:11:13.463Z",
       "localAssetKey": "spell_crystalmaiden_e",
       "localPath": "assets/images/spells/crystalmaiden_e.png",
       "sourceHash": "2e4a9261ad0d70907c8e87c16b496f6b7be58a7de7a6e2ba0a2f1b0e7813b076",
@@ -44,7 +44,7 @@
     },
     {
       "contentHash": "e7f1a6b4e752eaf62f4dafbb7dea0ced6e599e30966cf7cd064fbcf42a54feec",
-      "fetchedAt": "2026-08-25T14:30:09.684Z",
+      "fetchedAt": "2026-08-25T17:11:13.310Z",
       "localAssetKey": "spell_crystalmaiden_q",
       "localPath": "assets/images/spells/crystalmaiden_q.png",
       "sourceHash": "1efac9dc7d3654172bff510d78e15817b4571319ff6a73a60d4f2cc2a2c130d5",
@@ -52,7 +52,7 @@
     },
     {
       "contentHash": "83f154c4a7ba68bb860a45be11542014f89afd9fe5aed3e09b6735453336b5ac",
-      "fetchedAt": "2026-08-25T14:30:09.878Z",
+      "fetchedAt": "2026-08-25T17:11:13.545Z",
       "localAssetKey": "spell_crystalmaiden_r",
       "localPath": "assets/images/spells/crystalmaiden_r.png",
       "sourceHash": "5db6a18a2072b34ebb7073cc83cfa12f6b64238333d7a63dc69b4b1ed3a12f93",
@@ -60,7 +60,7 @@
     },
     {
       "contentHash": "6d53d48e8d1152f538e0e7218ad86549545a9fd1fe3fd2b00cb34e64be47d4b2",
-      "fetchedAt": "2026-08-25T14:30:09.756Z",
+      "fetchedAt": "2026-08-25T17:11:13.389Z",
       "localAssetKey": "spell_crystalmaiden_w",
       "localPath": "assets/images/spells/crystalmaiden_w.png",
       "sourceHash": "b98b442f8d8354c570e649f706d5dc496fe60f74964aef10621f195045eb8144",
@@ -68,7 +68,7 @@
     },
     {
       "contentHash": "ef36f7f66b0644d80f99be9f538f8cc39fc1f8e01b3bf10bcc49d908b1db5720",
-      "fetchedAt": "2026-08-25T14:30:08.831Z",
+      "fetchedAt": "2026-08-25T17:11:13.038Z",
       "localAssetKey": "spell_juggernaut_e",
       "localPath": "assets/images/spells/juggernaut_e.png",
       "sourceHash": "77bb6f109b55e5f646ecc3a43d74431a586f0a70fad6b680055b0af49cf92ef2",
@@ -76,7 +76,7 @@
     },
     {
       "contentHash": "e40d7b2a88c2984ab2c99c45ce96a26d9dbebfd2b9d2f378257740dcb4bbc635",
-      "fetchedAt": "2026-08-25T14:30:08.685Z",
+      "fetchedAt": "2026-08-25T17:11:12.873Z",
       "localAssetKey": "spell_juggernaut_q",
       "localPath": "assets/images/spells/juggernaut_q.png",
       "sourceHash": "b2ed7d5e36c1819f5a601306933d0af83a4185bcbd915311b010c96527d63c70",
@@ -84,7 +84,7 @@
     },
     {
       "contentHash": "e7053fae27bfa7233262f62a65984e7cd3f4a932d08b0c4cf84ff3bad118fc53",
-      "fetchedAt": "2026-08-25T14:30:08.906Z",
+      "fetchedAt": "2026-08-25T17:11:13.122Z",
       "localAssetKey": "spell_juggernaut_r",
       "localPath": "assets/images/spells/juggernaut_r.png",
       "sourceHash": "944a0caf392081c3af0ab6ee4405270e2ef614d27ddd6173e3a4084a075cebff",
@@ -92,7 +92,7 @@
     },
     {
       "contentHash": "063520b51a432c8a7f616d90fa3cb7c4b4b742cfb79ceeb0cdc50a75b5b629a8",
-      "fetchedAt": "2026-08-25T14:30:08.763Z",
+      "fetchedAt": "2026-08-25T17:11:12.956Z",
       "localAssetKey": "spell_juggernaut_w",
       "localPath": "assets/images/spells/juggernaut_w.png",
       "sourceHash": "16b6d0a2482bb395cca9765b7b94b1f36460462959759f9921c84a2c66c60b44",
@@ -100,7 +100,7 @@
     },
     {
       "contentHash": "17be499d46a4424c1b7e31a201fa224937d759f54febafd81bc0af4196f178e7",
-      "fetchedAt": "2026-08-25T14:30:07.817Z",
+      "fetchedAt": "2026-08-25T17:11:12.612Z",
       "localAssetKey": "spell_lina_e",
       "localPath": "assets/images/spells/lina_e.png",
       "sourceHash": "8c1293519d3e28d7d49b4d4574b75d064f94d195de91ab56a9c403f52049fa1e",
@@ -108,7 +108,7 @@
     },
     {
       "contentHash": "8558203be652050694cdbd960218921213264fdd360ff9c880056c5c9cf44e34",
-      "fetchedAt": "2026-08-25T14:30:07.207Z",
+      "fetchedAt": "2026-08-25T17:11:12.443Z",
       "localAssetKey": "spell_lina_q",
       "localPath": "assets/images/spells/lina_q.png",
       "sourceHash": "9adadc75fa7f7cb6cef467f970551b8d8c86baa9a8554d7f5f6d4930dad47c6e",
@@ -116,7 +116,7 @@
     },
     {
       "contentHash": "0dc40c72402543575fbf87f2898e1bf7a90570940d0260b85607b2d28ac2070b",
-      "fetchedAt": "2026-08-25T14:30:08.052Z",
+      "fetchedAt": "2026-08-25T17:11:12.696Z",
       "localAssetKey": "spell_lina_r",
       "localPath": "assets/images/spells/lina_r.png",
       "sourceHash": "222ff2fd7ac51e8ca0b42abf6681693682f2ac91047658ae76132809f2ec319b",
@@ -124,7 +124,7 @@
     },
     {
       "contentHash": "53a1c564e437db0f65d7b30027781aab4c2d4f9d25585a6597070578c99d56ae",
-      "fetchedAt": "2026-08-25T14:30:07.431Z",
+      "fetchedAt": "2026-08-25T17:11:12.522Z",
       "localAssetKey": "spell_lina_w",
       "localPath": "assets/images/spells/lina_w.png",
       "sourceHash": "0d46b07ab367ae51ddc9f3fe551223dc9f2d59f1be310d908afe1ca96dda2fd8",
@@ -132,7 +132,7 @@
     },
     {
       "contentHash": "20d8de03ac6bd58e84347af4eec7b0b75f18ba71ddab5c51c831e93efd78a0ed",
-      "fetchedAt": "2026-08-25T14:30:05.870Z",
+      "fetchedAt": "2026-08-25T17:11:12.123Z",
       "localAssetKey": "spell_pudge_e",
       "localPath": "assets/images/spells/pudge_e.png",
       "sourceHash": "9a4d637ffff8433d764494e23cae7aa21fe96be783a74f72e650322b1351eab7",
@@ -140,7 +140,7 @@
     },
     {
       "contentHash": "fc004a9bd637a197ccde55ce8e8442d04043ad3218ee351f903aef711c6ea456",
-      "fetchedAt": "2026-08-25T14:30:05.070Z",
+      "fetchedAt": "2026-08-25T17:11:11.947Z",
       "localAssetKey": "spell_pudge_q",
       "localPath": "assets/images/spells/pudge_q.png",
       "sourceHash": "9c4f8ab6b5e31275e72e597629951dcebefb911d791348f98c6773ab3f1ee96a",
@@ -148,7 +148,7 @@
     },
     {
       "contentHash": "8cee84675745ce14580b0756e49939d8e52db20c5db4d29fb77f36bdd822593a",
-      "fetchedAt": "2026-08-25T14:30:06.261Z",
+      "fetchedAt": "2026-08-25T17:11:12.213Z",
       "localAssetKey": "spell_pudge_r",
       "localPath": "assets/images/spells/pudge_r.png",
       "sourceHash": "4c85adb9cc88c947a90d45f981e5c5f08f6af257e291055065254f3d612a13f9",
@@ -156,11 +156,19 @@
     },
     {
       "contentHash": "b9d91a5cccf000cb9f95101dcffbf6a597507d0cdceaac602e96f111dd6225e4",
-      "fetchedAt": "2026-08-25T14:30:05.465Z",
+      "fetchedAt": "2026-08-25T17:11:12.040Z",
       "localAssetKey": "spell_pudge_w",
       "localPath": "assets/images/spells/pudge_w.png",
       "sourceHash": "3a0a992bb5a61fa391f7ecb5a26cb4ee37c7fd6e5910d44ad4e554d88bfe7bf7",
       "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/pudge_rot.png"
+    },
+    {
+      "contentHash": "6a386c978d1bf8f6dbadc1c287747e25401dc1e7a63b7c94d9574749b0d8faa3",
+      "fetchedAt": "2026-08-25T17:11:11.718Z",
+      "localAssetKey": null,
+      "localPath": "public/icon.png",
+      "sourceHash": "ba2c4e42da61efabdad2986650b0b09bf4f40a27eb67a5c9d49a08fef1f47373",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blog/play/dota_logo.png"
     }
   ]
 }
