@@ -16,13 +16,8 @@
  * (400x250), so it is centre-cropped to a square here rather than squashed —
  * the roster row draws a square and a squashed face reads as a rendering bug.
  *
- * The pack's shelf logo is imported here too, and it is why this script owns
- * the file rather than a `render-icons` step beside it: the tile used to be a
- * hand-drawn SVG of the map, which is a picture of something this pack does
- * not ship (the map is not written yet) wearing the place a player looks for
- * "which game is this". Valve's own Dota 2 emblem is the answer to that
- * question, and once the tile is Valve's art it belongs on the same provenance
- * ledger as the portraits.
+ * The pack's shelf logo is on this script's ledger too, without being fetched
+ * by it — see `LOCAL_ASSETS`.
  *
  * `resolveWikiUrls` is kept, unused by the roster above, for the half of this
  * pack that is not written yet: neutral creeps and Roshan are not on that CDN
@@ -50,8 +45,6 @@ const MANIFEST = join(root, 'assets/source-manifest.json');
 const UA = 'moba2d-content-dota art importer (+https://github.com/moba2d-packs/dota)';
 
 const STEAM = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react';
-/** Where Valve publishes the game's own logo, as opposed to its hero and ability art. */
-const STEAM_BLOG = 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/blog/play';
 const WIKI = 'https://dota2.fandom.com/api.php';
 
 /**
@@ -115,66 +108,34 @@ const square = (buffer, size) =>
 /** Ability icons arrive at exactly the size the HUD wants, so they are not touched. */
 const verbatim = buffer => sharp(buffer).png({ compressionLevel: 9 }).toBuffer();
 
-/** The shelf tile's edge, in px. Core hot-links this file straight off the pack's root. */
-const ICON_SIZE = 256;
-
 /**
- * The shelf tile: Valve's emblem on a plate of our own.
+ * The shelf tile is **committed, not fetched, and not transformed.**
  *
- * Valve publishes the logo as one wide image — the emblem stacked over the
- * "DOTA 2" wordmark, 352x206 — and a shelf tile is a square. The wordmark is
- * what loses: it is unreadable at 256px, the tile sits beside the pack's name
- * already, and the emblem alone is the half that is recognisable at a glance.
- * So the top of the source is extracted and trimmed to whatever the mark
- * actually occupies, rather than to hard-coded pixels that would silently
- * mis-crop the day Valve re-exports the file.
+ * Two earlier cuts got this wrong in the same direction. The first was a
+ * hand-drawn SVG of a map this pack does not ship. The second took Valve's
+ * published logo, cropped the emblem out of the top of it and composited that
+ * onto a plate of our own — two decisions this repository has no business
+ * making about someone else's mark, and it looked it: the emblem's art is not
+ * centred inside its own bounds (the ® hangs off one corner), so a "centred"
+ * crop sat visibly off-axis.
  *
- * The ® stays in the crop. It is part of the mark, and a fan project trimming
- * a trademark symbol off someone else's logo is the wrong instinct.
- *
- * The plate underneath is this pack's own: Dota's near-black with a warm cast,
- * rounded the same 52px the previous hand-drawn tile used, so the shelf's
- * geometry does not shift.
+ * The file in `public/icon.png` is the Dota 2 logo at exactly the size the
+ * tile wants, supplied by the project owner, and it is copied in byte for
+ * byte. It still carries a `source-manifest.json` entry so `art:check` hashes
+ * it with everything else — the ledger's job is "this file is what it says it
+ * is", and a locally-supplied file needs that as much as a fetched one. It
+ * simply has no `sourceUrl`, which is the honest record of where it came from.
  */
-async function shelfIcon(buffer) {
-  const { width } = await sharp(buffer).metadata();
-  // The top 60% of the source is the emblem; `trim` finds its real edges
-  // inside that band, so the number only has to be "above the wordmark".
-  const band = await sharp(buffer)
-    .extract({ left: 0, top: 0, width, height: Math.round(206 * 0.59) })
-    .toBuffer();
-  const mark = await sharp(band)
-    .trim({ threshold: 1 })
-    // Nearly edge to edge. The pack shelf draws these small and the League
-    // pack's tile fills its own square the same way; a mark floating in the
-    // middle of a plate reads as a placeholder next to it.
-    .resize(Math.round(ICON_SIZE * 0.9), Math.round(ICON_SIZE * 0.9), {
-      fit: 'inside',
-      withoutEnlargement: false,
-    })
-    .toBuffer();
-
-  // Light, not dark. Valve's emblem is a brick red drawn to sit on the white of
-  // their own lockup, and on a near-black plate it goes muddy — the mark stops
-  // reading as the red square everyone recognises. The plate is the one part of
-  // this tile that is ours, so it is the part that moves.
-  const plate = Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${ICON_SIZE}" height="${ICON_SIZE}">
-       <defs>
-         <linearGradient id="p" x1="0" y1="0" x2="1" y2="1">
-           <stop offset="0" stop-color="#ffffff"/>
-           <stop offset="1" stop-color="#e9e6e1"/>
-         </linearGradient>
-       </defs>
-       <rect width="${ICON_SIZE}" height="${ICON_SIZE}" rx="52" fill="url(#p)"/>
-     </svg>`
-  );
-
-  return sharp(plate)
-    .composite([{ input: mark, gravity: 'centre' }])
-    .png({ compressionLevel: 9 })
-    .toBuffer();
-}
+const LOCAL_ASSETS = [
+  {
+    localPath: 'public/icon.png',
+    // Not an `AssetManager` key: core's packs screen hot-links this file off
+    // the pack's published root, which is why it lands in `public/` — the one
+    // directory Vite copies verbatim — and never under `assets/`.
+    localAssetKey: null,
+    note: 'Dota 2 logo, supplied by the project owner. Property of Valve Corporation.',
+  },
+];
 
 async function main() {
   const check = process.argv.includes('--check');
@@ -205,17 +166,7 @@ async function main() {
     return;
   }
 
-  const wanted = [
-    {
-      url: `${STEAM_BLOG}/dota_logo.png`,
-      localPath: 'public/icon.png',
-      // Not an `AssetManager` key: core's packs screen hot-links this file off
-      // the pack's published root, which is why it lands in `public/` — the one
-      // directory Vite copies verbatim — and never under `assets/`.
-      localAssetKey: null,
-      transform: shelfIcon,
-    },
-  ];
+  const wanted = [];
   for (const hero of ROSTER) {
     wanted.push({
       url: `${STEAM}/heroes/crops/${hero.slug}.png`,
@@ -249,6 +200,26 @@ async function main() {
       sourceUrl: item.url,
     });
     console.log(`  ${item.localPath}  <-  ${item.url}`);
+  }
+
+  // Hashed, never downloaded — see `LOCAL_ASSETS`.
+  for (const local of LOCAL_ASSETS) {
+    const path = join(root, local.localPath);
+    if (!existsSync(path)) {
+      console.error(`import-art: ${local.localPath} is missing and cannot be fetched — it is a committed file.`);
+      process.exit(1);
+    }
+    const bytes = readFileSync(path);
+    sources.push({
+      contentHash: sha256(bytes),
+      fetchedAt: new Date().toISOString(),
+      localAssetKey: local.localAssetKey,
+      localPath: local.localPath,
+      note: local.note,
+      sourceHash: sha256(bytes),
+      sourceUrl: null,
+    });
+    console.log(`  ${local.localPath}  <-  committed`);
   }
 
   sources.sort((a, b) => a.localPath.localeCompare(b.localPath));
