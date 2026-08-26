@@ -19,8 +19,9 @@ const kits = () => (data.champions ?? []).filter(champion => champion.playable);
 const display = data.spellDisplay ?? {};
 
 describe('the roster', () => {
-  it('ships the four heroes this pack claims', () => {
+  it('ships the heroes this pack claims', () => {
     expect(kits().map(champion => champion.id).sort()).toEqual([
+      'axe',
       'crystalmaiden',
       'juggernaut',
       'lina',

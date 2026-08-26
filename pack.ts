@@ -115,6 +115,16 @@ export const data: ContentPackData = {
         // moba2d-pack-add spell: new slot ids go above this line
       ],
     },
+    {
+      id: 'axe',
+      name: 'Axe',
+      image: 'champ_axe',
+      playable: true,
+      // A melee bruiser who wants to be surrounded: he hits hard and slowly,
+      // and every ability in the kit is about making people stand next to him.
+      attack: { damage: 16, attacksPerSecond: 0.9, range: 125 },
+      spells: ['Axe_Q', 'Axe_W', 'Axe_E', 'Axe_R'],
+    },
   ],
   spellDisplay: displayData(),
 };

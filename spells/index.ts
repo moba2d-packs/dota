@@ -29,4 +29,8 @@ export { default as CrystalMaiden_Q } from './CrystalMaiden_Q';
 export { default as CrystalMaiden_W } from './CrystalMaiden_W';
 export { default as CrystalMaiden_E } from './CrystalMaiden_E';
 export { default as CrystalMaiden_R } from './CrystalMaiden_R';
+export { default as Axe_Q } from './Axe_Q';
+export { default as Axe_W } from './Axe_W';
+export { default as Axe_E } from './Axe_E';
+export { default as Axe_R } from './Axe_R';
 // moba2d-pack-add spell: new barrel entries go above this line
