@@ -49,4 +49,14 @@ export { default as Sniper_Q } from './Sniper_Q';
 export { default as Sniper_W } from './Sniper_W';
 export { default as Sniper_E } from './Sniper_E';
 export { default as Sniper_R } from './Sniper_R';
+
+// Items. Registered here like any other spell — the barrel is what the
+// catalogue generator reads — but named in `pack.ts`'s `items` map rather
+// than in any champion's `spells` kit, and deliberately kept out of
+// `spellDisplay`. See the note over `displayData()`.
+export { default as Item_BladeMail } from './Item_BladeMail';
+export { default as Item_Euls } from './Item_Euls';
+export { default as Item_BlackKingBar } from './Item_BlackKingBar';
+export { default as Item_ShivasGuard } from './Item_ShivasGuard';
+export { default as Item_Heart } from './Item_Heart';
 // moba2d-pack-add spell: new barrel entries go above this line

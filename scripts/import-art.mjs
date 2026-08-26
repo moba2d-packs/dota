@@ -71,6 +71,42 @@ export const ROSTER = [
   { slug: 'sniper', local: 'sniper', abilities: ['shrapnel', 'take_aim', 'headshot', 'assassinate'] },
 ];
 
+/**
+ * The shop, and the only place an item's art is named.
+ *
+ * Same two-column shape as `ROSTER` and for the same reason: `slug` is Valve's
+ * own file name under `dota_react/items/`, `local` is what this pack calls it,
+ * and three of the fourteen differ — Eul's Scepter is filed as `cyclone`, the
+ * Heart of Tarrasque as `heart`, and the Robe of the Magi as `robe`. A rule
+ * that derived one from the other would be a rule with three exceptions, so
+ * both are written down.
+ *
+ * The key follows from `local` exactly as a hero's does: `assets/images/items/
+ * blade_mail.png` is `item_blade_mail`, which is the string `pack.ts` writes
+ * into `ItemDef.icon`. The generator maps the `items` folder to a *singular*
+ * `item` prefix on purpose — an icon key is hand-written in a pack rather than
+ * derived, and `items_blade_mail` would be a plural nobody guesses and a broken
+ * key nobody sees until the shop draws a blank.
+ */
+export const ITEMS = [
+  // Finished
+  { slug: 'blade_mail', local: 'blade_mail' },
+  { slug: 'cyclone', local: 'euls_scepter' },
+  { slug: 'black_king_bar', local: 'black_king_bar' },
+  { slug: 'shivas_guard', local: 'shivas_guard' },
+  { slug: 'heart', local: 'heart_of_tarrasque' },
+  // Components
+  { slug: 'broadsword', local: 'broadsword' },
+  { slug: 'chainmail', local: 'chainmail' },
+  { slug: 'staff_of_wizardry', local: 'staff_of_wizardry' },
+  { slug: 'void_stone', local: 'void_stone' },
+  { slug: 'ogre_axe', local: 'ogre_axe' },
+  { slug: 'mithril_hammer', local: 'mithril_hammer' },
+  { slug: 'platemail', local: 'platemail' },
+  { slug: 'robe', local: 'robe_of_the_magi' },
+  { slug: 'vitality_booster', local: 'vitality_booster' },
+];
+
 const SLOTS = ['q', 'w', 'e', 'r'];
 
 const sha256 = buffer => createHash('sha256').update(buffer).digest('hex');
@@ -186,6 +222,19 @@ async function main() {
         localAssetKey: `spell_${hero.local}_${SLOTS[index]}`,
         transform: verbatim,
       });
+    });
+  }
+
+  // Item icons are the one crop on this ledger that is *not* already the shape
+  // the UI wants: Valve ships them 88x64, and the shop draws a square. So they
+  // go through the same centre-crop the hero portraits do rather than a
+  // `resize(n, n)`, which would squash every one of them by a third.
+  for (const item of ITEMS) {
+    wanted.push({
+      url: `${STEAM}/items/${item.slug}.png`,
+      localPath: `assets/images/items/${item.local}.png`,
+      localAssetKey: `item_${item.local}`,
+      transform: buffer => square(buffer, 64),
     });
   }
 

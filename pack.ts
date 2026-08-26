@@ -2,6 +2,7 @@ import type { ContentApi } from '@moba2d/core/content/ContentApi';
 import type {
   ContentPackCode,
   ContentPackData,
+  ItemDef,
   SpellDisplayData,
   SpellSource,
 } from '@moba2d/core/content/ContentPack';
@@ -45,9 +46,24 @@ import { spellModules } from './generated/spellModules';
  * lets every spell file be an ordinary class declaration — and then hands
  * core a loader per spell, so a match downloads the kits in play.
  */
+/**
+ * The display strings a picker draws, for the abilities a champion casts.
+ *
+ * **The `Item_*` spells are deliberately left out.** This is the difference
+ * between a spell that belongs to a champion's kit and one that belongs to an
+ * item: `spellDisplay` is what the loadout screen offers as a *choosable
+ * ability*, so leaving an item's active in it puts Gậy Hắc Vương in the list of
+ * things a random loadout can hand somebody who never bought it. The items have
+ * their own display strings — `ItemDef.name` and `.description`, read by the
+ * shop — so nothing here is lost by the omission.
+ *
+ * Matched on the `Item_` prefix rather than a hand-kept list of five, because
+ * the sixth item is exactly the one somebody forgets to add to a list.
+ */
 const displayData = (): Record<string, SpellDisplayData> => {
   const out: Record<string, SpellDisplayData> = {};
   for (const [id, entry] of Object.entries(spellCatalog)) {
+    if (id.startsWith('Item_')) continue;
     out[id] = {
       name: entry.name,
       description: entry.description,
@@ -60,13 +76,181 @@ const displayData = (): Record<string, SpellDisplayData> => {
   return out;
 };
 
+/**
+ * The shop: nine components and the five things they build into.
+ *
+ * ## `cost` is the total, and it is written exactly once
+ *
+ * A finished item's `cost` is what it costs *from nothing*. What a player
+ * actually pays when the parts are already in the bag is that number minus what
+ * those parts cost, worked out by core's `ItemShop.priceFor` — so a separate
+ * combine cost is a second place the same fact would live, and the two drift
+ * the first time anyone retunes. Core refuses a total under the sum of its
+ * parts, which would make combining pay the player.
+ *
+ * ## `passive` and `active` are local spell ids, and never kit ids
+ *
+ * Both name a spell in `spells/index.ts`, which is the same barrel a
+ * champion's abilities come from — an item's spell is an ordinary spell, and
+ * that is the whole mechanism. What makes it an *item's* is that its id appears
+ * here and in no champion's `spells: [...]`, and that `displayData()` keeps it
+ * out of `spellDisplay` so a loadout screen cannot offer it as an ability. See
+ * that function's own note.
+ *
+ * ## The stat keys are an allow-list
+ *
+ * `ItemDef.stats` accepts `ItemStatKey`, not every field on `StatsModifier` —
+ * `health` and `size` are deliberately off it. Numbers here are scaled to the
+ * ~100 health pool this pack tunes everything against, which is why a Heart of
+ * Tarrasque reads as +55 rather than the +250 the real game gives it.
+ */
+const itemEntries = (): Record<string, ItemDef> => ({
+  // ---- Components ------------------------------------------------------
+  broadsword: {
+    id: 'broadsword',
+    name: 'Kiếm Lớn',
+    icon: 'item_broadsword',
+    cost: 450,
+    description: 'Tăng 7 sát thương công.',
+    stats: { attackDamage: 7 },
+  },
+  chainmail: {
+    id: 'chainmail',
+    name: 'Giáp Xích',
+    icon: 'item_chainmail',
+    cost: 350,
+    description: 'Tăng 16 giáp.',
+    stats: { armor: 16 },
+  },
+  staff_of_wizardry: {
+    id: 'staff_of_wizardry',
+    name: 'Gậy Phù Thủy',
+    icon: 'item_staff_of_wizardry',
+    cost: 450,
+    description: 'Tăng 20 năng lượng tối đa.',
+    stats: { maxMana: 20 },
+  },
+  void_stone: {
+    id: 'void_stone',
+    name: 'Đá Hư Không',
+    icon: 'item_void_stone',
+    cost: 400,
+    description: 'Tăng 1.2 hồi năng lượng.',
+    stats: { manaRegen: 1.2 },
+  },
+  ogre_axe: {
+    id: 'ogre_axe',
+    name: 'Rìu Ogre',
+    icon: 'item_ogre_axe',
+    cost: 500,
+    description: 'Tăng 25 máu tối đa.',
+    stats: { maxHealth: 25 },
+  },
+  mithril_hammer: {
+    id: 'mithril_hammer',
+    name: 'Búa Mithril',
+    icon: 'item_mithril_hammer',
+    cost: 500,
+    description: 'Tăng 10 sát thương công.',
+    stats: { attackDamage: 10 },
+  },
+  platemail: {
+    id: 'platemail',
+    name: 'Giáp Tấm',
+    icon: 'item_platemail',
+    cost: 550,
+    description: 'Tăng 26 giáp.',
+    stats: { armor: 26 },
+  },
+  robe_of_the_magi: {
+    id: 'robe_of_the_magi',
+    name: 'Áo Choàng Pháp Sư',
+    icon: 'item_robe_of_the_magi',
+    cost: 350,
+    description: 'Tăng 16 kháng phép.',
+    stats: { magicResist: 16 },
+  },
+  vitality_booster: {
+    id: 'vitality_booster',
+    name: 'Bình Sinh Lực',
+    icon: 'item_vitality_booster',
+    cost: 500,
+    description: 'Tăng 30 máu tối đa.',
+    stats: { maxHealth: 30 },
+  },
+
+  // ---- Finished --------------------------------------------------------
+  blade_mail: {
+    id: 'blade_mail',
+    name: 'Blade Mail',
+    icon: 'item_blade_mail',
+    cost: 1_000,
+    description:
+      'Tăng 7 sát thương công và 16 giáp. Kích hoạt: phản 70% sát thương nhận vào trong 4.5 giây.',
+    stats: { attackDamage: 7, armor: 16 },
+    active: 'Item_BladeMail',
+    buildsFrom: ['broadsword', 'chainmail'],
+  },
+  euls_scepter: {
+    id: 'euls_scepter',
+    name: "Eul's Scepter",
+    icon: 'item_euls_scepter',
+    cost: 1_100,
+    description:
+      'Tăng 20 năng lượng tối đa, 1.2 hồi năng lượng và 0.3 tốc chạy. Kích hoạt: cuốn tung một tướng địch 1.5 giây.',
+    stats: { maxMana: 20, manaRegen: 1.2, speed: 0.3 },
+    active: 'Item_Euls',
+    buildsFrom: ['staff_of_wizardry', 'void_stone'],
+  },
+  black_king_bar: {
+    id: 'black_king_bar',
+    name: 'Black King Bar',
+    icon: 'item_black_king_bar',
+    cost: 1_250,
+    description:
+      'Tăng 25 máu tối đa và 10 sát thương công. Kích hoạt: gỡ khống chế và +65 kháng phép trong 6 giây.',
+    stats: { maxHealth: 25, attackDamage: 10 },
+    active: 'Item_BlackKingBar',
+    buildsFrom: ['ogre_axe', 'mithril_hammer'],
+  },
+  shivas_guard: {
+    id: 'shivas_guard',
+    name: "Shiva's Guard",
+    icon: 'item_shivas_guard',
+    cost: 1_300,
+    description:
+      'Tăng 26 giáp và 16 kháng phép. Nội tại: toả hơi lạnh làm chậm 25% mọi kẻ địch trong bán kính 500.',
+    stats: { armor: 26, magicResist: 16 },
+    passive: 'Item_ShivasGuard',
+    buildsFrom: ['platemail', 'robe_of_the_magi'],
+  },
+  heart_of_tarrasque: {
+    id: 'heart_of_tarrasque',
+    name: 'Heart of Tarrasque',
+    icon: 'item_heart_of_tarrasque',
+    cost: 1_300,
+    description:
+      'Tăng 55 máu tối đa. Nội tại: sau 5 giây không trúng đòn, hồi 5 máu mỗi 0.5 giây.',
+    stats: { maxHealth: 55 },
+    passive: 'Item_Heart',
+    buildsFrom: ['vitality_booster', 'ogre_axe'],
+  },
+});
+
 export const data: ContentPackData = {
   // `coreRange` is the oldest core this pack works against. Core parses
   // exactly two shapes — `*` and `>=X.Y.Z` — and treats anything else as
   // unsatisfiable, so `^1` is not a loose range, it is a pack that refuses to
   // install. `scripts/write-manifest.mjs` states the same floor for the
   // published manifest; raise both together.
-  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.0.0', assets: 'dota' },
+  // Raised from `>=1.0.0` when this pack grew a shop. `items` did not exist in
+  // `ContentPackData` before core 1.3, `buildsFrom` before 1.4, and the two
+  // fields the item passives lean on — `Buff.hudVisible` and `Buff.sourceSpell`
+  // — before 1.5. An older core does not *fail* on any of them; it ignores what
+  // it does not know, which would install this pack with a shop full of items
+  // whose passives never come off when sold and whose bookkeeping fills the
+  // buff bar. Stating 1.5 turns that into a refusal a player can read.
+  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.5.0', assets: 'dota' },
   champions: [
     {
       id: 'pudge',
@@ -175,6 +359,7 @@ export const data: ContentPackData = {
     },
   ],
   spellDisplay: displayData(),
+  items: itemEntries(),
 };
 
 const code = (api: ContentApi): ContentPackCode => {

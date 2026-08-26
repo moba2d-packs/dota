@@ -32,7 +32,9 @@ const dist = join(root, 'dist');
  * already published, so a floor the live core cannot meet is refused on every
  * player's machine at once.
  */
-const coreRange = '>=1.0.0';
+// Raised with `pack.ts`'s own floor when this pack grew a shop — the two state
+// the same fact and must move together. See the note over `data.manifest`.
+const coreRange = '>=1.5.0';
 
 /**
  * A floor no core can satisfy is a pack nobody can install, and the build is
