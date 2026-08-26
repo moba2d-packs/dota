@@ -153,6 +153,44 @@ the same stem are a duplicate-key error.
 draw, and inlined art puts every champion's portrait in it to play a match
 that needs four.
 
+**Label your damage.** `takeDamage(amount, this.owner, 'MAGIC', 'Tên Chiêu')`
+— damage type (`'PHYSICAL' | 'MAGIC' | 'TRUE'`), then the player-facing
+source label core's death-recap modal groups by. Damage without them shows as
+"Không rõ". Tests spying on `takeDamage` match the trailing args with
+`expect.any(String)`, or `.slice(0, 2)` the call — never restate the label.
+
+**A re-applied Slow must `RENEW_EXISTING`.** `Slow`'s default add type stacks
+ten deep, so an aura or zone re-applying per tick turns "40% slow" into a
+standstill. One slow, clock rewound:
+`slow.buffAddType = api.enums.BuffAddType.RENEW_EXISTING`.
+
+**A bookkeeping buff hides itself.** An item passive's internal state sets
+`hudVisible = false`, or every purchase adds a row to the buff bar.
+`duration = 0` means permanent and draws no countdown.
+
+**`interrupts:` — only `SpellForm.CHANNELED` breaks on the caster's own
+movement.** `AIMED`/`HELD`/`TETHERED` survive moving and blinks and break
+only on death, stun or silence — that is what keeps cast-then-blink combos
+playable. Reserve `CHANNELED` for a true channel (a teleport, a Recall-like).
+
+**Use `Dash.onDashUpdate`, never `dashBuff.onUpdate = …`.** The instance
+assignment replaces the dash's own movement instead of hooking it, and the
+hero plays the spell standing still.
+
+**"Player is not available in this test context" is usually not the error.**
+Vitest's failure printer walks the test game and trips its throwing `player`
+getter while serialising an ordinary assertion diff. The real failure is the
+assertion above it — read the whole output before touching the fixture.
+
+**`npm install` (and any `bun install`) stomps a dev link.** While this pack
+is linked to a local core checkout (`npm run pack:link` from core), an
+install here silently replaces the symlink with the npm copy.
+`scripts/check-core-link.mjs` (first step of `verify`, warn-only on
+`postinstall`) is what tells you; `npm run pack:link` from core is the
+repair. The pre-push hook (`npm run hooks:install`, once per clone) runs the
+full `verify`; `git push --no-verify` or `MOBA2D_SKIP_VERIFY=1 git push`
+skips it once, deliberately.
+
 ---
 
 ## Two things this pack decided, that a reader will otherwise undo
