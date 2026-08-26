@@ -125,6 +125,22 @@ export const data: ContentPackData = {
       attack: { damage: 16, attacksPerSecond: 0.9, range: 125 },
       spells: ['Axe_Q', 'Axe_W', 'Axe_E', 'Axe_R'],
     },
+    {
+      id: 'vengefulspirit',
+      name: 'Vengeful Spirit',
+      image: 'champ_vengefulspirit',
+      playable: true,
+      // A ranged support: her swing is ordinary and her value is what she does
+      // to everyone else's — an aura that pays her whole side, and an ultimate
+      // that is pure position.
+      attack: { damage: 12, attacksPerSecond: 0.95, range: 390 },
+      spells: [
+        'VengefulSpirit_Q',
+        'VengefulSpirit_W',
+        'VengefulSpirit_E',
+        'VengefulSpirit_R',
+      ],
+    },
   ],
   spellDisplay: displayData(),
 };
