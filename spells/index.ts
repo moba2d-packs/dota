@@ -37,4 +37,8 @@ export { default as VengefulSpirit_Q } from './VengefulSpirit_Q';
 export { default as VengefulSpirit_W } from './VengefulSpirit_W';
 export { default as VengefulSpirit_E } from './VengefulSpirit_E';
 export { default as VengefulSpirit_R } from './VengefulSpirit_R';
+export { default as Slark_Q } from './Slark_Q';
+export { default as Slark_W } from './Slark_W';
+export { default as Slark_E } from './Slark_E';
+export { default as Slark_R } from './Slark_R';
 // moba2d-pack-add spell: new barrel entries go above this line

@@ -141,6 +141,17 @@ export const data: ContentPackData = {
         'VengefulSpirit_R',
       ],
     },
+    {
+      id: 'slark',
+      name: 'Slark',
+      image: 'champ_slark',
+      playable: true,
+      // A melee carry who wins the long fight rather than the short one: every
+      // swing he lands makes the next one worth more, and his ultimate is what
+      // buys him the time to keep swinging.
+      attack: { damage: 14, attacksPerSecond: 1.0, range: 125 },
+      spells: ['Slark_Q', 'Slark_W', 'Slark_E', 'Slark_R'],
+    },
   ],
   spellDisplay: displayData(),
 };
