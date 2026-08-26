@@ -64,6 +64,11 @@ export const ROSTER = [
   { slug: 'lina', local: 'lina', abilities: ['dragon_slave', 'light_strike_array', 'fiery_soul', 'laguna_blade'] },
   { slug: 'juggernaut', local: 'juggernaut', abilities: ['blade_fury', 'healing_ward', 'blade_dance', 'omni_slash'] },
   { slug: 'crystal_maiden', local: 'crystalmaiden', abilities: ['crystal_nova', 'frostbite', 'brilliance_aura', 'freezing_field'] },
+  { slug: 'axe', local: 'axe', abilities: ['berserkers_call', 'battle_hunger', 'counter_helix', 'culling_blade'] },
+  { slug: 'vengefulspirit', local: 'vengefulspirit', abilities: ['magic_missile', 'wave_of_terror', 'command_aura', 'nether_swap'] },
+  { slug: 'slark', local: 'slark', abilities: ['dark_pact', 'pounce', 'essence_shift', 'shadow_dance'] },
+  { slug: 'earthshaker', local: 'earthshaker', abilities: ['fissure', 'enchant_totem', 'aftershock', 'echo_slam'] },
+  { slug: 'sniper', local: 'sniper', abilities: ['shrapnel', 'take_aim', 'headshot', 'assassinate'] },
 ];
 
 const SLOTS = ['q', 'w', 'e', 'r'];

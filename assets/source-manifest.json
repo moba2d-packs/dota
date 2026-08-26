@@ -3,16 +3,32 @@
   "note": "Dota 2 art, fetched from Valve's own CDN and the Dota 2 wiki. Dota 2 and all related trademarks and artwork are the property of Valve Corporation; this pack is an unofficial, non-commercial fan project and claims no ownership of them. See README.md.",
   "sources": [
     {
+      "contentHash": "c44780764cafb6bba560765e8fce51ff3051495dca1a88b0e864961b5484fd67",
+      "fetchedAt": "2026-08-26T19:33:57.204Z",
+      "localAssetKey": "champ_axe",
+      "localPath": "assets/images/champions/axe.png",
+      "sourceHash": "d9ac3a4ffcb8a74581fadd624ae47f451982791a8969ddf56202f8946ccda09d",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/axe.png"
+    },
+    {
       "contentHash": "95766384eabf4c8f7cb132d40c91e8dce5a953c1ecf56329d5072e2a7a33930f",
-      "fetchedAt": "2026-08-25T17:29:50.109Z",
+      "fetchedAt": "2026-08-26T19:33:55.866Z",
       "localAssetKey": "champ_crystalmaiden",
       "localPath": "assets/images/champions/crystalmaiden.png",
       "sourceHash": "fc58c02a6206837d4a7782bc6f3360f1be24292be954f756086d4da2ed8911d9",
       "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/crystal_maiden.png"
     },
     {
+      "contentHash": "f576f990f226f320fbe575534d70c57ea9200575ced6dcad4decd32e1a83fd4d",
+      "fetchedAt": "2026-08-26T19:33:57.911Z",
+      "localAssetKey": "champ_earthshaker",
+      "localPath": "assets/images/champions/earthshaker.png",
+      "sourceHash": "c2eeb0050bc277c8b21771bc88474671be64c26e700d2ecbd9859538ee84496b",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/earthshaker.png"
+    },
+    {
       "contentHash": "31b2f91f2baf2c3d5d98daf49d1a59194e2635c77eb7a6a19226d37b366b9df2",
-      "fetchedAt": "2026-08-25T17:29:49.728Z",
+      "fetchedAt": "2026-08-26T19:33:55.001Z",
       "localAssetKey": "champ_juggernaut",
       "localPath": "assets/images/champions/juggernaut.png",
       "sourceHash": "7a625fbe444159987e43822abed400f60ee0309b8eafa8f11e876ed37878a651",
@@ -20,7 +36,7 @@
     },
     {
       "contentHash": "b4cf36606e2b87393242e34fdf9cf626262f685c2b2369410f3ab4df56cd6c7d",
-      "fetchedAt": "2026-08-25T17:29:49.357Z",
+      "fetchedAt": "2026-08-26T19:33:54.756Z",
       "localAssetKey": "champ_lina",
       "localPath": "assets/images/champions/lina.png",
       "sourceHash": "220a53e259ed4fa393c4e624ec2c283fa840346ed8e4fa2b159d186cbc060241",
@@ -28,15 +44,71 @@
     },
     {
       "contentHash": "e172a9421802e63c129ac535e5428bfccd79e71ce9f362813c8d1f2b903ef690",
-      "fetchedAt": "2026-08-25T17:29:48.524Z",
+      "fetchedAt": "2026-08-26T19:33:52.938Z",
       "localAssetKey": "champ_pudge",
       "localPath": "assets/images/champions/pudge.png",
       "sourceHash": "e841113d9c4d87c5c014755befe0c4faf028cd935f4ade6dbfe0a534b8efcb00",
       "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/pudge.png"
     },
     {
+      "contentHash": "a80f596ea7f6f43c72b4b8bb4026ab69ad7f036b425b13589948c9104876efff",
+      "fetchedAt": "2026-08-26T19:33:57.680Z",
+      "localAssetKey": "champ_slark",
+      "localPath": "assets/images/champions/slark.png",
+      "sourceHash": "8e0ea28d119b3d75d39af13bc8fe84b6a086a1d0d54b3299baf5fc07842ec6f3",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/slark.png"
+    },
+    {
+      "contentHash": "bafe269c99837ab837daf95b8ed21857e503b068f142759c46183554a311e621",
+      "fetchedAt": "2026-08-26T19:33:58.130Z",
+      "localAssetKey": "champ_sniper",
+      "localPath": "assets/images/champions/sniper.png",
+      "sourceHash": "f17174b3d7c39a02d7126405627fc089e8c9dce76aff6c7becdfb99efc7f1c45",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/sniper.png"
+    },
+    {
+      "contentHash": "cbe35fa4d013377fadc3d0bd728aa53a8fdf80ca49bab299e59d92a065a68920",
+      "fetchedAt": "2026-08-26T19:33:57.450Z",
+      "localAssetKey": "champ_vengefulspirit",
+      "localPath": "assets/images/champions/vengefulspirit.png",
+      "sourceHash": "f064b24ad505a1f562448cbc2dbdc806a913fd1abb177c1f2ea0de09811ba87e",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/vengefulspirit.png"
+    },
+    {
+      "contentHash": "dbc696d9b71ecd93b4dda7c9f34beb1701e9756323df7b215ef30662597d23d9",
+      "fetchedAt": "2026-08-26T19:33:57.332Z",
+      "localAssetKey": "spell_axe_e",
+      "localPath": "assets/images/spells/axe_e.png",
+      "sourceHash": "8f004cbc3e1c0cf8acf637f4b908d903d943fe3cae633297be1c086e17151198",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/axe_counter_helix.png"
+    },
+    {
+      "contentHash": "e86f5d4853f9edb30abe1ad0087f94969b92ee77eb4fb650db02193fe8764158",
+      "fetchedAt": "2026-08-26T19:33:57.247Z",
+      "localAssetKey": "spell_axe_q",
+      "localPath": "assets/images/spells/axe_q.png",
+      "sourceHash": "9233a4a49ef842921289b1a71d3966b6fa7977be5ddec199d526787cbb2867d8",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/axe_berserkers_call.png"
+    },
+    {
+      "contentHash": "3f85decd97de33b85f31d3beb6b962d268f22afce026c7ac8da82f0333e27104",
+      "fetchedAt": "2026-08-26T19:33:57.377Z",
+      "localAssetKey": "spell_axe_r",
+      "localPath": "assets/images/spells/axe_r.png",
+      "sourceHash": "df7dce4f86d83d54b5bd98847c44576553387b73f0adbc2099aa48c85f4ca987",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/axe_culling_blade.png"
+    },
+    {
+      "contentHash": "d2fbbad459483bc485f622b2563eef95873128df1d2f16b51a0103b4496a21c2",
+      "fetchedAt": "2026-08-26T19:33:57.288Z",
+      "localAssetKey": "spell_axe_w",
+      "localPath": "assets/images/spells/axe_w.png",
+      "sourceHash": "88b07bdc1497c1dfbe3573fe1e219aa39d3628659f03aac96d611a677359df0e",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/axe_battle_hunger.png"
+    },
+    {
       "contentHash": "b064ade58e1ea036a23db7152c0d16b892c955aafcd6d0e1addc5668990022f5",
-      "fetchedAt": "2026-08-25T17:29:50.320Z",
+      "fetchedAt": "2026-08-26T19:33:56.902Z",
       "localAssetKey": "spell_crystalmaiden_e",
       "localPath": "assets/images/spells/crystalmaiden_e.png",
       "sourceHash": "2e4a9261ad0d70907c8e87c16b496f6b7be58a7de7a6e2ba0a2f1b0e7813b076",
@@ -44,7 +116,7 @@
     },
     {
       "contentHash": "e7f1a6b4e752eaf62f4dafbb7dea0ced6e599e30966cf7cd064fbcf42a54feec",
-      "fetchedAt": "2026-08-25T17:29:50.178Z",
+      "fetchedAt": "2026-08-26T19:33:56.286Z",
       "localAssetKey": "spell_crystalmaiden_q",
       "localPath": "assets/images/spells/crystalmaiden_q.png",
       "sourceHash": "1efac9dc7d3654172bff510d78e15817b4571319ff6a73a60d4f2cc2a2c130d5",
@@ -52,7 +124,7 @@
     },
     {
       "contentHash": "83f154c4a7ba68bb860a45be11542014f89afd9fe5aed3e09b6735453336b5ac",
-      "fetchedAt": "2026-08-25T17:29:50.392Z",
+      "fetchedAt": "2026-08-26T19:33:57.135Z",
       "localAssetKey": "spell_crystalmaiden_r",
       "localPath": "assets/images/spells/crystalmaiden_r.png",
       "sourceHash": "5db6a18a2072b34ebb7073cc83cfa12f6b64238333d7a63dc69b4b1ed3a12f93",
@@ -60,15 +132,47 @@
     },
     {
       "contentHash": "6d53d48e8d1152f538e0e7218ad86549545a9fd1fe3fd2b00cb34e64be47d4b2",
-      "fetchedAt": "2026-08-25T17:29:50.248Z",
+      "fetchedAt": "2026-08-26T19:33:56.518Z",
       "localAssetKey": "spell_crystalmaiden_w",
       "localPath": "assets/images/spells/crystalmaiden_w.png",
       "sourceHash": "b98b442f8d8354c570e649f706d5dc496fe60f74964aef10621f195045eb8144",
       "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/crystal_maiden_frostbite.png"
     },
     {
+      "contentHash": "5d0b5722c754f8ec7aef63f1d1282be0b613429f0b115ef50c46c18f37e99854",
+      "fetchedAt": "2026-08-26T19:33:58.026Z",
+      "localAssetKey": "spell_earthshaker_e",
+      "localPath": "assets/images/spells/earthshaker_e.png",
+      "sourceHash": "cddfd53f3434fe0a76656dd401fcf057fefd447dfb1abcd8008a58a499d2a273",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/earthshaker_aftershock.png"
+    },
+    {
+      "contentHash": "9d5e51029c838629859c270e34c3cf15178226196e9cc02a00508b3dad8383f6",
+      "fetchedAt": "2026-08-26T19:33:57.951Z",
+      "localAssetKey": "spell_earthshaker_q",
+      "localPath": "assets/images/spells/earthshaker_q.png",
+      "sourceHash": "bf9752be0087827c63d0f577e357a38802dc2c4e26cc16793776b13081bcc84d",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/earthshaker_fissure.png"
+    },
+    {
+      "contentHash": "2334d09848bba6741102918f93aabb87f8ed7d473653e105041c46dbcbd8c7b2",
+      "fetchedAt": "2026-08-26T19:33:58.068Z",
+      "localAssetKey": "spell_earthshaker_r",
+      "localPath": "assets/images/spells/earthshaker_r.png",
+      "sourceHash": "44983c1e003d33befba50ca3719d6d6aca1d35baf830d662cd41b68d6ac38442",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/earthshaker_echo_slam.png"
+    },
+    {
+      "contentHash": "61b35e8c4139434fbcbf37708cda474fde48aad8921bed7993737d5d91e6ce4b",
+      "fetchedAt": "2026-08-26T19:33:57.989Z",
+      "localAssetKey": "spell_earthshaker_w",
+      "localPath": "assets/images/spells/earthshaker_w.png",
+      "sourceHash": "77e3574ca3ec6d3541febade5a216a043a7745da61346beedcafccae842523c8",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/earthshaker_enchant_totem.png"
+    },
+    {
       "contentHash": "ef36f7f66b0644d80f99be9f538f8cc39fc1f8e01b3bf10bcc49d908b1db5720",
-      "fetchedAt": "2026-08-25T17:29:49.931Z",
+      "fetchedAt": "2026-08-26T19:33:55.110Z",
       "localAssetKey": "spell_juggernaut_e",
       "localPath": "assets/images/spells/juggernaut_e.png",
       "sourceHash": "77bb6f109b55e5f646ecc3a43d74431a586f0a70fad6b680055b0af49cf92ef2",
@@ -76,7 +180,7 @@
     },
     {
       "contentHash": "e40d7b2a88c2984ab2c99c45ce96a26d9dbebfd2b9d2f378257740dcb4bbc635",
-      "fetchedAt": "2026-08-25T17:29:49.792Z",
+      "fetchedAt": "2026-08-26T19:33:55.036Z",
       "localAssetKey": "spell_juggernaut_q",
       "localPath": "assets/images/spells/juggernaut_q.png",
       "sourceHash": "b2ed7d5e36c1819f5a601306933d0af83a4185bcbd915311b010c96527d63c70",
@@ -84,7 +188,7 @@
     },
     {
       "contentHash": "e7053fae27bfa7233262f62a65984e7cd3f4a932d08b0c4cf84ff3bad118fc53",
-      "fetchedAt": "2026-08-25T17:29:50.008Z",
+      "fetchedAt": "2026-08-26T19:33:55.149Z",
       "localAssetKey": "spell_juggernaut_r",
       "localPath": "assets/images/spells/juggernaut_r.png",
       "sourceHash": "944a0caf392081c3af0ab6ee4405270e2ef614d27ddd6173e3a4084a075cebff",
@@ -92,7 +196,7 @@
     },
     {
       "contentHash": "063520b51a432c8a7f616d90fa3cb7c4b4b742cfb79ceeb0cdc50a75b5b629a8",
-      "fetchedAt": "2026-08-25T17:29:49.860Z",
+      "fetchedAt": "2026-08-26T19:33:55.073Z",
       "localAssetKey": "spell_juggernaut_w",
       "localPath": "assets/images/spells/juggernaut_w.png",
       "sourceHash": "16b6d0a2482bb395cca9765b7b94b1f36460462959759f9921c84a2c66c60b44",
@@ -100,7 +204,7 @@
     },
     {
       "contentHash": "17be499d46a4424c1b7e31a201fa224937d759f54febafd81bc0af4196f178e7",
-      "fetchedAt": "2026-08-25T17:29:49.563Z",
+      "fetchedAt": "2026-08-26T19:33:54.882Z",
       "localAssetKey": "spell_lina_e",
       "localPath": "assets/images/spells/lina_e.png",
       "sourceHash": "8c1293519d3e28d7d49b4d4574b75d064f94d195de91ab56a9c403f52049fa1e",
@@ -108,7 +212,7 @@
     },
     {
       "contentHash": "8558203be652050694cdbd960218921213264fdd360ff9c880056c5c9cf44e34",
-      "fetchedAt": "2026-08-25T17:29:49.426Z",
+      "fetchedAt": "2026-08-26T19:33:54.798Z",
       "localAssetKey": "spell_lina_q",
       "localPath": "assets/images/spells/lina_q.png",
       "sourceHash": "9adadc75fa7f7cb6cef467f970551b8d8c86baa9a8554d7f5f6d4930dad47c6e",
@@ -116,7 +220,7 @@
     },
     {
       "contentHash": "0dc40c72402543575fbf87f2898e1bf7a90570940d0260b85607b2d28ac2070b",
-      "fetchedAt": "2026-08-25T17:29:49.633Z",
+      "fetchedAt": "2026-08-26T19:33:54.926Z",
       "localAssetKey": "spell_lina_r",
       "localPath": "assets/images/spells/lina_r.png",
       "sourceHash": "222ff2fd7ac51e8ca0b42abf6681693682f2ac91047658ae76132809f2ec319b",
@@ -124,7 +228,7 @@
     },
     {
       "contentHash": "53a1c564e437db0f65d7b30027781aab4c2d4f9d25585a6597070578c99d56ae",
-      "fetchedAt": "2026-08-25T17:29:49.491Z",
+      "fetchedAt": "2026-08-26T19:33:54.838Z",
       "localAssetKey": "spell_lina_w",
       "localPath": "assets/images/spells/lina_w.png",
       "sourceHash": "0d46b07ab367ae51ddc9f3fe551223dc9f2d59f1be310d908afe1ca96dda2fd8",
@@ -132,7 +236,7 @@
     },
     {
       "contentHash": "20d8de03ac6bd58e84347af4eec7b0b75f18ba71ddab5c51c831e93efd78a0ed",
-      "fetchedAt": "2026-08-25T17:29:49.188Z",
+      "fetchedAt": "2026-08-26T19:33:53.954Z",
       "localAssetKey": "spell_pudge_e",
       "localPath": "assets/images/spells/pudge_e.png",
       "sourceHash": "9a4d637ffff8433d764494e23cae7aa21fe96be783a74f72e650322b1351eab7",
@@ -140,7 +244,7 @@
     },
     {
       "contentHash": "fc004a9bd637a197ccde55ce8e8442d04043ad3218ee351f903aef711c6ea456",
-      "fetchedAt": "2026-08-25T17:29:49.053Z",
+      "fetchedAt": "2026-08-26T19:33:53.325Z",
       "localAssetKey": "spell_pudge_q",
       "localPath": "assets/images/spells/pudge_q.png",
       "sourceHash": "9c4f8ab6b5e31275e72e597629951dcebefb911d791348f98c6773ab3f1ee96a",
@@ -148,7 +252,7 @@
     },
     {
       "contentHash": "8cee84675745ce14580b0756e49939d8e52db20c5db4d29fb77f36bdd822593a",
-      "fetchedAt": "2026-08-25T17:29:49.257Z",
+      "fetchedAt": "2026-08-26T19:33:54.189Z",
       "localAssetKey": "spell_pudge_r",
       "localPath": "assets/images/spells/pudge_r.png",
       "sourceHash": "4c85adb9cc88c947a90d45f981e5c5f08f6af257e291055065254f3d612a13f9",
@@ -156,15 +260,111 @@
     },
     {
       "contentHash": "b9d91a5cccf000cb9f95101dcffbf6a597507d0cdceaac602e96f111dd6225e4",
-      "fetchedAt": "2026-08-25T17:29:49.122Z",
+      "fetchedAt": "2026-08-26T19:33:53.568Z",
       "localAssetKey": "spell_pudge_w",
       "localPath": "assets/images/spells/pudge_w.png",
       "sourceHash": "3a0a992bb5a61fa391f7ecb5a26cb4ee37c7fd6e5910d44ad4e554d88bfe7bf7",
       "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/pudge_rot.png"
     },
     {
+      "contentHash": "830ad320c6ae49eafa646e49deb9f92c9e3199e46ee07b4a17372165ee0b9941",
+      "fetchedAt": "2026-08-26T19:33:57.803Z",
+      "localAssetKey": "spell_slark_e",
+      "localPath": "assets/images/spells/slark_e.png",
+      "sourceHash": "0e7310c870b22df8cd4dd79947567b0144d4f07a6c71af8edeb84fbcdf12e985",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/slark_essence_shift.png"
+    },
+    {
+      "contentHash": "a69708ced81a49cd55bcee9742ee3f9fba236fa2b268d4955b73638d8db005e0",
+      "fetchedAt": "2026-08-26T19:33:57.722Z",
+      "localAssetKey": "spell_slark_q",
+      "localPath": "assets/images/spells/slark_q.png",
+      "sourceHash": "3e7a51517d4208bd77dd1291ec8e4ef7acdac66f2db137e71bf6d6686b3ad02d",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/slark_dark_pact.png"
+    },
+    {
+      "contentHash": "0dc3b6aa238bf0e02247097614935f5345f17532d80fc3ce83868aa384e68d11",
+      "fetchedAt": "2026-08-26T19:33:57.847Z",
+      "localAssetKey": "spell_slark_r",
+      "localPath": "assets/images/spells/slark_r.png",
+      "sourceHash": "8397abfe3902149413e8f49202dcbe11df44edeb4b8e9ee0e0fae681b4408011",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/slark_shadow_dance.png"
+    },
+    {
+      "contentHash": "69c365efa15e5457dcc01134804f0ca7f6c635679f99382a6e54d3e2f28029c5",
+      "fetchedAt": "2026-08-26T19:33:57.762Z",
+      "localAssetKey": "spell_slark_w",
+      "localPath": "assets/images/spells/slark_w.png",
+      "sourceHash": "521720e1ffc74e756c6dadc66fed662db3b15a72c00e9c222bd82ed9945b0302",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/slark_pounce.png"
+    },
+    {
+      "contentHash": "0298b693a4fc7a9082fbbecc3bd4c8caccbc721e0c1e8c145d4234597bc59b56",
+      "fetchedAt": "2026-08-26T19:33:58.246Z",
+      "localAssetKey": "spell_sniper_e",
+      "localPath": "assets/images/spells/sniper_e.png",
+      "sourceHash": "f5fd18511d814f7ab51725cda42e10e7f5ae3d5643887f8c212a1d96c1a4d7bc",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/sniper_headshot.png"
+    },
+    {
+      "contentHash": "46460af67bf3b961de4b8b3743de3ea749f16c8c1400d953ca4e2d687131bdf6",
+      "fetchedAt": "2026-08-26T19:33:58.169Z",
+      "localAssetKey": "spell_sniper_q",
+      "localPath": "assets/images/spells/sniper_q.png",
+      "sourceHash": "02434e0dca6530a7c72d3623993c1fefffa909e163453d464640acd152cb4ff3",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/sniper_shrapnel.png"
+    },
+    {
+      "contentHash": "8bd7bd312f3a92c7edd2695cd1befb5e6e6ce6f5a15098142eeaf9666e9c2660",
+      "fetchedAt": "2026-08-26T19:33:58.288Z",
+      "localAssetKey": "spell_sniper_r",
+      "localPath": "assets/images/spells/sniper_r.png",
+      "sourceHash": "bd918380546d92ffae765de3ff1352f7d1b6517624c5a0a4a95a7c005c101b9f",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/sniper_assassinate.png"
+    },
+    {
+      "contentHash": "98960c0c496d768c1c9c6893d414282e945985ccfe84cfb83801b5ac40155a87",
+      "fetchedAt": "2026-08-26T19:33:58.208Z",
+      "localAssetKey": "spell_sniper_w",
+      "localPath": "assets/images/spells/sniper_w.png",
+      "sourceHash": "977324649bc9429060a903837c3163827d37e042091fd7105e4000f704767195",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/sniper_take_aim.png"
+    },
+    {
+      "contentHash": "704dd6c06c1d2e7304899fc821d0f5faff4273c0164412e0d86b51e431f90c30",
+      "fetchedAt": "2026-08-26T19:33:57.566Z",
+      "localAssetKey": "spell_vengefulspirit_e",
+      "localPath": "assets/images/spells/vengefulspirit_e.png",
+      "sourceHash": "21acaeb1b657f2b5df3240257a9d41500162fc9a1eb30e18fb67cea1ee8138d3",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/vengefulspirit_command_aura.png"
+    },
+    {
+      "contentHash": "0b4227e07c650ba1c532633e2558b22acc90d813fc02b471a7af0a7d16bfc58f",
+      "fetchedAt": "2026-08-26T19:33:57.488Z",
+      "localAssetKey": "spell_vengefulspirit_q",
+      "localPath": "assets/images/spells/vengefulspirit_q.png",
+      "sourceHash": "b31c2d35340c5501f3a6559318eb33793951039d06d7a1b20d0ea551c9309647",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/vengefulspirit_magic_missile.png"
+    },
+    {
+      "contentHash": "73e6318acb4ef10c9b0e778141325be56746824d72df5511bca833c70bb89328",
+      "fetchedAt": "2026-08-26T19:33:57.609Z",
+      "localAssetKey": "spell_vengefulspirit_r",
+      "localPath": "assets/images/spells/vengefulspirit_r.png",
+      "sourceHash": "d1f45de828bf857ebb867bdc58f5eb9ac89f3a96eedf1d7b88c853c08573b964",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/vengefulspirit_nether_swap.png"
+    },
+    {
+      "contentHash": "54438c91e04fcbe4f00748d731bfe976ccd5be7bd1a16101fc1d2a19ce28bd9f",
+      "fetchedAt": "2026-08-26T19:33:57.528Z",
+      "localAssetKey": "spell_vengefulspirit_w",
+      "localPath": "assets/images/spells/vengefulspirit_w.png",
+      "sourceHash": "5e2b22ca43bafaa3578d60080dad47821326d3659e2d2bda64b6f4526b965226",
+      "sourceUrl": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/vengefulspirit_wave_of_terror.png"
+    },
+    {
       "contentHash": "9a50fd058821474782da1b40f92b958a7b9aa25baed4eb768880f0846a813315",
-      "fetchedAt": "2026-08-25T17:29:50.392Z",
+      "fetchedAt": "2026-08-26T19:33:58.288Z",
       "localAssetKey": null,
       "localPath": "public/icon.png",
       "note": "Dota 2 logo, supplied by the project owner. Property of Valve Corporation.",
