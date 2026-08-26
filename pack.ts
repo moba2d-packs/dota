@@ -152,6 +152,16 @@ export const data: ContentPackData = {
       attack: { damage: 14, attacksPerSecond: 1.0, range: 125 },
       spells: ['Slark_Q', 'Slark_W', 'Slark_E', 'Slark_R'],
     },
+    {
+      id: 'earthshaker',
+      name: 'Earthshaker',
+      image: 'champ_earthshaker',
+      playable: true,
+      // A melee initiator: the slowest swing on the roster, because none of
+      // what he is for happens with his weapon.
+      attack: { damage: 15, attacksPerSecond: 0.88, range: 128 },
+      spells: ['Earthshaker_Q', 'Earthshaker_W', 'Earthshaker_E', 'Earthshaker_R'],
+    },
   ],
   spellDisplay: displayData(),
 };

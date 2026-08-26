@@ -23,6 +23,7 @@ describe('the roster', () => {
     expect(kits().map(champion => champion.id).sort()).toEqual([
       'axe',
       'crystalmaiden',
+      'earthshaker',
       'juggernaut',
       'lina',
       'pudge',

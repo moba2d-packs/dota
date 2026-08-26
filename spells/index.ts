@@ -41,4 +41,8 @@ export { default as Slark_Q } from './Slark_Q';
 export { default as Slark_W } from './Slark_W';
 export { default as Slark_E } from './Slark_E';
 export { default as Slark_R } from './Slark_R';
+export { default as Earthshaker_Q } from './Earthshaker_Q';
+export { default as Earthshaker_W } from './Earthshaker_W';
+export { default as Earthshaker_E } from './Earthshaker_E';
+export { default as Earthshaker_R } from './Earthshaker_R';
 // moba2d-pack-add spell: new barrel entries go above this line
