@@ -71,6 +71,34 @@ No generator for this one yet. By hand:
 Core refuses to install a playable champion with no portrait or without
 exactly four abilities, and says which one is wrong.
 
+## Add an item
+
+An item's `passive` and `active` are **ordinary spells**, from the same barrel
+a champion's abilities come from. That is the whole mechanism; everything
+below is what keeps one from also behaving like an ability.
+
+1. Write `spells/Item_<Name>.ts` and its test, and export it from
+   `spells/index.ts` — same as any spell. `manaCost = 0`, and a passive has
+   `coolDown = 0` too.
+2. Art: add a row to `scripts/import-art.mjs`'s `ITEMS` table, then
+   `npm run art:import && npm run assets:generate`. The key is
+   `item_<local>` — singular `item`, because the generator maps the folder
+   that way and `items_foo` is a plural nobody guesses.
+3. A row in `pack.ts`'s `itemEntries()`: `id`, `name`, `icon`, `cost`, a
+   Vietnamese `description`, optional `stats`, and `passive`/`active` naming
+   the local spell ids. `buildsFrom` is the recipe.
+4. `npm run verify`.
+
+**Never put an item's spell id in a champion's `spells: [...]`.** That would
+be one spell wearing two prices — an ability a champion casts for free and an
+item the shop charges for. `tests/items.test.ts` fails if you do.
+
+**`cost` is the total, written once.** What a player pays when the parts are
+already in the bag is `cost` minus the parts, worked out by core's
+`ItemShop.priceFor`. A separate combine cost is the same fact in two places,
+and they drift on the first retune. Core refuses a total under the sum of its
+parts.
+
 ## Remove a champion
 
 Delete its four spell files and tests, its four lines from `spells/index.ts`,
@@ -163,6 +191,19 @@ source label core's death-recap modal groups by. Damage without them shows as
 ten deep, so an aura or zone re-applying per tick turns "40% slow" into a
 standstill. One slow, clock rewound:
 `slow.buffAddType = api.enums.BuffAddType.RENEW_EXISTING`.
+
+**An item's spell must stay out of `spellDisplay`.** That map is what a
+loadout screen offers as a *choosable ability*, so an item's active left in it
+gets handed to a player who never bought the item. `pack.ts`'s `displayData()`
+skips anything named `Item_*`; keep the prefix, and do not replace the check
+with a list — the next item is the one that gets left off it.
+
+**A pack with items needs `coreRange: '>=1.5.0'`.** `items` did not exist in
+`ContentPackData` before core 1.3, `buildsFrom` before 1.4, and
+`Buff.hudVisible`/`Buff.sourceSpell` before 1.5. An older core does not fail
+on any of them — it *ignores* what it does not know, and installs a shop whose
+passives never come off when sold. `pack.ts` and `scripts/write-manifest.mjs`
+state that floor separately and must move together.
 
 **A bookkeeping buff hides itself.** An item passive's internal state sets
 `hudVisible = false`, or every purchase adds a row to the buff bar.
