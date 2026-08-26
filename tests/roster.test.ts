@@ -28,6 +28,7 @@ describe('the roster', () => {
       'lina',
       'pudge',
       'slark',
+      'sniper',
       'vengefulspirit',
     ]);
   });

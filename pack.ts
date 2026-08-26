@@ -162,6 +162,17 @@ export const data: ContentPackData = {
       attack: { damage: 15, attacksPerSecond: 0.88, range: 128 },
       spells: ['Earthshaker_Q', 'Earthshaker_W', 'Earthshaker_E', 'Earthshaker_R'],
     },
+    {
+      id: 'sniper',
+      name: 'Sniper',
+      image: 'champ_sniper',
+      playable: true,
+      // The longest reach on the roster before Ngắm Bắn is even pressed, and
+      // the weakest body behind it — the whole hero is the argument that range
+      // is worth a slot.
+      attack: { damage: 13, attacksPerSecond: 0.95, range: 400 },
+      spells: ['Sniper_Q', 'Sniper_W', 'Sniper_E', 'Sniper_R'],
+    },
   ],
   spellDisplay: displayData(),
 };
