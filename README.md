@@ -2,7 +2,7 @@
 
 [![Verify](https://github.com/moba2d-packs/dota/actions/workflows/verify.yml/badge.svg)](https://github.com/moba2d-packs/dota/actions/workflows/verify.yml)
 
-Four Dota 2 heroes and their kits, built against [`@moba2d/core`](https://github.com/HoangTran0410/moba2d-core)'s public `ContentApi` and installed into the game from a URL at runtime. Nothing here is compiled into the engine.
+Four Dota 2 heroes and their kits, built against [`@moba2d/core`](https://github.com/moba2d-game/core)'s public `ContentApi` and installed into the game from a URL at runtime. Nothing here is compiled into the engine.
 
 **Install it:** open the game, go to **Tìm pack**, and paste
 
@@ -51,7 +51,7 @@ npm run verify
 | `npm run art:check` | Offline: re-hashes the committed art against `assets/source-manifest.json` |
 | `npm run check-seams` | The source-scan rules — `pack-core-boundary`, `pack-asset-key`, and the rest |
 
-Adding an ability is `npx moba2d-pack-add spell <Name> --champion <Hero> --slot <Slot>`, but note a **playable** champion's kit is full at four: core refuses to install a fifth. [`docs/PACK_AUTHORING.md`](https://github.com/HoangTran0410/moba2d-core/blob/main/docs/PACK_AUTHORING.md) in core is the whole guide, and [`docs/ADDING_SPELLS.md`](https://github.com/HoangTran0410/moba2d-core/blob/main/docs/ADDING_SPELLS.md) is the spell mechanism.
+Adding an ability is `npx moba2d-pack-add spell <Name> --champion <Hero> --slot <Slot>`, but note a **playable** champion's kit is full at four: core refuses to install a fifth. [`docs/PACK_AUTHORING.md`](https://github.com/moba2d-game/core/blob/main/docs/PACK_AUTHORING.md) in core is the whole guide, and [`docs/ADDING_SPELLS.md`](https://github.com/moba2d-game/core/blob/main/docs/ADDING_SPELLS.md) is the spell mechanism.
 
 ### Two things that will bite you
 
