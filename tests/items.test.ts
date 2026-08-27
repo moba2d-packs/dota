@@ -124,9 +124,10 @@ describe('the shop', () => {
    * `buildsFrom` before 1.4, and `Buff.hudVisible`/`sourceSpell` before 1.5 —
    * and an older core *ignores* what it does not know rather than refusing, so
    * the floor is the only thing standing between a player and a silently broken
-   * install.
+   * install. 1.5 is what the shop actually needs; the declared floor sits a
+   * minor above it by choice, and `pack.ts`'s own note says why.
    */
   it('declares a core floor that actually has a shop in it', () => {
-    expect(data.manifest.coreRange).toBe('>=1.5.0');
+    expect(data.manifest.coreRange).toBe('>=1.6.0');
   });
 });

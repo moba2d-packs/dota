@@ -249,8 +249,17 @@ export const data: ContentPackData = {
   // — before 1.5. An older core does not *fail* on any of them; it ignores what
   // it does not know, which would install this pack with a shop full of items
   // whose passives never come off when sold and whose bookkeeping fills the
-  // buff bar. Stating 1.5 turns that into a refusal a player can read.
-  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.5.0', assets: 'dota' },
+  // buff bar. Stating a floor turns that into a refusal a player can read.
+  //
+  // Now `>=1.6.0`, and that last step is the one this comment cannot justify
+  // from the content: nothing here uses anything 1.6 added — there is no
+  // `monsters/` in this pack, so `MonsterAbility.onKilled` (the whole of the
+  // 1.6 contract bump) is unreachable from it. The floor is held level with
+  // core's current contract on purpose, so every pack in this workspace states
+  // one number. The cost is real and worth naming: a core 1.5 build would run
+  // this pack correctly and is now refused anyway. Drop back to `>=1.5.0` the
+  // day that matters more than the alignment does.
+  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.6.0', assets: 'dota' },
   champions: [
     {
       id: 'pudge',
