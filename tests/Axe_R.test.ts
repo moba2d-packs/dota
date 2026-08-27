@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createGame, stubGameGlobals, type TestGame } from '@moba2d/core/testing';
 import { pressSpell } from '@moba2d/core/testing/spell';
 import type { AttackableUnit } from '@moba2d/core/content/types';
-import Axe_R, { R_DAMAGE, R_MANA, R_THRESHOLD } from '../spells/Axe_R';
+import Axe_R, { Axe_R_Object, R_DAMAGE, R_MANA, R_THRESHOLD } from '../spells/Axe_R';
 import { indexObjects, unit } from './_units';
 
 const has = (target: AttackableUnit, name: string): boolean =>
@@ -140,5 +140,27 @@ describe('Axe_R — Lưỡi Hái Tử Thần', () => {
     // The line has to sit under what an ordinary blow already does, or the
     // execute is just the same ability with extra words.
     expect(R_THRESHOLD).toBeLessThan(R_DAMAGE);
+  });
+
+  /**
+   * The same defect `VengefulSpirit_E` froze a match with: `payTheTeam` filtered
+   * on team alone, and every `SpellObject` carries its owner's `teamId` — so a
+   * swing still on the field from an earlier kill came back as an "ally" and was
+   * handed a `Speedup` through an `addBuff` it does not have. The throw escapes
+   * `onSpellCast`, and from a real match that means out of `game.update()`,
+   * which is where `GameScene.updateLoop` stops re-arming its own tick.
+   */
+  it('does not pay a spell object left on the field by an earlier kill', () => {
+    const doomed = unit(game, 130, 'dire');
+    doomed.stats.health.baseValue = R_THRESHOLD - 5;
+    const leftover = new Axe_R_Object(axe);
+    indexObjects(game, [axe, doomed, leftover]);
+
+    expect(
+      () => pressSpell(new Axe_R(axe), {}),
+      'a friendly spell object in range threw'
+    ).not.toThrow();
+    expect(doomed.isDead).toBe(true);
+    expect(has(axe, 'Speedup'), 'the kill still has to pay him').toBe(true);
   });
 });

@@ -8,6 +8,7 @@ import { api } from '../packApi';
 
 const Spell = api.Spell;
 const SpellObject = api.SpellObject;
+const AttackableUnit = api.units.AttackableUnit;
 const Speedup = api.buffs.Speedup;
 const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
@@ -149,8 +150,16 @@ export default class Axe_R extends Spell implements ExecuteSpell {
         y: this.owner.position.y,
         r: R_HASTE_RADIUS,
       }),
-      filters: [PredefinedFilters.teamId(this.owner.teamId)],
-    }) as AttackableUnit[];
+      // `type(AttackableUnit)` first: `SpellObject` copies its owner's `teamId`,
+      // so team alone also returns every friendly spell object in range — a
+      // swing still on the field from the last kill among them — and handing one
+      // a buff is `addBuff` on something that has no such method. See
+      // `VengefulSpirit_E`'s own note for what that `TypeError` does to a match.
+      filters: [
+        PredefinedFilters.type(AttackableUnit),
+        PredefinedFilters.teamId(this.owner.teamId),
+      ],
+    });
 
     const paid = new Set<AttackableUnit>([this.owner, ...nearby]);
     for (const ally of paid) {

@@ -154,4 +154,31 @@ describe('VengefulSpirit_E — Hào Quang Báo Thù', () => {
     expect(vengeful.stats.mana.value).toBe(100 - E_MANA);
     expect(spell.currentCooldown).toBeGreaterThan(0);
   });
+
+  /**
+   * The ring is a `SpellObject`, and `SpellObject`'s constructor copies its
+   * owner's `teamId` — so a query filtered on team *alone* hands back the ring
+   * itself alongside the allies standing in it. `pay()` then called `addBuff`
+   * on it, which a `SpellObject` does not have, and the `TypeError` came out of
+   * `ObjectManager.update()`. That is what froze a match: `GameScene.updateLoop`
+   * arms its next tick with a `setTimeout` *after* `game.update()` returns, so a
+   * throw there means the chain is never re-armed. The canvas kept painting the
+   * last good frame, which is why it read as a hang rather than a crash.
+   *
+   * Driven through the real `objectManager.update()` on purpose. Every test
+   * above calls `spell.live.update()` by hand, which is why they all passed
+   * while the game did not: called that way the aura is never inserted into the
+   * quadtree, so the query it makes can never return it.
+   */
+  it('does not pay itself — the ring is in the tree it queries', () => {
+    const ally = unit(game, 100, 'radiant');
+    indexObjects(game, [vengeful, ally]);
+    const spell = new VengefulSpirit_E(vengeful);
+    pressSpell(spell, {});
+
+    vi.stubGlobal('deltaTime', E_TICK_MS);
+    expect(() => {
+      for (let tick = 0; tick < 4; tick++) game.objectManager.update();
+    }, 'a tick through the real ObjectManager threw').not.toThrow();
+  });
 });

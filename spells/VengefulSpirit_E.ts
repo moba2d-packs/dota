@@ -3,6 +3,7 @@ import { api } from '../packApi';
 
 const Spell = api.Spell;
 const SpellObject = api.SpellObject;
+const AttackableUnit = api.units.AttackableUnit;
 const StatAmp = api.buffs.StatAmp;
 const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
@@ -132,10 +133,22 @@ export class VengefulSpirit_E_Object extends SpellObject {
   }
 
   private pay(): void {
+    // `type(AttackableUnit)` first, and it is load-bearing rather than tidy:
+    // `SpellObject`'s constructor copies its owner's `teamId`, so a team-only
+    // filter hands back every friendly spell object in range — this ring
+    // included, since it is standing in the tree it is querying. Paying one
+    // means `addBuff` on something that has no such method, and that `TypeError`
+    // escapes `ObjectManager.update()` into `GameScene.updateLoop`, which arms
+    // its next tick only *after* `game.update()` returns. The match freezes with
+    // the canvas still painting. It is also a type guard, which is why nothing
+    // here is cast: the compiler now checks what a cast used to assert.
     const found = this.game.objectManager.queryObjects({
       area: new Circle({ x: this.position.x, y: this.position.y, r: E_RADIUS }),
-      filters: [PredefinedFilters.teamId(this.owner.teamId)],
-    }) as AttackableUnit[];
+      filters: [
+        PredefinedFilters.type(AttackableUnit),
+        PredefinedFilters.teamId(this.owner.teamId),
+      ],
+    });
 
     // She is inside her own aura, and a query keyed on the tree may or may not
     // return the caster depending on how she is indexed — so she is added
