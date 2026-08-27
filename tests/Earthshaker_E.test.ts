@@ -20,9 +20,26 @@ const has = (target: AttackableUnit, name: string): boolean =>
  * calling the listener by hand — and with a stub spell rather than one of his
  * real abilities, so the tremor's damage is not tangled up with the damage of
  * whatever ability was used to trigger it.
+ *
+ * `countsAsAbilityCast: true` is stated rather than left off. Core defaults it
+ * to `true` on `Spell`, so omitting it here still read as an ability — which is
+ * exactly why every test in this file passed while a basic attack set off the
+ * tremor in a real match. A stub that leaves out the field the code under test
+ * is supposed to read cannot fail the way the game does.
  */
 const castSomething = (game: TestGame, owner: AttackableUnit): void => {
-  game.eventManager.emit(EventType.ON_POST_CAST_SPELL, { owner });
+  game.eventManager.emit(EventType.ON_POST_CAST_SPELL, { owner, countsAsAbilityCast: true });
+};
+
+/**
+ * The other half of `ON_POST_CAST_SPELL`: everything core marks as *not* an
+ * ability cast. `Spell.countsAsAbilityCast` is `true` by default and set to
+ * `false` in exactly four places — `BasicAttack` (`coreSpells/BasicAttack.ts`),
+ * Hồi Thành (`preset.ts`), a champion's passive (`Champion.ts`) and any spell
+ * an item granted (`ItemShop.ts`). All four travel this same event.
+ */
+const attackOrSomethingLikeIt = (game: TestGame, owner: AttackableUnit): void => {
+  game.eventManager.emit(EventType.ON_POST_CAST_SPELL, { owner, countsAsAbilityCast: false });
 };
 
 /** Runs a body's buffs forward so the arming expires. */
@@ -142,5 +159,58 @@ describe('Earthshaker_E — Dư Chấn', () => {
     expect(E_DAMAGE).toBeLessThan(15);
     expect(E_STUN_MS).toBeGreaterThan(0);
     expect(E_STUN_MS).toBeLessThan(1_000);
+  });
+
+  /**
+   * Reported from a real match: an ordinary attack order set the tremor off,
+   * and it did so even with nobody in range to swing at — because
+   * `BasicAttack.onSpellCast` orders an attack-move when it acquires nothing,
+   * and `ON_POST_CAST_SPELL` fires either way.
+   *
+   * The description promises "mỗi lần dùng chiêu", and core already draws that
+   * line for everyone: `Spell.countsAsAbilityCast`, `false` on the basic attack
+   * with a comment naming this exact class of bug ("a spellblade-style 'after
+   * casting a spell, your next attack…' must never be armed by the attack
+   * itself"). `Item_Sheen.ts` in the lol pack reads the same flag for the same
+   * reason.
+   */
+  it('is not set off by a basic attack, hit or miss', () => {
+    const enemy = unit(game, 120, 'dire');
+    indexObjects(game, [shaker, enemy]);
+    pressSpell(new Earthshaker_E(shaker), {});
+
+    attackOrSomethingLikeIt(game, shaker);
+
+    expect(enemy.stats.health.value, 'an attack order shook the ground').toBe(100);
+    expect(has(enemy, 'Stun'), 'an attack order stunned somebody').toBe(false);
+  });
+
+  /**
+   * Same flag, three more carriers. Hồi Thành is the one a player meets by
+   * accident — pressing B under a turret would otherwise stun the diver.
+   */
+  it('is not set off by Hồi Thành, a passive or an item active', () => {
+    const enemy = unit(game, 120, 'dire');
+    indexObjects(game, [shaker, enemy]);
+    pressSpell(new Earthshaker_E(shaker), {});
+
+    for (let i = 0; i < 3; i++) attackOrSomethingLikeIt(game, shaker);
+
+    expect(enemy.stats.health.value).toBe(100);
+  });
+
+  it('still answers a real ability cast in between them', () => {
+    const enemy = unit(game, 120, 'dire');
+    indexObjects(game, [shaker, enemy]);
+    pressSpell(new Earthshaker_E(shaker), {});
+
+    attackOrSomethingLikeIt(game, shaker);
+    castSomething(game, shaker);
+    attackOrSomethingLikeIt(game, shaker);
+
+    expect(
+      enemy.stats.health.value,
+      'the guard swallowed the ability cast too, or let an attack through'
+    ).toBe(100 - E_DAMAGE);
   });
 });

@@ -17,7 +17,26 @@ const EventType = api.enums.EventType;
  *   press          -> armed; the ground has not moved
  *   he casts Q     -> the crack, *and* a tremor around him
  *   he casts W, R  -> the same, every time
+ *   he right-clicks-> nothing. An attack order is not a cast
  *   fifteen seconds-> it stops, and so does the listening
+ *
+ * ## "Mỗi lần dùng chiêu" is narrower than "every ON_POST_CAST_SPELL"
+ *
+ * The basic attack is a `Spell` in this engine — slot 0 of every kit, so `A`
+ * and a right-click travel the same path as Q/W/E/R and emit the same event.
+ * So does Hồi Thành, so does a champion's passive, and so does anything an
+ * item granted. Listening to the event alone armed the tremor on all four, and
+ * the one a player meets immediately is the attack: `BasicAttack.onSpellCast`
+ * orders an attack-move when it acquires nobody, and the event fires either
+ * way — so swinging at empty air stunned whoever happened to be standing
+ * nearby. Reported exactly that way.
+ *
+ * Core already draws this line and does not need a heuristic here:
+ * `Spell.countsAsAbilityCast` is `true` on `Spell` and set `false` in four
+ * places — `coreSpells/BasicAttack.ts` (whose comment names this class of bug),
+ * `preset.ts` for Hồi Thành, `Champion.ts` for a passive, `ItemShop.ts` for an
+ * item's spell. `Item_Sheen.ts` in the lol pack reads the same flag for the
+ * same reason; this is that idiom, not a local invention.
  *
  * ## The one thing an event-driven ability has to get right
  *
@@ -48,6 +67,13 @@ export const E_STUN_MS = 500;
 export const E_COOLDOWN_MS = 22_000;
 export const E_MANA = 25;
 
+/**
+ * What `ON_POST_CAST_SPELL` carries, narrowed to the three fields this reads.
+ * `countsAsAbilityCast` is core's own — see the header on why it is not
+ * optional to check it.
+ */
+type CastNotice = { owner?: AttackableUnit; countsAsAbilityCast?: boolean };
+
 /** The armed state, and the only thing that knows how to stop listening. */
 export class Earthshaker_E_Armed extends Buff {
   name = 'Dư Chấn';
@@ -58,7 +84,7 @@ export class Earthshaker_E_Armed extends Buff {
   onActivate(): void {
     this.stopListening = this.game.eventManager.on(
       EventType.ON_POST_CAST_SPELL,
-      (spell: { owner?: AttackableUnit } | undefined) => this.onCast(spell)
+      (spell: CastNotice | undefined) => this.onCast(spell)
     );
   }
 
@@ -67,12 +93,16 @@ export class Earthshaker_E_Armed extends Buff {
     this.stopListening = null;
   }
 
-  private onCast(spell: { owner?: AttackableUnit } | undefined): void {
+  private onCast(spell: CastNotice | undefined): void {
     if (this.toRemove) return;
     // Somebody else's cast is not his aftershock.
     if (!spell || spell.owner !== this.targetUnit) return;
     // Not the press that armed it — see the header.
     if (spell === this.sourceSpell) return;
+    // And not an attack order, which travels this same event — see the header.
+    // `=== false` rather than falsy: core defaults the flag to `true` on
+    // `Spell`, and a stub that omits it is an ability, not an attack.
+    if (spell.countsAsAbilityCast === false) return;
     this.shake();
   }
 
