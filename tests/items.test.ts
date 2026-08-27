@@ -55,6 +55,52 @@ describe('the shop', () => {
     }
   });
 
+  /**
+   * The reason core grew `Stats.abilityPower`, held to a number here.
+   *
+   * Every ability in this pack dealt a flat amount that no purchase could
+   * move, while attack damage climbed with the shop — so a full build made
+   * right-click better and this pack's four casters exactly as good as they
+   * were on the first frame.
+   *
+   * **The ceiling is lower than the other installed pack's on purpose.** This
+   * shop is fourteen items against thirty-three, and only two of them are
+   * finished items an ability build wants, so the same multiplier would mean
+   * absurd numbers per item. A full ability build here doubles-to-triples a
+   * kit rather than tripling it, and the fix for that is more items, not
+   * bigger ones.
+   */
+  it('sells enough ability power for a build to roughly double a kit', () => {
+    const powers = items()
+      .map(item => item.stats?.abilityPower ?? 0)
+      .filter(amount => amount > 0)
+      .sort((a, b) => b - a);
+
+    // Six slots, and with only four ability items in the shop a real build
+    // holds duplicate components — which is why the top two are counted twice.
+    const bestSix = [...powers, ...powers.slice(2)]
+      .slice(0, 6)
+      .reduce((sum, amount) => sum + amount, 0);
+
+    expect(powers.length, 'no item grants ability power at all').toBeGreaterThanOrEqual(4);
+    expect(
+      bestSix,
+      `the best six slots grant ${bestSix.toFixed(2)}, a ${(1 + bestSix).toFixed(2)}x kit`
+    ).toBeGreaterThanOrEqual(1.5);
+    expect(bestSix).toBeLessThanOrEqual(2.5);
+  });
+
+  it('sells cooldown reduction, and never enough of it to reach the cap', () => {
+    // `MAX_COOLDOWN_REDUCTION` is 0.6 in core, and a shop that can reach it
+    // sells a key which can be held down.
+    const reductions = items()
+      .map(item => item.stats?.cooldownReduction ?? 0)
+      .filter(amount => amount > 0);
+
+    expect(reductions.length).toBeGreaterThanOrEqual(1);
+    expect(reductions.reduce((sum, amount) => sum + amount, 0)).toBeLessThan(0.6);
+  });
+
   it('describes what holding it does, in Vietnamese', () => {
     for (const item of items()) {
       expect(item.description, `${item.id} has no description`).toBeTruthy();
@@ -124,10 +170,14 @@ describe('the shop', () => {
    * `buildsFrom` before 1.4, and `Buff.hudVisible`/`sourceSpell` before 1.5 —
    * and an older core *ignores* what it does not know rather than refusing, so
    * the floor is the only thing standing between a player and a silently broken
-   * install. 1.5 is what the shop actually needs; the declared floor sits a
-   * minor above it by choice, and `pack.ts`'s own note says why.
+   * install.
+   *
+   * 1.7 is what the shop needs now, and for once not silently: five items grant
+   * `abilityPower` or `cooldownReduction`, and core's item stats are an
+   * allow-list, so an older core refuses this pack outright rather than
+   * shipping it with inert mage items. See `pack.ts`'s own note.
    */
   it('declares a core floor that actually has a shop in it', () => {
-    expect(data.manifest.coreRange).toBe('>=1.6.0');
+    expect(data.manifest.coreRange).toBe('>=1.8.0');
   });
 });

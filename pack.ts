@@ -104,6 +104,76 @@ const displayData = (): Record<string, SpellDisplayData> => {
  * ~100 health pool this pack tunes everything against, which is why a Heart of
  * Tarrasque reads as +55 rather than the +250 the real game gives it.
  */
+/**
+ * How much punishment each kind of hero takes — this pack's own taxonomy, and
+ * the half that did not exist until now.
+ *
+ * Every champion above declares an `attack` profile and none declared a body,
+ * so all nine were **100 health with no resistances** — less than a lane
+ * creep's 140, and identical for Pudge and for Sniper. It was survivable while
+ * nothing could be bought and stopped being when the shop grew.
+ *
+ * ## The resistances carry this, not the health pool
+ *
+ * A flat health pool and a resistance are not interchangeable for the six
+ * abilities in this pack that heal or shield a **flat amount** (Juggernaut's
+ * ward, Pudge's rot-fed regeneration among them). A 40-point shield behind 100
+ * armour is worth 80 — the same multiplier the pool gets, so those six keep
+ * their worth exactly. Doubling the pool instead would halve them against a
+ * body twice the size, and the repair would be six edits here and 39 in the
+ * other installed pack.
+ *
+ * Resistances also cannot run away: `100 / (100 + r)` is asymptotic, so no
+ * stack of armour is ever immunity.
+ *
+ * ## Where these numbers came from
+ *
+ * The strength/agility/intelligence split of the source game, read off each
+ * hero's own line above: a melee initiator is a wall, a ranged nuker is not.
+ * Tuned so a full defensive build survives a full damage build for about four
+ * to five seconds instead of the two and a half it managed before.
+ */
+export const DEFENCE = {
+  /** Melee initiators — the ones expected to walk in first. */
+  STRENGTH: { health: 220, healthRegen: 0.09, armor: 55, magicResist: 45 },
+  /** Melee carries — real bodies, but they came to deal damage. */
+  AGILITY: { health: 165, healthRegen: 0.07, armor: 32, magicResist: 20 },
+  /** Ranged nukers and supports — the reason the front line exists. */
+  INTELLIGENCE: { health: 135, healthRegen: 0.06, armor: 16, magicResist: 24 },
+} as const;
+
+export type Role = keyof typeof DEFENCE;
+
+/** The attack half, so a hand-built kit can take a whole body rather than half of one. */
+const ROLE_ATTACK: Record<Role, { damage: number; attacksPerSecond: number; range: number }> = {
+  STRENGTH: { damage: 16, attacksPerSecond: 0.88, range: 125 },
+  AGILITY: { damage: 15, attacksPerSecond: 1.02, range: 128 },
+  INTELLIGENCE: { damage: 12, attacksPerSecond: 0.9, range: 390 },
+};
+
+const ROLE_NAME: Record<Role, string> = {
+  STRENGTH: 'Sức Mạnh',
+  AGILITY: 'Nhanh Nhẹn',
+  INTELLIGENCE: 'Trí Tuệ',
+};
+
+/**
+ * This pack's taxonomy, published for the loadout screen.
+ *
+ * A player who assembles a kit by hand has no hero to inherit a body from, and
+ * core cannot invent one — it does not know what "strength" means and
+ * deliberately never will, because a taxonomy is the roster's vocabulary and
+ * not the engine's. So the pack hands the picker its three, exactly the way it
+ * hands over its heroes and its items, and core stores only the chosen id.
+ */
+const archetypeEntries = () =>
+  (Object.keys(DEFENCE) as Role[]).map(role => ({
+    id: role.toLowerCase(),
+    name: ROLE_NAME[role],
+    attack: ROLE_ATTACK[role],
+    defence: DEFENCE[role],
+  }));
+
 const itemEntries = (): Record<string, ItemDef> => ({
   // ---- Components ------------------------------------------------------
   broadsword: {
@@ -126,17 +196,17 @@ const itemEntries = (): Record<string, ItemDef> => ({
     id: 'staff_of_wizardry',
     name: 'Gậy Phù Thủy',
     icon: 'item_staff_of_wizardry',
-    cost: 450,
-    description: 'Tăng 20 năng lượng tối đa.',
-    stats: { maxMana: 20 },
+    cost: 550,
+    description: 'Tăng 20 năng lượng tối đa và 20% sát thương chiêu thức.',
+    stats: { maxMana: 20, abilityPower: 0.2 },
   },
   void_stone: {
     id: 'void_stone',
     name: 'Đá Hư Không',
     icon: 'item_void_stone',
-    cost: 400,
-    description: 'Tăng 1.2 hồi năng lượng.',
-    stats: { manaRegen: 1.2 },
+    cost: 500,
+    description: 'Tăng 1.2 hồi năng lượng và giảm 10% thời gian hồi chiêu.',
+    stats: { manaRegen: 1.2, cooldownReduction: 0.1 },
   },
   ogre_axe: {
     id: 'ogre_axe',
@@ -159,16 +229,16 @@ const itemEntries = (): Record<string, ItemDef> => ({
     name: 'Giáp Tấm',
     icon: 'item_platemail',
     cost: 550,
-    description: 'Tăng 26 giáp.',
-    stats: { armor: 26 },
+    description: 'Tăng 34 giáp.',
+    stats: { armor: 34 },
   },
   robe_of_the_magi: {
     id: 'robe_of_the_magi',
     name: 'Áo Choàng Pháp Sư',
     icon: 'item_robe_of_the_magi',
-    cost: 350,
-    description: 'Tăng 16 kháng phép.',
-    stats: { magicResist: 16 },
+    cost: 500,
+    description: 'Tăng 26 kháng phép và 18% sát thương chiêu thức.',
+    stats: { magicResist: 26, abilityPower: 0.18 },
   },
   vitality_booster: {
     id: 'vitality_booster',
@@ -186,8 +256,8 @@ const itemEntries = (): Record<string, ItemDef> => ({
     icon: 'item_blade_mail',
     cost: 1_000,
     description:
-      'Tăng 7 sát thương công và 16 giáp. Kích hoạt: phản 70% sát thương nhận vào trong 4.5 giây.',
-    stats: { attackDamage: 7, armor: 16 },
+      'Tăng 7 sát thương công và 22 giáp. Kích hoạt: phản 70% sát thương nhận vào trong 4.5 giây.',
+    stats: { attackDamage: 7, armor: 22 },
     active: 'Item_BladeMail',
     buildsFrom: ['broadsword', 'chainmail'],
   },
@@ -195,10 +265,17 @@ const itemEntries = (): Record<string, ItemDef> => ({
     id: 'euls_scepter',
     name: "Eul's Scepter",
     icon: 'item_euls_scepter',
-    cost: 1_100,
+    cost: 1_300,
     description:
-      'Tăng 20 năng lượng tối đa, 1.2 hồi năng lượng và 0.3 tốc chạy. Kích hoạt: cuốn tung một tướng địch 1.5 giây.',
-    stats: { maxMana: 20, manaRegen: 1.2, speed: 0.3 },
+      'Tăng 20 năng lượng tối đa, 1.2 hồi năng lượng, 0.3 tốc chạy, 60% sát thương chiêu thức ' +
+      'và giảm 15% thời gian hồi chiêu. Kích hoạt: cuốn tung một tướng địch 1.5 giây.',
+    stats: {
+      maxMana: 20,
+      manaRegen: 1.2,
+      speed: 0.3,
+      abilityPower: 0.6,
+      cooldownReduction: 0.15,
+    },
     active: 'Item_Euls',
     buildsFrom: ['staff_of_wizardry', 'void_stone'],
   },
@@ -208,8 +285,9 @@ const itemEntries = (): Record<string, ItemDef> => ({
     icon: 'item_black_king_bar',
     cost: 1_250,
     description:
-      'Tăng 25 máu tối đa và 10 sát thương công. Kích hoạt: gỡ khống chế và +65 kháng phép trong 6 giây.',
-    stats: { maxHealth: 25, attackDamage: 10 },
+      'Tăng 25 máu tối đa, 10 sát thương công và 30 kháng phép. ' +
+      'Kích hoạt: gỡ khống chế và +65 kháng phép trong 6 giây.',
+    stats: { maxHealth: 25, attackDamage: 10, magicResist: 30 },
     active: 'Item_BlackKingBar',
     buildsFrom: ['ogre_axe', 'mithril_hammer'],
   },
@@ -219,8 +297,9 @@ const itemEntries = (): Record<string, ItemDef> => ({
     icon: 'item_shivas_guard',
     cost: 1_300,
     description:
-      'Tăng 26 giáp và 16 kháng phép. Nội tại: toả hơi lạnh làm chậm 25% mọi kẻ địch trong bán kính 500.',
-    stats: { armor: 26, magicResist: 16 },
+      'Tăng 40 giáp, 30 kháng phép và 55% sát thương chiêu thức. Nội tại: toả hơi lạnh làm chậm ' +
+      '25% mọi kẻ địch trong bán kính 500.',
+    stats: { armor: 40, magicResist: 30, abilityPower: 0.55 },
     passive: 'Item_ShivasGuard',
     buildsFrom: ['platemail', 'robe_of_the_magi'],
   },
@@ -251,15 +330,28 @@ export const data: ContentPackData = {
   // whose passives never come off when sold and whose bookkeeping fills the
   // buff bar. Stating a floor turns that into a refusal a player can read.
   //
-  // Now `>=1.6.0`, and that last step is the one this comment cannot justify
-  // from the content: nothing here uses anything 1.6 added — there is no
-  // `monsters/` in this pack, so `MonsterAbility.onKilled` (the whole of the
-  // 1.6 contract bump) is unreachable from it. The floor is held level with
-  // core's current contract on purpose, so every pack in this workspace states
-  // one number. The cost is real and worth naming: a core 1.5 build would run
-  // this pack correctly and is now refused anyway. Drop back to `>=1.5.0` the
-  // day that matters more than the alignment does.
-  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.6.0', assets: 'dota' },
+  // `>=1.6.0` was the one step this comment could not justify from the
+  // content: nothing in this pack used anything 1.6 added — there is no
+  // `monsters/` here, so `MonsterAbility.onKilled` (the whole of that bump)
+  // was unreachable from it. The floor was held level with core's contract for
+  // alignment alone, and the cost was real: a core 1.5 build would have run
+  // this pack correctly and was refused anyway.
+  //
+  // `>=1.7.0` was not that. Five items below grant `abilityPower` or
+  // `cooldownReduction`, the two stats that make this pack's abilities scale
+  // with a build at all, and core's `ITEM_STAT_KEYS` is an allow-list —
+  // `validate.ts` refuses a pack naming a key that is not on it. An older core
+  // does not quietly ignore these items, it rejects the whole pack, so the
+  // floor is what turns that into a sentence a player can read. The alignment
+  // argument above is now redundant rather than load-bearing.
+  //
+  // `>=1.8.0` adds `ChampionEntry.defence` and `ContentPackData.archetypes` —
+  // the durability half of a hero and the taxonomy a hand-built kit picks a
+  // body from. `defence` fails the silent way on an older core (every hero back
+  // to 100 health, no resistances) and `archetypes` the loud way (an unknown
+  // key, so the pack is refused). One floor covers both.
+  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.8.0', assets: 'dota' },
+  archetypes: archetypeEntries(),
   champions: [
     {
       id: 'pudge',
@@ -273,6 +365,7 @@ export const data: ContentPackData = {
       playable: true,
       // A melee bruiser: he hits hard and slowly, and has to walk to you.
       attack: { damage: 16, attacksPerSecond: 0.85, range: 120 },
+      defence: DEFENCE.STRENGTH,
       spells: ['Pudge_Q', 'Pudge_W', 'Pudge_E', 'Pudge_R'],
     },
     {
@@ -282,6 +375,7 @@ export const data: ContentPackData = {
       playable: true,
       // A ranged nuker: her damage is in her abilities, not her swing.
       attack: { damage: 12, attacksPerSecond: 0.9, range: 380 },
+      defence: DEFENCE.INTELLIGENCE,
       spells: ['Lina_Q', 'Lina_W', 'Lina_E', 'Lina_R'],
     },
     {
@@ -291,6 +385,7 @@ export const data: ContentPackData = {
       playable: true,
       // A melee carry: the fastest swing on the roster, and the shortest reach.
       attack: { damage: 15, attacksPerSecond: 1.05, range: 130 },
+      defence: DEFENCE.AGILITY,
       spells: ['Juggernaut_Q', 'Juggernaut_W', 'Juggernaut_E', 'Juggernaut_R'],
     },
     {
@@ -300,6 +395,7 @@ export const data: ContentPackData = {
       playable: true,
       // A support: the longest reach and the weakest swing.
       attack: { damage: 11, attacksPerSecond: 0.85, range: 400 },
+      defence: DEFENCE.INTELLIGENCE,
       spells: [
         'CrystalMaiden_Q',
         'CrystalMaiden_W',
@@ -316,6 +412,7 @@ export const data: ContentPackData = {
       // A melee bruiser who wants to be surrounded: he hits hard and slowly,
       // and every ability in the kit is about making people stand next to him.
       attack: { damage: 16, attacksPerSecond: 0.9, range: 125 },
+      defence: DEFENCE.STRENGTH,
       spells: ['Axe_Q', 'Axe_W', 'Axe_E', 'Axe_R'],
     },
     {
@@ -327,6 +424,7 @@ export const data: ContentPackData = {
       // to everyone else's — an aura that pays her whole side, and an ultimate
       // that is pure position.
       attack: { damage: 12, attacksPerSecond: 0.95, range: 390 },
+      defence: DEFENCE.INTELLIGENCE,
       spells: [
         'VengefulSpirit_Q',
         'VengefulSpirit_W',
@@ -343,6 +441,7 @@ export const data: ContentPackData = {
       // swing he lands makes the next one worth more, and his ultimate is what
       // buys him the time to keep swinging.
       attack: { damage: 14, attacksPerSecond: 1.0, range: 125 },
+      defence: DEFENCE.AGILITY,
       spells: ['Slark_Q', 'Slark_W', 'Slark_E', 'Slark_R'],
     },
     {
@@ -353,6 +452,7 @@ export const data: ContentPackData = {
       // A melee initiator: the slowest swing on the roster, because none of
       // what he is for happens with his weapon.
       attack: { damage: 15, attacksPerSecond: 0.88, range: 128 },
+      defence: DEFENCE.STRENGTH,
       spells: ['Earthshaker_Q', 'Earthshaker_W', 'Earthshaker_E', 'Earthshaker_R'],
     },
     {
@@ -364,6 +464,7 @@ export const data: ContentPackData = {
       // the weakest body behind it — the whole hero is the argument that range
       // is worth a slot.
       attack: { damage: 13, attacksPerSecond: 0.95, range: 400 },
+      defence: DEFENCE.INTELLIGENCE,
       spells: ['Sniper_Q', 'Sniper_W', 'Sniper_E', 'Sniper_R'],
     },
   ],

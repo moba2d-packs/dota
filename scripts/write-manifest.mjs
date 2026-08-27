@@ -35,7 +35,7 @@ const dist = join(root, 'dist');
 // Raised with `pack.ts`'s own floor — the two state the same fact and must
 // move together. See the note over `data.manifest` for why this is 1.6.0
 // rather than the 1.5.0 the content alone would justify.
-const coreRange = '>=1.6.0';
+const coreRange = '>=1.8.0';
 
 /**
  * A floor no core can satisfy is a pack nobody can install, and the build is
