@@ -114,8 +114,9 @@ export default class Earthshaker_Q extends Spell {
       // After the damage: `addBuff` refuses a corpse rather than leaving a stun
       // on one.
       if (victim.isDead) continue;
+      // Keeps `Stun`'s own icon — it is drawn on the victim, not just in the
+      // HUD. See the note in `Earthshaker_E.ts`.
       const floored = new Stun(Q_STUN_MS, this.owner, victim);
-      floored.image = this.image;
       floored.stackId = 'dota_earthshaker_q_stun';
       victim.addBuff(floored);
     }

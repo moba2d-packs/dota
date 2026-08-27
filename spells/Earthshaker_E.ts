@@ -125,8 +125,12 @@ export class Earthshaker_E_Armed extends Buff {
 
       victim.takeDamage(E_DAMAGE, shaker, 'MAGIC', 'Dư Chấn');
       if (victim.isDead) continue;
+      // No `image` of ours. `Stun` draws its own icon spinning on the victim
+      // (`buffs/Stun.ts`), so overriding it swaps the universal "this one is
+      // stunned" swirl for an ability icon nobody can read at that size. The
+      // rule is narrow — every other buff's image is HUD-only, and naming the
+      // ability there is an improvement.
       const rocked = new Stun(E_STUN_MS, shaker, victim);
-      rocked.image = this.image;
       rocked.stackId = 'dota_earthshaker_e_stun';
       victim.addBuff(rocked);
       rattled.push(victim);

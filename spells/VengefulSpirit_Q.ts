@@ -149,8 +149,9 @@ export class VengefulSpirit_Q_Object extends HomingMissileSpellObject {
     // After the damage: a target this killed is already dead, and `addBuff`
     // refuses a corpse rather than leaving a stun on one.
     if (target.isDead) return;
+    // Keeps `Stun`'s own icon — it is drawn on the victim, not just in the
+    // HUD. See the note in `Earthshaker_E.ts`.
     const held = new Stun(Q_STUN_MS, this.owner, target);
-    held.image = this.image;
     held.stackId = 'dota_vengefulspirit_q_stun';
     target.addBuff(held);
   }
