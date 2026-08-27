@@ -82,7 +82,7 @@ export default class Juggernaut_R extends Spell {
   description =
     `Juggernaut lao đến mục tiêu và chém <span class="damage">${R_STRIKES} lần</span> trong ` +
     `<span class="time">${R_DURATION_MS / 1000} giây</span>, mỗi nhát ` +
-    `<span class="damage">${R_DAMAGE_PER_STRIKE} sát thương</span> lên kẻ địch gần nhất ` +
+    `<span class="damage">${R_DAMAGE_PER_STRIKE} sát thương vật lý</span> lên kẻ địch gần nhất ` +
     `(tổng <span class="damage">${R_TOTAL_DAMAGE}</span>). Trong lúc đó anh không thể bị chọn làm mục tiêu.`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;
@@ -235,7 +235,7 @@ export default class Juggernaut_R extends Spell {
       victim.position.y + Math.sin(around) * R_BLINK_OFFSET_PX
     );
 
-    victim.takeDamage(R_DAMAGE_PER_STRIKE, this.owner);
+    victim.takeDamage(R_DAMAGE_PER_STRIKE, this.owner, 'PHYSICAL');
     this.strikesLanded += 1;
     this.slashes?.strike(victim, this.owner.position.x, this.owner.position.y);
   }

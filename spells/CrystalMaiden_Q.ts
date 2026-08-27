@@ -73,7 +73,7 @@ export default class CrystalMaiden_Q extends Spell {
     }) as AttackableUnit[];
 
     for (const victim of caught) {
-      victim.takeDamage(Q_DAMAGE, this.owner);
+      victim.takeDamage(Q_DAMAGE, this.owner, 'MAGIC');
       const chilled = new Slow(Q_SLOW_MS, this.owner, victim);
       chilled.percent = Q_SLOW;
       chilled.image = this.image;

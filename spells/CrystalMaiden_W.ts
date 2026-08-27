@@ -226,7 +226,7 @@ export class CrystalMaiden_W_Object extends SpellObject {
       this.sinceTickMs -= W_TICK_MS;
       this.ticksDone += 1;
       this.sinceCrackMs = 0;
-      this.victim.takeDamage(W_DAMAGE_PER_TICK, this.owner);
+      this.victim.takeDamage(W_DAMAGE_PER_TICK, this.owner, 'MAGIC');
       // A corpse takes no more bites, and the shell is not drawn on one.
       if (this.victim.isDead || this.victim.toRemove) {
         this.toRemove = true;

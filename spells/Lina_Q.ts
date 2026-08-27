@@ -68,7 +68,7 @@ export class Lina_Q_Object extends MissileSpellObject {
   }
 
   onHit(target: AttackableUnit): void {
-    target.takeDamage(this.damage, this.owner);
+    target.takeDamage(this.damage, this.owner, 'MAGIC');
   }
 
   /**

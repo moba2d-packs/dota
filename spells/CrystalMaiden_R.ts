@@ -160,7 +160,7 @@ export default class CrystalMaiden_R extends Spell {
     }) as AttackableUnit[];
 
     for (const victim of caught) {
-      victim.takeDamage(R_BLAST_DAMAGE, this.owner);
+      victim.takeDamage(R_BLAST_DAMAGE, this.owner, 'MAGIC');
       const chilled = new Slow(R_SLOW_MS, this.owner, victim);
       chilled.percent = R_SLOW;
       chilled.image = this.image;

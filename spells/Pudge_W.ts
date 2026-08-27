@@ -128,7 +128,7 @@ export default class Pudge_W extends Spell {
     }) as AttackableUnit[];
 
     for (const victim of victims) {
-      victim.takeDamage(W_DAMAGE_PER_TICK, this.owner);
+      victim.takeDamage(W_DAMAGE_PER_TICK, this.owner, 'MAGIC');
       const slowed = new Slow(W_SLOW_MS, this.owner, victim);
       slowed.percent = W_SLOW;
       slowed.image = this.image;

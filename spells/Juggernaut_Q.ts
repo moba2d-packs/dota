@@ -227,7 +227,7 @@ export class Juggernaut_Q_Object extends SpellObject {
       filters: [PredefinedFilters.canTakeDamageFromTeam(this.owner.teamId)],
     }) as AttackableUnit[];
 
-    for (const victim of victims) victim.takeDamage(Q_DAMAGE_PER_TICK, this.owner);
+    for (const victim of victims) victim.takeDamage(Q_DAMAGE_PER_TICK, this.owner, 'MAGIC');
     this.pulse();
   }
 

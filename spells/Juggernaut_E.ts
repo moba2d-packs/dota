@@ -70,7 +70,7 @@ export default class Juggernaut_E extends Spell {
   name = 'Vũ Đao (Juggernaut_E)';
   description =
     `Trong <span class="time">${E_DURATION_MS / 1000} giây</span>, mỗi đòn đánh thường của ` +
-    `Juggernaut gây thêm <span class="damage">${E_BONUS_DAMAGE} sát thương</span>.`;
+    `Juggernaut gây thêm <span class="damage">${E_BONUS_DAMAGE} sát thương vật lý</span>.`;
   coolDown = E_COOLDOWN_MS;
   manaCost = E_MANA;
   targetingMode = 'SELF' as const;
@@ -111,7 +111,7 @@ export default class Juggernaut_E extends Spell {
       const victim = hit.victim;
       if (!victim || victim.isDead || victim.toRemove) return;
 
-      victim.takeDamage(E_BONUS_DAMAGE, this.owner);
+      victim.takeDamage(E_BONUS_DAMAGE, this.owner, 'PHYSICAL');
       // The slash is drawn **on** the victim, at the moment the bonus lands —
       // an on-hit effect the player cannot locate is an on-hit effect they
       // cannot tell is running.

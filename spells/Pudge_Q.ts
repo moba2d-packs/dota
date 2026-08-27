@@ -120,7 +120,7 @@ export class Pudge_Q_Object extends SpellObject {
     const victim = hits[0] as AttackableUnit | undefined;
     if (!victim) return false;
 
-    victim.takeDamage(this.damage, this.owner);
+    victim.takeDamage(this.damage, this.owner, 'MAGIC');
     this.caught = victim;
     this.phase = 'reeling';
 

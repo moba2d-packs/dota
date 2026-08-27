@@ -128,7 +128,7 @@ export class Lina_W_Object extends SpellObject {
 
     this.lastHitCount = caught.length;
     for (const victim of caught) {
-      victim.takeDamage(W_DAMAGE, this.owner);
+      victim.takeDamage(W_DAMAGE, this.owner, 'MAGIC');
       // `Stun` keeps its own `buff_stun` icon rather than being handed this
       // spell's: the status bar's job is to say *what* is on you, and every
       // stun in the match reading the same is the whole value of that row.

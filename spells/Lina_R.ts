@@ -137,7 +137,7 @@ export default class Lina_R extends Spell {
     this.live = bolt;
     this.game.objectManager.addObject(bolt);
 
-    victim.takeDamage(R_DAMAGE, this.owner);
+    victim.takeDamage(R_DAMAGE, this.owner, 'MAGIC');
   }
 
   drawPreview(): void {

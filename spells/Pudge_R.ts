@@ -189,7 +189,7 @@ export default class Pudge_R extends Spell {
       this.cancel('TARGET_INVALID');
       return;
     }
-    victim.takeDamage(R_DAMAGE_PER_TICK, this.owner);
+    victim.takeDamage(R_DAMAGE_PER_TICK, this.owner, 'MAGIC');
     // `takeHeal` is the unit's own door for being given health, beside
     // `restoreMana`. Writing `stats.health` here would be the granting side of
     // the same seam `spendMana` owns for billing.
