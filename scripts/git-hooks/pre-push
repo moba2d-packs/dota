@@ -10,7 +10,7 @@
 #
 # Verify runs against whichever @moba2d/core is installed. To build against
 # the sibling checkout instead of the published one, link it first:
-#   cd ../moba2d-core && npm run pack:link -- ../moba2d-content-dota
+#   cd ../moba2d-core && npm run pack:link -- ../dota
 
 [ "$MOBA2D_SKIP_VERIFY" = "1" ] && exit 0
 
