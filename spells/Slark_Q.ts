@@ -119,7 +119,7 @@ export class Slark_Q_Object extends SpellObject {
       // Dealt as TRUE and sourced to himself: it is a cost, not an attack, and
       // core's own rules already treat self-damage as neither vamp-able nor
       // something that provokes a retaliation.
-      slark.takeDamage(Q_SELF_DAMAGE, slark, 'TRUE', 'Khế Ước Hắc Ám');
+      slark.takeDamage(Q_SELF_DAMAGE, slark, 'TRUE');
     }
 
     // **No vision filter** — an area effect touches whoever is standing in it,
@@ -134,7 +134,7 @@ export class Slark_Q_Object extends SpellObject {
       // `queryObjects` answers on bounds; the edge is re-checked against the
       // radius the burst actually draws.
       if (victim.position.dist(this.position) > Q_RADIUS) continue;
-      victim.takeDamage(Q_DAMAGE, slark, 'MAGIC', 'Khế Ước Hắc Ám');
+      victim.takeDamage(Q_DAMAGE, slark, 'MAGIC');
       this.caught.push(victim);
     }
   }

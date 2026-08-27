@@ -145,7 +145,7 @@ export class VengefulSpirit_Q_Object extends HomingMissileSpellObject {
   private wake: { x: number; y: number }[] = [];
 
   onTargetArrive(target: AttackableUnit): void {
-    target.takeDamage(Q_DAMAGE, this.owner, 'MAGIC', 'Tên Lửa Phép');
+    target.takeDamage(Q_DAMAGE, this.owner, 'MAGIC');
     // After the damage: a target this killed is already dead, and `addBuff`
     // refuses a corpse rather than leaving a stun on one.
     if (target.isDead) return;

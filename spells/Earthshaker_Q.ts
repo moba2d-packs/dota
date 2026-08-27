@@ -110,7 +110,7 @@ export default class Earthshaker_Q extends Spell {
       const reach = Q_THICKNESS / 2 + (victim.collisionRadius || 0);
       if (distanceToSegment(victim.position, from, to) > reach) continue;
 
-      victim.takeDamage(Q_DAMAGE, this.owner, 'MAGIC', 'Khe Nứt');
+      victim.takeDamage(Q_DAMAGE, this.owner, 'MAGIC');
       // After the damage: `addBuff` refuses a corpse rather than leaving a stun
       // on one.
       if (victim.isDead) continue;

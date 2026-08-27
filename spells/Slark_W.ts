@@ -107,7 +107,7 @@ export default class Slark_W extends Spell {
       if (prey.position.dist(this.owner.position) > W_CATCH_RADIUS) continue;
 
       this.caught = prey;
-      prey.takeDamage(W_DAMAGE, this.owner, 'PHYSICAL', 'Vồ Mồi');
+      prey.takeDamage(W_DAMAGE, this.owner, 'PHYSICAL');
       // After the damage: a body this killed is already dead, and `addBuff`
       // refuses a corpse rather than leaving a leash on one.
       if (prey.isDead) return;

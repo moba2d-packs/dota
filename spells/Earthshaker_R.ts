@@ -83,7 +83,7 @@ export default class Earthshaker_R extends Spell {
     const echoes = Math.min(Math.max(0, caught.length - 1), R_MAX_ECHOES);
     const payload = R_BASE_DAMAGE + echoes * R_ECHO_DAMAGE;
     for (const victim of caught) {
-      victim.takeDamage(payload, this.owner, 'MAGIC', 'Chấn Động Dư Âm');
+      victim.takeDamage(payload, this.owner, 'MAGIC');
     }
 
     const slam = new Earthshaker_R_Object(this.owner);

@@ -156,7 +156,7 @@ export class Sniper_Q_Object extends SpellObject {
       // radius the field actually draws.
       if (victim.position.dist(this.position) > Q_RADIUS) continue;
 
-      victim.takeDamage(Q_DAMAGE_PER_TICK, this.owner, 'PHYSICAL', 'Mảnh Đạn');
+      victim.takeDamage(Q_DAMAGE_PER_TICK, this.owner, 'PHYSICAL');
       if (victim.isDead) continue;
 
       const dragging = new Slow(Q_TICK_MS + Q_LINGER_MS, this.owner, victim);

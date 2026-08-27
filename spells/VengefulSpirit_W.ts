@@ -147,7 +147,7 @@ export class VengefulSpirit_W_Object extends SpellObject {
       if (victim.position.dist(this.position) > W_HALF_WIDTH) continue;
       this.washed.add(victim);
 
-      victim.takeDamage(W_DAMAGE, this.owner, 'MAGIC', 'Sóng Kinh Hoàng');
+      victim.takeDamage(W_DAMAGE, this.owner, 'MAGIC');
       if (victim.isDead) continue;
 
       const blinded = new Nearsight(W_DEBUFF_MS, this.owner, victim);

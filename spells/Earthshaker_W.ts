@@ -60,7 +60,7 @@ export default class Earthshaker_W extends Spell {
       // radius the shock actually draws.
       if (victim.position.dist(this.owner.position) > W_RADIUS) continue;
 
-      victim.takeDamage(W_DAMAGE, this.owner, 'MAGIC', 'Thần Chú Đá');
+      victim.takeDamage(W_DAMAGE, this.owner, 'MAGIC');
       // After the damage: `addBuff` refuses a corpse rather than throwing one
       // into the air.
       if (victim.isDead) continue;

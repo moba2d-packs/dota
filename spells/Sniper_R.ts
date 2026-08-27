@@ -141,7 +141,7 @@ export class Sniper_R_Object extends SpellObject {
 
       const power = travelRamp(this.position.dist(this.origin), R_FULL_POWER_AT);
       const payload = R_MIN_DAMAGE + (R_MAX_DAMAGE - R_MIN_DAMAGE) * power;
-      victim.takeDamage(payload, this.owner, 'PHYSICAL', 'Ám Sát');
+      victim.takeDamage(payload, this.owner, 'PHYSICAL');
       this.spent = true;
       return;
     }

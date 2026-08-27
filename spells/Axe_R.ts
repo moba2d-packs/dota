@@ -128,8 +128,7 @@ export default class Axe_R extends Spell implements ExecuteSpell {
       this.owner,
       // A beheading is dealt as `TRUE` so armour cannot leave the victim
       // standing on one point after the mark promised they would not.
-      beheading ? 'TRUE' : 'MAGIC',
-      'Lưỡi Hái Tử Thần'
+      beheading ? 'TRUE' : 'MAGIC'
     );
     const killed = wasAlive && victim.isDead;
 
