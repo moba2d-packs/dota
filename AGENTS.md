@@ -139,7 +139,7 @@ git push
 push to the default branch. Players install from
 `https://<owner>.github.io/<repo>/manifest.json`.
 
-Nothing to bump by hand. `scripts/write-manifest.mjs` derives `buildId` from
+Nothing to bump by hand. `moba2d-write-manifest` (core's bin) derives `buildId` from
 the file list, core hangs it off the entry URL, and a player whose installed
 copy is older is offered the update.
 
@@ -204,8 +204,9 @@ than from this file, which cannot be checked. `items` did not exist in
 `ContentPackData` before core 1.3, `buildsFrom` before 1.4, and
 `Buff.hudVisible`/`Buff.sourceSpell` before 1.5. An older core does not fail on
 any of them — it *ignores* what it does not know, and installs a shop whose
-passives never come off when sold. `pack.ts` and `scripts/write-manifest.mjs`
-state the floor separately and must move together.
+passives never come off when sold. `pack.ts` states the floor once;
+`moba2d-write-manifest` reads it off the built pack for the published
+manifest.
 
 **A bookkeeping buff hides itself.** An item passive's internal state sets
 `hudVisible = false`, or every purchase adds a row to the buff bar.
@@ -237,7 +238,7 @@ locally.
 **`npm install` (and any `bun install`) stomps a dev link.** While this pack
 is linked to a local core checkout (`npm run pack:link` from core), an
 install here silently replaces the symlink with the npm copy.
-`scripts/check-core-link.mjs` (first step of `verify`, warn-only on
+`moba2d-check-core-link` (core's bin — first step of `verify`, warn-only on
 `postinstall`) is what tells you; `npm run pack:link` from core is the
 repair. The pre-push hook (`npm run hooks:install`, once per clone) runs the
 full `verify`; `git push --no-verify` or `MOBA2D_SKIP_VERIFY=1 git push`

@@ -320,8 +320,8 @@ export const data: ContentPackData = {
   // `coreRange` is the oldest core this pack works against. Core parses
   // exactly two shapes — `*` and `>=X.Y.Z` — and treats anything else as
   // unsatisfiable, so `^1` is not a loose range, it is a pack that refuses to
-  // install. `scripts/write-manifest.mjs` states the same floor for the
-  // published manifest; raise both together.
+  // install. This is the only place it is stated: `moba2d-write-manifest`
+  // reads it off the built pack for the published manifest.
   // Raised from `>=1.0.0` when this pack grew a shop. `items` did not exist in
   // `ContentPackData` before core 1.3, `buildsFrom` before 1.4, and the two
   // fields the item passives lean on — `Buff.hudVisible` and `Buff.sourceSpell`

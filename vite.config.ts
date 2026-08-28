@@ -5,7 +5,7 @@ import { webpAssets } from '@moba2d/core/pack-webp';
 
 /**
  * The runtime-install build: `runtime-entry.ts` in, `dist/pack.js` plus its
- * chunks and assets out, and `scripts/write-manifest.mjs` describing the
+ * chunks and assets out, and `moba2d-write-manifest` describing the
  * result afterwards.
  *
  * Four settings here are load-bearing, and each one is a failure that has

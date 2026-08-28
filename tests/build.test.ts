@@ -77,7 +77,7 @@ describe('the published directory', () => {
   });
 
   /**
-   * Derived from the sorted file list by `scripts/write-manifest.mjs`, and
+   * Derived from the sorted file list by `moba2d-write-manifest`, and
    * hung off the entry URL by core as `pack.js?b=<buildId>` — which is what
    * makes two builds two URLs, so no cache can serve one build's entry
    * against another's manifest. Without it, republishing this pack hands
