@@ -198,12 +198,14 @@ gets handed to a player who never bought the item. `pack.ts`'s `displayData()`
 skips anything named `Item_*`; keep the prefix, and do not replace the check
 with a list — the next item is the one that gets left off it.
 
-**A pack with items needs `coreRange: '>=1.5.0'`.** `items` did not exist in
+**A pack with items declares a `coreRange` floor, and the number lives in
+`pack.ts`** (`manifest.coreRange`, today `'>=1.8.0'`) — read it there rather
+than from this file, which cannot be checked. `items` did not exist in
 `ContentPackData` before core 1.3, `buildsFrom` before 1.4, and
-`Buff.hudVisible`/`Buff.sourceSpell` before 1.5. An older core does not fail
-on any of them — it *ignores* what it does not know, and installs a shop whose
+`Buff.hudVisible`/`Buff.sourceSpell` before 1.5. An older core does not fail on
+any of them — it *ignores* what it does not know, and installs a shop whose
 passives never come off when sold. `pack.ts` and `scripts/write-manifest.mjs`
-state that floor separately and must move together.
+state the floor separately and must move together.
 
 **A bookkeeping buff hides itself.** An item passive's internal state sets
 `hudVisible = false`, or every purchase adds a row to the buff bar.
@@ -242,6 +244,10 @@ full `verify`; `git push --no-verify` or `MOBA2D_SKIP_VERIFY=1 git push`
 skips it once, deliberately.
 
 ---
+
+**Install the git hooks once per clone:** `npm run hooks:install`. The
+pre-push hook runs `npm run verify`; `git push --no-verify` or
+`MOBA2D_SKIP_VERIFY=1 git push` skips it once, deliberately.
 
 ## Two things this pack decided, that a reader will otherwise undo
 
