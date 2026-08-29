@@ -56,7 +56,7 @@ export const R_RING_INNER = 120;
 export const R_RING_OUTER = 320;
 export const R_SLOW = 0.3;
 export const R_SLOW_MS = 1_200;
-export const R_COOLDOWN_MS = 90_000;
+export const R_COOLDOWN_MS = 10_000;
 export const R_MANA = 125;
 
 /** Everything, if somebody stands in all ten. See the header for why that is not the real number. */
