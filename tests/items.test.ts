@@ -101,17 +101,46 @@ describe('the shop', () => {
     expect(reductions.reduce((sum, amount) => sum + amount, 0)).toBeLessThan(0.6);
   });
 
-  it('describes what holding it does, in Vietnamese', () => {
+  it('describes what an item *does*, and leaves what it grants to the stat list', () => {
+    // A description used to be required of every item and used to open by
+    // restating that item's own stat block in prose. Core builds a stat list
+    // for both the shop card and the inventory tooltip now
+    // (`hud/itemStatLines.ts`), so the prose was printing the same numbers a
+    // second time in the one place and standing in for a list that did not
+    // exist in the other.
+    //
+    // What is left is the passive, the active and any note the numbers cannot
+    // carry — which the nine pure-stat components of this shop do not have, so
+    // they say nothing rather than repeating the list beside them.
     for (const item of items()) {
-      expect(item.description, `${item.id} has no description`).toBeTruthy();
+      if (item.description === undefined) {
+        expect(item.passive ?? item.active, `${item.id} has neither text nor an ability`).toBe(
+          undefined
+        );
+        continue;
+      }
       expect(
-        item.description!.trim().length,
+        item.description.trim().length,
         `${item.id} has an empty description`
       ).toBeGreaterThan(10);
+      expect(item.description, `${item.id} restates its own stat list`).not.toMatch(/^Tăng /);
       expect(item.description, `${item.id} still carries placeholder text`).not.toMatch(
         /Chưa hoàn thiện|TODO|PLACEHOLDER/i
       );
     }
+  });
+
+  it('colours every number it does print, the way a spell description does', () => {
+    // The item panel rendered as one flat grey paragraph beside a spell panel
+    // with three colours in it — same pipeline, same stylesheet, nothing in
+    // the text for either to work on. Any digit left outside a span is a
+    // number this pack chose to print and did not colour.
+    const SPAN = /<span class="(damage|buff|time)">[^<]*<\/span>/g;
+    const untagged = items()
+      .filter(item => /\d/.test((item.description ?? '').replace(SPAN, '')))
+      .map(item => item.id);
+
+    expect(untagged).toEqual([]);
   });
 
   it('gives at least two of them something to press', () => {

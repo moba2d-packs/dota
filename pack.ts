@@ -1,14 +1,14 @@
-import type { ContentApi } from '@moba2d/core/content/ContentApi';
+import type { ContentApi } from "@moba2d/core/content/ContentApi";
 import type {
   ContentPackCode,
   ContentPackData,
   ItemDef,
   SpellDisplayData,
   SpellSource,
-} from '@moba2d/core/content/ContentPack';
-import { setPackApi } from './packApi';
-import { spellCatalog } from './generated/spellCatalog';
-import { spellModules } from './generated/spellModules';
+} from "@moba2d/core/content/ContentPack";
+import { setPackApi } from "./packApi";
+import { spellCatalog } from "./generated/spellCatalog";
+import { spellModules } from "./generated/spellModules";
 
 /**
  * Dota 2 — a roster pack: heroes and their kits, and deliberately no map yet.
@@ -63,7 +63,7 @@ import { spellModules } from './generated/spellModules';
 const displayData = (): Record<string, SpellDisplayData> => {
   const out: Record<string, SpellDisplayData> = {};
   for (const [id, entry] of Object.entries(spellCatalog)) {
-    if (id.startsWith('Item_')) continue;
+    if (id.startsWith("Item_")) continue;
     out[id] = {
       name: entry.name,
       description: entry.description,
@@ -145,16 +145,19 @@ export const DEFENCE = {
 export type Role = keyof typeof DEFENCE;
 
 /** The attack half, so a hand-built kit can take a whole body rather than half of one. */
-const ROLE_ATTACK: Record<Role, { damage: number; attacksPerSecond: number; range: number }> = {
+const ROLE_ATTACK: Record<
+  Role,
+  { damage: number; attacksPerSecond: number; range: number }
+> = {
   STRENGTH: { damage: 16, attacksPerSecond: 0.88, range: 125 },
   AGILITY: { damage: 15, attacksPerSecond: 1.02, range: 128 },
   INTELLIGENCE: { damage: 12, attacksPerSecond: 0.9, range: 390 },
 };
 
 const ROLE_NAME: Record<Role, string> = {
-  STRENGTH: 'Sức Mạnh',
-  AGILITY: 'Nhanh Nhẹn',
-  INTELLIGENCE: 'Trí Tuệ',
+  STRENGTH: "Sức Mạnh",
+  AGILITY: "Nhanh Nhẹn",
+  INTELLIGENCE: "Trí Tuệ",
 };
 
 /**
@@ -167,7 +170,7 @@ const ROLE_NAME: Record<Role, string> = {
  * hands over its heroes and its items, and core stores only the chosen id.
  */
 const archetypeEntries = () =>
-  (Object.keys(DEFENCE) as Role[]).map(role => ({
+  (Object.keys(DEFENCE) as Role[]).map((role) => ({
     id: role.toLowerCase(),
     name: ROLE_NAME[role],
     attack: ROLE_ATTACK[role],
@@ -177,98 +180,88 @@ const archetypeEntries = () =>
 const itemEntries = (): Record<string, ItemDef> => ({
   // ---- Components ------------------------------------------------------
   broadsword: {
-    id: 'broadsword',
-    name: 'Kiếm Lớn',
-    icon: 'item_broadsword',
+    id: "broadsword",
+    name: "Kiếm Lớn",
+    icon: "item_broadsword",
     cost: 450,
-    description: 'Tăng 7 sát thương công.',
     stats: { attackDamage: 7 },
   },
   chainmail: {
-    id: 'chainmail',
-    name: 'Giáp Xích',
-    icon: 'item_chainmail',
+    id: "chainmail",
+    name: "Giáp Xích",
+    icon: "item_chainmail",
     cost: 350,
-    description: 'Tăng 16 giáp.',
     stats: { armor: 16 },
   },
   staff_of_wizardry: {
-    id: 'staff_of_wizardry',
-    name: 'Gậy Phù Thủy',
-    icon: 'item_staff_of_wizardry',
+    id: "staff_of_wizardry",
+    name: "Gậy Phù Thủy",
+    icon: "item_staff_of_wizardry",
     cost: 550,
-    description: 'Tăng 20 năng lượng tối đa và 20% sát thương chiêu thức.',
     stats: { maxMana: 20, abilityPower: 0.2 },
   },
   void_stone: {
-    id: 'void_stone',
-    name: 'Đá Hư Không',
-    icon: 'item_void_stone',
+    id: "void_stone",
+    name: "Đá Hư Không",
+    icon: "item_void_stone",
     cost: 500,
-    description: 'Tăng 1.2 hồi năng lượng và giảm 10% thời gian hồi chiêu.',
     stats: { manaRegen: 1.2, cooldownReduction: 0.1 },
   },
   ogre_axe: {
-    id: 'ogre_axe',
-    name: 'Rìu Ogre',
-    icon: 'item_ogre_axe',
+    id: "ogre_axe",
+    name: "Rìu Ogre",
+    icon: "item_ogre_axe",
     cost: 500,
-    description: 'Tăng 25 máu tối đa.',
     stats: { maxHealth: 25 },
   },
   mithril_hammer: {
-    id: 'mithril_hammer',
-    name: 'Búa Mithril',
-    icon: 'item_mithril_hammer',
+    id: "mithril_hammer",
+    name: "Búa Mithril",
+    icon: "item_mithril_hammer",
     cost: 500,
-    description: 'Tăng 10 sát thương công.',
     stats: { attackDamage: 10 },
   },
   platemail: {
-    id: 'platemail',
-    name: 'Giáp Tấm',
-    icon: 'item_platemail',
+    id: "platemail",
+    name: "Giáp Tấm",
+    icon: "item_platemail",
     cost: 550,
-    description: 'Tăng 34 giáp.',
     stats: { armor: 34 },
   },
   robe_of_the_magi: {
-    id: 'robe_of_the_magi',
-    name: 'Áo Choàng Pháp Sư',
-    icon: 'item_robe_of_the_magi',
+    id: "robe_of_the_magi",
+    name: "Áo Choàng Pháp Sư",
+    icon: "item_robe_of_the_magi",
     cost: 500,
-    description: 'Tăng 26 kháng phép và 18% sát thương chiêu thức.',
     stats: { magicResist: 26, abilityPower: 0.18 },
   },
   vitality_booster: {
-    id: 'vitality_booster',
-    name: 'Bình Sinh Lực',
-    icon: 'item_vitality_booster',
+    id: "vitality_booster",
+    name: "Bình Sinh Lực",
+    icon: "item_vitality_booster",
     cost: 500,
-    description: 'Tăng 30 máu tối đa.',
     stats: { maxHealth: 30 },
   },
 
   // ---- Finished --------------------------------------------------------
   blade_mail: {
-    id: 'blade_mail',
-    name: 'Blade Mail',
-    icon: 'item_blade_mail',
+    id: "blade_mail",
+    name: "Blade Mail",
+    icon: "item_blade_mail",
     cost: 1_000,
     description:
-      'Tăng 7 sát thương công và 22 giáp. Kích hoạt: phản 70% sát thương nhận vào trong 4.5 giây.',
+      'Kích hoạt: phản <span class="buff">70%</span> sát thương nhận vào trong <span class="time">4.5 giây</span>.',
     stats: { attackDamage: 7, armor: 22 },
-    active: 'Item_BladeMail',
-    buildsFrom: ['broadsword', 'chainmail'],
+    active: "Item_BladeMail",
+    buildsFrom: ["broadsword", "chainmail"],
   },
   euls_scepter: {
-    id: 'euls_scepter',
+    id: "euls_scepter",
     name: "Eul's Scepter",
-    icon: 'item_euls_scepter',
+    icon: "item_euls_scepter",
     cost: 1_300,
     description:
-      'Tăng 20 năng lượng tối đa, 1.2 hồi năng lượng, 0.3 tốc chạy, 60% sát thương chiêu thức ' +
-      'và giảm 15% thời gian hồi chiêu. Kích hoạt: cuốn tung một tướng địch 1.5 giây.',
+      'Kích hoạt: cuốn tung một tướng địch <span class="time">1.5 giây</span>.',
     stats: {
       maxMana: 20,
       manaRegen: 1.2,
@@ -276,43 +269,41 @@ const itemEntries = (): Record<string, ItemDef> => ({
       abilityPower: 0.6,
       cooldownReduction: 0.15,
     },
-    active: 'Item_Euls',
-    buildsFrom: ['staff_of_wizardry', 'void_stone'],
+    active: "Item_Euls",
+    buildsFrom: ["staff_of_wizardry", "void_stone"],
   },
   black_king_bar: {
-    id: 'black_king_bar',
-    name: 'Black King Bar',
-    icon: 'item_black_king_bar',
+    id: "black_king_bar",
+    name: "Black King Bar",
+    icon: "item_black_king_bar",
     cost: 1_250,
     description:
-      'Tăng 25 máu tối đa, 10 sát thương công và 30 kháng phép. ' +
-      'Kích hoạt: gỡ khống chế và +65 kháng phép trong 6 giây.',
+      'Kích hoạt: gỡ khống chế và thêm <span class="buff">65</span> kháng phép trong <span class="time">6 giây</span>.',
     stats: { maxHealth: 25, attackDamage: 10, magicResist: 30 },
-    active: 'Item_BlackKingBar',
-    buildsFrom: ['ogre_axe', 'mithril_hammer'],
+    active: "Item_BlackKingBar",
+    buildsFrom: ["ogre_axe", "mithril_hammer"],
   },
   shivas_guard: {
-    id: 'shivas_guard',
+    id: "shivas_guard",
     name: "Shiva's Guard",
-    icon: 'item_shivas_guard',
+    icon: "item_shivas_guard",
     cost: 1_300,
     description:
-      'Tăng 40 giáp, 30 kháng phép và 55% sát thương chiêu thức. Nội tại: toả hơi lạnh làm chậm ' +
-      '25% mọi kẻ địch trong bán kính 500.',
+      'Nội tại: toả hơi lạnh làm chậm <span class="buff">25%</span> mọi kẻ địch trong bán kính <span class="buff">500</span>.',
     stats: { armor: 40, magicResist: 30, abilityPower: 0.55 },
-    passive: 'Item_ShivasGuard',
-    buildsFrom: ['platemail', 'robe_of_the_magi'],
+    passive: "Item_ShivasGuard",
+    buildsFrom: ["platemail", "robe_of_the_magi"],
   },
   heart_of_tarrasque: {
-    id: 'heart_of_tarrasque',
-    name: 'Heart of Tarrasque',
-    icon: 'item_heart_of_tarrasque',
+    id: "heart_of_tarrasque",
+    name: "Heart of Tarrasque",
+    icon: "item_heart_of_tarrasque",
     cost: 1_300,
     description:
-      'Tăng 55 máu tối đa. Nội tại: sau 5 giây không trúng đòn, hồi 5 máu mỗi 0.5 giây.',
+      'Nội tại: sau <span class="time">5 giây</span> không trúng đòn, hồi <span class="buff">5</span> máu mỗi <span class="time">0.5 giây</span>.',
     stats: { maxHealth: 55 },
-    passive: 'Item_Heart',
-    buildsFrom: ['vitality_booster', 'ogre_axe'],
+    passive: "Item_Heart",
+    buildsFrom: ["vitality_booster", "ogre_axe"],
   },
 });
 
@@ -350,75 +341,80 @@ export const data: ContentPackData = {
   // body from. `defence` fails the silent way on an older core (every hero back
   // to 100 health, no resistances) and `archetypes` the loud way (an unknown
   // key, so the pack is refused). One floor covers both.
-  manifest: { id: 'dota', version: '1.0.0', coreRange: '>=1.8.0', assets: 'dota' },
+  manifest: {
+    id: "dota",
+    version: "1.0.0",
+    coreRange: ">=1.8.0",
+    assets: "dota",
+  },
   archetypes: archetypeEntries(),
   champions: [
     {
-      id: 'pudge',
-      name: 'Pudge',
+      id: "pudge",
+      name: "Pudge",
       // A key in this pack's own `generated/assetManifest.ts`, never one of
       // core's — see the `pack-asset-key` seam. The key is the file's path
       // under `assets/` with the extension dropped and its folder mapped to a
       // prefix, so `assets/images/champions/pudge.png` is `champ_pudge`. A
       // `playable` champion must have one.
-      image: 'champ_pudge',
+      image: "champ_pudge",
       playable: true,
       // A melee bruiser: he hits hard and slowly, and has to walk to you.
       attack: { damage: 16, attacksPerSecond: 0.85, range: 120 },
       defence: DEFENCE.STRENGTH,
-      spells: ['Pudge_Q', 'Pudge_W', 'Pudge_E', 'Pudge_R'],
+      spells: ["Pudge_Q", "Pudge_W", "Pudge_E", "Pudge_R"],
     },
     {
-      id: 'lina',
-      name: 'Lina',
-      image: 'champ_lina',
+      id: "lina",
+      name: "Lina",
+      image: "champ_lina",
       playable: true,
       // A ranged nuker: her damage is in her abilities, not her swing.
       attack: { damage: 12, attacksPerSecond: 0.9, range: 380 },
       defence: DEFENCE.INTELLIGENCE,
-      spells: ['Lina_Q', 'Lina_W', 'Lina_E', 'Lina_R'],
+      spells: ["Lina_Q", "Lina_W", "Lina_E", "Lina_R"],
     },
     {
-      id: 'juggernaut',
-      name: 'Juggernaut',
-      image: 'champ_juggernaut',
+      id: "juggernaut",
+      name: "Juggernaut",
+      image: "champ_juggernaut",
       playable: true,
       // A melee carry: the fastest swing on the roster, and the shortest reach.
       attack: { damage: 15, attacksPerSecond: 1.05, range: 130 },
       defence: DEFENCE.AGILITY,
-      spells: ['Juggernaut_Q', 'Juggernaut_W', 'Juggernaut_E', 'Juggernaut_R'],
+      spells: ["Juggernaut_Q", "Juggernaut_W", "Juggernaut_E", "Juggernaut_R"],
     },
     {
-      id: 'crystalmaiden',
-      name: 'Crystal Maiden',
-      image: 'champ_crystalmaiden',
+      id: "crystalmaiden",
+      name: "Crystal Maiden",
+      image: "champ_crystalmaiden",
       playable: true,
       // A support: the longest reach and the weakest swing.
       attack: { damage: 11, attacksPerSecond: 0.85, range: 400 },
       defence: DEFENCE.INTELLIGENCE,
       spells: [
-        'CrystalMaiden_Q',
-        'CrystalMaiden_W',
-        'CrystalMaiden_E',
-        'CrystalMaiden_R',
+        "CrystalMaiden_Q",
+        "CrystalMaiden_W",
+        "CrystalMaiden_E",
+        "CrystalMaiden_R",
         // moba2d-pack-add spell: new slot ids go above this line
       ],
     },
     {
-      id: 'axe',
-      name: 'Axe',
-      image: 'champ_axe',
+      id: "axe",
+      name: "Axe",
+      image: "champ_axe",
       playable: true,
       // A melee bruiser who wants to be surrounded: he hits hard and slowly,
       // and every ability in the kit is about making people stand next to him.
       attack: { damage: 16, attacksPerSecond: 0.9, range: 125 },
       defence: DEFENCE.STRENGTH,
-      spells: ['Axe_Q', 'Axe_W', 'Axe_E', 'Axe_R'],
+      spells: ["Axe_Q", "Axe_W", "Axe_E", "Axe_R"],
     },
     {
-      id: 'vengefulspirit',
-      name: 'Vengeful Spirit',
-      image: 'champ_vengefulspirit',
+      id: "vengefulspirit",
+      name: "Vengeful Spirit",
+      image: "champ_vengefulspirit",
       playable: true,
       // A ranged support: her swing is ordinary and her value is what she does
       // to everyone else's — an aura that pays her whole side, and an ultimate
@@ -426,46 +422,51 @@ export const data: ContentPackData = {
       attack: { damage: 12, attacksPerSecond: 0.95, range: 390 },
       defence: DEFENCE.INTELLIGENCE,
       spells: [
-        'VengefulSpirit_Q',
-        'VengefulSpirit_W',
-        'VengefulSpirit_E',
-        'VengefulSpirit_R',
+        "VengefulSpirit_Q",
+        "VengefulSpirit_W",
+        "VengefulSpirit_E",
+        "VengefulSpirit_R",
       ],
     },
     {
-      id: 'slark',
-      name: 'Slark',
-      image: 'champ_slark',
+      id: "slark",
+      name: "Slark",
+      image: "champ_slark",
       playable: true,
       // A melee carry who wins the long fight rather than the short one: every
       // swing he lands makes the next one worth more, and his ultimate is what
       // buys him the time to keep swinging.
       attack: { damage: 14, attacksPerSecond: 1.0, range: 125 },
       defence: DEFENCE.AGILITY,
-      spells: ['Slark_Q', 'Slark_W', 'Slark_E', 'Slark_R'],
+      spells: ["Slark_Q", "Slark_W", "Slark_E", "Slark_R"],
     },
     {
-      id: 'earthshaker',
-      name: 'Earthshaker',
-      image: 'champ_earthshaker',
+      id: "earthshaker",
+      name: "Earthshaker",
+      image: "champ_earthshaker",
       playable: true,
       // A melee initiator: the slowest swing on the roster, because none of
       // what he is for happens with his weapon.
       attack: { damage: 15, attacksPerSecond: 0.88, range: 128 },
       defence: DEFENCE.STRENGTH,
-      spells: ['Earthshaker_Q', 'Earthshaker_W', 'Earthshaker_E', 'Earthshaker_R'],
+      spells: [
+        "Earthshaker_Q",
+        "Earthshaker_W",
+        "Earthshaker_E",
+        "Earthshaker_R",
+      ],
     },
     {
-      id: 'sniper',
-      name: 'Sniper',
-      image: 'champ_sniper',
+      id: "sniper",
+      name: "Sniper",
+      image: "champ_sniper",
       playable: true,
       // The longest reach on the roster before Ngắm Bắn is even pressed, and
       // the weakest body behind it — the whole hero is the argument that range
       // is worth a slot.
       attack: { damage: 13, attacksPerSecond: 0.95, range: 400 },
       defence: DEFENCE.INTELLIGENCE,
-      spells: ['Sniper_Q', 'Sniper_W', 'Sniper_E', 'Sniper_R'],
+      spells: ["Sniper_Q", "Sniper_W", "Sniper_E", "Sniper_R"],
     },
   ],
   spellDisplay: displayData(),
@@ -481,7 +482,7 @@ const code = (api: ContentApi): ContentPackCode => {
 
   const spells: Record<string, SpellSource> = {};
   for (const [id, load] of Object.entries(spellModules)) {
-    spells[id] = () => load().then(module => module.default);
+    spells[id] = () => load().then((module) => module.default);
   }
   return { spells };
 };
