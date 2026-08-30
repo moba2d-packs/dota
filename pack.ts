@@ -341,10 +341,17 @@ export const data: ContentPackData = {
   // body from. `defence` fails the silent way on an older core (every hero back
   // to 100 health, no resistances) and `archetypes` the loud way (an unknown
   // key, so the pack is refused). One floor covers both.
+  //
+  // `>=1.11.0` is the silent kind again. Core amplifies heals and shields by
+  // the caster's ability power now, and reads a `class="heal"` span in a
+  // description as a number to rescale — so a heart that regenerates and a
+  // shop tuned around ability power both behave differently on a core that
+  // has neither, with nothing throwing and nothing to read. A floor is the
+  // only way that becomes a sentence.
   manifest: {
     id: "dota",
-    version: "1.0.0",
-    coreRange: ">=1.8.0",
+    version: "1.1.0",
+    coreRange: ">=1.11.0",
     assets: "dota",
   },
   archetypes: archetypeEntries(),

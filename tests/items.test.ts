@@ -131,12 +131,12 @@ describe('the shop', () => {
    * the floor is the only thing standing between a player and a silently broken
    * install.
    *
-   * 1.7 is what the shop needs now, and for once not silently: five items grant
-   * `abilityPower` or `cooldownReduction`, and core's item stats are an
-   * allow-list, so an older core refuses this pack outright rather than
-   * shipping it with inert mage items. See `pack.ts`'s own note.
+   * Every step since is recorded beside the value in `pack.ts`. The latest is
+   * 1.11, and it is the silent kind: core amplifies heals and shields by the
+   * caster's ability power and rescales a `class="heal"` span, so on an older
+   * core those numbers quietly stay at what was typed.
    */
   it('declares a core floor that actually has a shop in it', () => {
-    expect(data.manifest.coreRange).toBe('>=1.8.0');
+    expect(data.manifest.coreRange).toBe('>=1.11.0');
   });
 });
