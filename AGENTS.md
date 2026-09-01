@@ -4,6 +4,10 @@ Recipes for changing `@moba2d/content-dota`. Written to be followed
 literally — by a person or by an agent — without reading the engine first.
 
 `README.md` says what each file is. This says what to do.
+`docs/STATS_VS_DOTA.md` says how to turn a Dota 2 number into an engine number
+— read it before writing any stat, damage or cooldown, because the engine under
+this pack is modelled on League of Legends and only *time* and *mana* carry
+across unchanged.
 
 **One rule above all the others:** run `npm run verify` before you say you are
 done. It is `art:check`, `icons:check`, `assets:check`, `catalog:check`,
