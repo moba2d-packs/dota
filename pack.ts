@@ -205,7 +205,7 @@ const itemEntries = (): Record<string, ItemDef> => ({
     name: "Đá Hư Không",
     icon: "item_void_stone",
     cost: 500,
-    stats: { manaRegen: 1.2, cooldownReduction: 0.1 },
+    stats: { manaRegen: 1.2, abilityHaste: 12 },
   },
   ogre_axe: {
     id: "ogre_axe",
@@ -267,7 +267,7 @@ const itemEntries = (): Record<string, ItemDef> => ({
       manaRegen: 1.2,
       speed: 0.3,
       abilityPower: 0.6,
-      cooldownReduction: 0.15,
+      abilityHaste: 18,
     },
     active: "Item_Euls",
     buildsFrom: ["staff_of_wizardry", "void_stone"],
@@ -348,10 +348,21 @@ export const data: ContentPackData = {
   // shop tuned around ability power both behave differently on a core that
   // has neither, with nothing throwing and nothing to read. A floor is the
   // only way that becomes a sentence.
+  //
+  // `>=1.16.0` is the loud kind, and it is the same argument `>=1.7.0` made.
+  // Core replaced the capped `cooldownReduction` fraction with `abilityHaste`
+  // in points, and `ITEM_STAT_KEYS` is an allow-list: the void stone and
+  // Eul's, the two items carrying this pack's cooldown scaling, named a key
+  // core 1.16 has never heard of, so it refused the *whole pack* rather than
+  // dropping two items. There is no build of this pack that runs on both
+  // sides of that change, which is exactly what a floor is for. The same core
+  // grants an item's `attackSpeed` as a share of the wearer's base rather than
+  // in swings — no item in this shop sells attack speed, so that half costs
+  // this pack nothing, and `Lina_E` already granted it that way.
   manifest: {
     id: "dota",
-    version: "1.1.0",
-    coreRange: ">=1.11.0",
+    version: "1.2.0",
+    coreRange: ">=1.16.0",
     assets: "dota",
   },
   archetypes: archetypeEntries(),

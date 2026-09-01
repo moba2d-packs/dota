@@ -95,13 +95,13 @@ describe('the shop', () => {
     expect(bestSix).toBeLessThanOrEqual(2.5);
   });
 
-  it('sells cooldown reduction at all', () => {
-    // The ceiling — that the whole shop cannot reach `MAX_COOLDOWN_REDUCTION`,
-    // which would be a shop selling a key that can be held down — is core's
-    // own rule and lives in `describeItemShop` above. What is this pack's is
-    // that the stat is *for sale*: without it Eul's and the void stone scale
-    // on one axis, which is not the item they were designed as.
-    const sources = items().filter(item => (item.stats?.cooldownReduction ?? 0) > 0);
+  it('sells ability haste at all', () => {
+    // The rail — that the whole shop cannot reach `MAX_ABILITY_HASTE`, and
+    // that haste is written in points rather than as the fraction it replaced
+    // — is core's own rule and lives in `describeItemShop` above. What is this
+    // pack's is that the stat is *for sale*: without it Eul's and the void
+    // stone scale on one axis, which is not the item they were designed as.
+    const sources = items().filter(item => (item.stats?.abilityHaste ?? 0) > 0);
     expect(sources.length).toBeGreaterThanOrEqual(1);
   });
 
@@ -132,11 +132,11 @@ describe('the shop', () => {
    * install.
    *
    * Every step since is recorded beside the value in `pack.ts`. The latest is
-   * 1.11, and it is the silent kind: core amplifies heals and shields by the
-   * caster's ability power and rescales a `class="heal"` span, so on an older
-   * core those numbers quietly stay at what was typed.
+   * 1.16, and it is the loud kind: `cooldownReduction` became `abilityHaste`,
+   * and a key core does not know refuses the whole pack rather than dropping
+   * the two items that name it.
    */
   it('declares a core floor that actually has a shop in it', () => {
-    expect(data.manifest.coreRange).toBe('>=1.11.0');
+    expect(data.manifest.coreRange).toBe('>=1.16.0');
   });
 });
