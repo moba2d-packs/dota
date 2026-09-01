@@ -95,6 +95,8 @@ export const ITEMS = [
   { slug: 'black_king_bar', local: 'black_king_bar' },
   { slug: 'shivas_guard', local: 'shivas_guard' },
   { slug: 'heart', local: 'heart_of_tarrasque' },
+  { slug: 'spirit_vessel', local: 'spirit_vessel' },
+  { slug: 'desolator', local: 'desolator' },
   // Components
   { slug: 'broadsword', local: 'broadsword' },
   { slug: 'chainmail', local: 'chainmail' },

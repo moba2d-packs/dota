@@ -59,4 +59,6 @@ export { default as Item_Euls } from './Item_Euls';
 export { default as Item_BlackKingBar } from './Item_BlackKingBar';
 export { default as Item_ShivasGuard } from './Item_ShivasGuard';
 export { default as Item_Heart } from './Item_Heart';
+export { default as Item_SpiritVessel } from './Item_SpiritVessel';
+export { default as Item_Desolator } from './Item_Desolator';
 // moba2d-pack-add spell: new barrel entries go above this line

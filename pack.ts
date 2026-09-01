@@ -272,6 +272,33 @@ const itemEntries = (): Record<string, ItemDef> => ({
     active: "Item_Euls",
     buildsFrom: ["staff_of_wizardry", "void_stone"],
   },
+  spirit_vessel: {
+    id: "spirit_vessel",
+    name: "Bình Hồn",
+    icon: "item_spirit_vessel",
+    cost: 1_150,
+    description:
+      'Nội tại: đòn đánh <span class="buff">giảm 45%</span> lượng hồi máu của mục tiêu trong <span class="time">3 giây</span>.',
+    // The shop's first answer to sustain. Trái Tim Tarrasque is sold in this
+    // same shop and nothing could argue with it until now.
+    stats: { maxHealth: 40, armor: 18, manaRegen: 0.8 },
+    passive: "Item_SpiritVessel",
+    buildsFrom: ["vitality_booster", "chainmail"],
+  },
+  desolator: {
+    id: "desolator",
+    name: "Kẻ Hủy Diệt",
+    icon: "item_desolator",
+    cost: 1_200,
+    description:
+      'Nội tại: đòn đánh <span class="buff">trừ 6 giáp</span> của mục tiêu trong <span class="time">7 giây</span> — cả đội cùng hưởng.',
+    // Armour off the *victim*, never penetration on the wearer — see
+    // `docs/STATS_VS_DOTA.md`. The whole reason this is drafted is that the
+    // rest of the team hits the corroded target harder too.
+    stats: { attackDamage: 17 },
+    passive: "Item_Desolator",
+    buildsFrom: ["mithril_hammer", "broadsword"],
+  },
   black_king_bar: {
     id: "black_king_bar",
     name: "Black King Bar",
@@ -279,7 +306,7 @@ const itemEntries = (): Record<string, ItemDef> => ({
     cost: 1_250,
     description:
       'Kích hoạt: gỡ khống chế và thêm <span class="buff">65</span> kháng phép trong <span class="time">6 giây</span>.',
-    stats: { maxHealth: 25, attackDamage: 10, magicResist: 30 },
+    stats: { maxHealth: 25, attackDamage: 10, magicResist: 30, tenacity: 0.25 },
     active: "Item_BlackKingBar",
     buildsFrom: ["ogre_axe", "mithril_hammer"],
   },

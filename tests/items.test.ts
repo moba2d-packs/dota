@@ -38,13 +38,15 @@ const finished = () => items().filter(item => item.buildsFrom !== undefined);
 const components = () => items().filter(item => item.buildsFrom === undefined);
 
 describe('the shop', () => {
-  it('ships the five items this pack claims, and the parts they need', () => {
+  it('ships the seven items this pack claims, and the parts they need', () => {
     expect(finished().map(item => item.id).sort()).toEqual([
       'black_king_bar',
       'blade_mail',
+      'desolator',
       'euls_scepter',
       'heart_of_tarrasque',
       'shivas_guard',
+      'spirit_vessel',
     ]);
     expect(components().length).toBeGreaterThan(0);
   });
