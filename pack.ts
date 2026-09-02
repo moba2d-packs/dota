@@ -177,6 +177,22 @@ const archetypeEntries = () =>
     defence: DEFENCE[role],
   }));
 
+/**
+ * A regeneration figure written the way a human reads it, in the unit the
+ * engine actually stores.
+ *
+ * `Stats.update()` adds the whole regen stat **once per frame**, so the stored
+ * number is per frame and `manaRegen: 1.2` is seventy-two mana a second against
+ * a base of six. All three regen items here were written as per-second figures
+ * — a 500-gold stone refilled a 500 pool in seven seconds — and nothing said
+ * otherwise, because the shop card printed the stored number raw and so agreed
+ * with whoever wrote it.
+ *
+ * Every call site now says which unit it means, which is the part that was
+ * missing rather than the arithmetic.
+ */
+const perSecond = (amount: number): number => amount / 60;
+
 const itemEntries = (): Record<string, ItemDef> => ({
   // ---- Components ------------------------------------------------------
   broadsword: {
@@ -205,7 +221,8 @@ const itemEntries = (): Record<string, ItemDef> => ({
     name: "Đá Hư Không",
     icon: "item_void_stone",
     cost: 500,
-    stats: { manaRegen: 1.2, abilityHaste: 12 },
+    // +100% of a champion's own 6/s, which is what this stone is in Dota.
+    stats: { manaRegen: perSecond(6), abilityHaste: 12 },
   },
   ogre_axe: {
     id: "ogre_axe",
@@ -264,7 +281,8 @@ const itemEntries = (): Record<string, ItemDef> => ({
       'Kích hoạt: cuốn tung một tướng địch <span class="time">1.5 giây</span>.',
     stats: {
       maxMana: 20,
-      manaRegen: 1.2,
+      // Builds from Đá Hư Không and carries its regen, unchanged.
+      manaRegen: perSecond(6),
       speed: 0.3,
       abilityPower: 0.6,
       abilityHaste: 18,
@@ -281,7 +299,7 @@ const itemEntries = (): Record<string, ItemDef> => ({
       'Nội tại: đòn đánh <span class="buff">giảm 45%</span> lượng hồi máu của mục tiêu trong <span class="time">3 giây</span>.',
     // The shop's first answer to sustain. Trái Tim Tarrasque is sold in this
     // same shop and nothing could argue with it until now.
-    stats: { maxHealth: 40, armor: 18, manaRegen: 0.8 },
+    stats: { maxHealth: 40, armor: 18, manaRegen: perSecond(4) },
     passive: "Item_SpiritVessel",
     buildsFrom: ["vitality_booster", "chainmail"],
   },
