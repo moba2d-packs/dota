@@ -48,6 +48,14 @@ export const E_WAKE_STEP_PX = 16;
 export const E_WAKE_LENGTH = 12;
 
 export default class Lina_E extends Spell {
+  /**
+   * `Buff` alone: movement and attack speed, no shield anywhere in the
+   * ability. `Escape` is deliberately off — the movement half is for walking
+   * *into* a fight, and `Escape` is priced at −10 whenever the bot is not
+   * already retreating.
+   */
+  static aiRoles = api.enums.SpellRole.Buff;
+
   image = api.asset('spell_lina_e');
   name = 'Hồn Lửa (Lina_E)';
   description =

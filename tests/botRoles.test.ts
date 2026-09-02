@@ -30,49 +30,9 @@ describeBotRoles({
   champions: (data.champions ?? [])
     .filter(champion => champion.playable)
     .map(champion => ({ id: champion.id, name: champion.name, spells: champion.spells ?? [] })),
+  // Emptied by reading all eighteen and saying what each one is — see the
+  // header. What replaced the list is a tag per ability, each carrying the
+  // sentence that justifies it.
   knownDebt: [
-  // Costed `SELF` casts with nothing declared, so `inferRoles` files each of
-  // them beside a panic button. Blade Fury is a spin that damages everyone
-  // touching it; Berserker's Call is a taunt; Pounce is a leap.
-  'self-cast-untagged:Axe_E',
-  'self-cast-untagged:Axe_Q',
-  'self-cast-untagged:Axe_R',
-  'self-cast-untagged:CrystalMaiden_E',
-  'self-cast-untagged:CrystalMaiden_R',
-  'self-cast-untagged:Earthshaker_E',
-  'self-cast-untagged:Earthshaker_R',
-  'self-cast-untagged:Earthshaker_W',
-  'self-cast-untagged:Juggernaut_E',
-  'self-cast-untagged:Juggernaut_Q',
-  'self-cast-untagged:Lina_E',
-  'self-cast-untagged:Pudge_E',
-  'self-cast-untagged:Slark_E',
-  'self-cast-untagged:Slark_Q',
-  'self-cast-untagged:Slark_R',
-  'self-cast-untagged:Sniper_E',
-  'self-cast-untagged:Sniper_W',
-  'self-cast-untagged:VengefulSpirit_E',
-  // The same abilities, priced: `Buff + Shield` is 5 − 5 = 0 above half
-  // health, and `chooseSpell` drops anything scoring `<= 0`.
-  'dead-in-combat:Axe_E',
-  'dead-in-combat:Axe_Q',
-  'dead-in-combat:CrystalMaiden_E',
-  'dead-in-combat:Earthshaker_E',
-  'dead-in-combat:Earthshaker_W',
-  'dead-in-combat:Juggernaut_E',
-  'dead-in-combat:Juggernaut_Q',
-  'dead-in-combat:Lina_E',
-  'dead-in-combat:Pudge_E',
-  'dead-in-combat:Slark_E',
-  'dead-in-combat:Slark_Q',
-  'dead-in-combat:Sniper_E',
-  'dead-in-combat:Sniper_W',
-  'dead-in-combat:VengefulSpirit_E',
-  // Culling Blade is an execute and Echo Slam is the largest area in the
-  // pack; both currently score 6 in a fight and 31 while dying.
-  'panic-ultimate:Axe_R',
-  'panic-ultimate:CrystalMaiden_R',
-  'panic-ultimate:Earthshaker_R',
-  'panic-ultimate:Slark_R',
   ],
 });

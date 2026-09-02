@@ -70,6 +70,14 @@ export const Q_TICKS = Math.ceil(Q_DURATION_MS / Q_TICK_MS);
 export const Q_MAX_TOTAL_DAMAGE = Q_DAMAGE_PER_TICK * Q_TICKS;
 
 export default class Juggernaut_Q extends Spell {
+  /**
+   * Told: a spin that ticks damage to everything inside a declared radius.
+   * Inferred as `Buff | Shield` it scored 0 and a bot only pressed it while
+   * fleeing — with a spin that does its work by standing in the middle of a
+   * fight.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_juggernaut_q');
   name = 'Cuồng Đao (Juggernaut_Q)';
   description =

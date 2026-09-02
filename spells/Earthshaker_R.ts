@@ -47,6 +47,16 @@ export const R_COOLDOWN_MS = 40_000;
 export const R_MANA = 60;
 
 export default class Earthshaker_R extends Spell {
+  /**
+   * Told, and it is the largest area in the pack: an instant nuke whose
+   * damage grows with how many bodies are packed into it. `Burst` because
+   * pressing it is a commitment, which is what the flag prices.
+   */
+  static aiRoles =
+    api.enums.SpellRole.Damage |
+    api.enums.SpellRole.Zone |
+    api.enums.SpellRole.Burst;
+
   image = api.asset('spell_earthshaker_r');
   name = 'Chấn Động Dư Âm (Earthshaker_R)';
   description =

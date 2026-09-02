@@ -44,6 +44,14 @@ export const Q_COOLDOWN_MS = 15_000;
 export const Q_MANA = 45;
 
 export default class Axe_Q extends Spell {
+  /**
+   * Told: the taunt is the ability. It deals no damage at all, so `Damage`
+   * is off — what it does is force everyone in the radius onto him, which is
+   * exactly the case `Cc` is priced for, plus the armour to survive having
+   * done it.
+   */
+  static aiRoles = api.enums.SpellRole.Cc | api.enums.SpellRole.Buff | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_axe_q');
   name = 'Tiếng Gọi Cuồng Nộ (Axe_Q)';
   description =

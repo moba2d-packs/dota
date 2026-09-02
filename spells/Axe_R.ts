@@ -59,6 +59,14 @@ export const R_COOLDOWN_MS = 30_000;
 export const R_MANA = 50;
 
 export default class Axe_R extends Spell implements ExecuteSpell {
+  /**
+   * Told, and the reason a bot never used it. This is core's `ExecuteSpell`
+   * — it outright kills below a threshold — and `Burst` is the flag that
+   * means "spend it on someone nearly dead". Inferred as `Buff | Shield`, an
+   * execute was filed beside a panic button.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Burst;
+
   image = api.asset('spell_axe_r');
   name = 'Lưỡi Hái Tử Thần (Axe_R)';
   description =

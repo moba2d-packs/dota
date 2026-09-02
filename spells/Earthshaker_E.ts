@@ -144,6 +144,12 @@ export class Earthshaker_E_Armed extends Buff {
 }
 
 export default class Earthshaker_E extends Spell {
+  /**
+   * Told: it arms a tremor that answers every later cast with damage and a
+   * real stun inside a declared radius. Nothing about it is a shield.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Cc | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_earthshaker_e');
   name = 'Dư Chấn (Earthshaker_E)';
   description =

@@ -34,6 +34,13 @@ export const W_COOLDOWN_MS = 18_000;
 export const W_MANA = 25;
 
 export default class Sniper_W extends Spell {
+  /**
+   * `Buff` alone: attack range, for a duration. The inferred `Shield` half
+   * is invented — there is no shield in the file — and it is what dropped
+   * the ability to 0 in a fight.
+   */
+  static aiRoles = api.enums.SpellRole.Buff;
+
   image = api.asset('spell_sniper_w');
   name = 'Ngắm Bắn (Sniper_W)';
   description =

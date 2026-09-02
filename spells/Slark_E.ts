@@ -92,6 +92,13 @@ export class Slark_E_Armed extends Buff {
 }
 
 export default class Slark_E extends Spell {
+  /**
+   * `Buff` alone. It deals no health damage at all — what it steals is
+   * attack damage, on landed hits — so it is a scaling steroid and nothing
+   * else.
+   */
+  static aiRoles = api.enums.SpellRole.Buff;
+
   image = api.asset('spell_slark_e');
   name = 'Rút Tinh Túy (Slark_E)';
   description =

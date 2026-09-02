@@ -44,6 +44,14 @@ export const Q_COOLDOWN_MS = 9_000;
 export const Q_MANA = 30;
 
 export default class Slark_Q extends Spell {
+  /**
+   * Told: a delayed burst on everyone inside a declared radius. It also
+   * purges his own crowd control, which reads like an escape and cannot be
+   * tagged as one — `isRetreatCandidate` excludes anything that declares a
+   * range, so `Escape` here would be a flat −10 and never the +25.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_slark_q');
   name = 'Khế Ước Hắc Ám (Slark_Q)';
   description =

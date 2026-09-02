@@ -32,6 +32,12 @@ export const W_COOLDOWN_MS = 12_000;
 export const W_MANA = 35;
 
 export default class Earthshaker_W extends Spell {
+  /**
+   * Told: damage plus a knockup on everyone inside a declared radius — a
+   * hard opener, not a self-buff.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Cc | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_earthshaker_w');
   name = 'Thần Chú Đá (Earthshaker_W)';
   description =

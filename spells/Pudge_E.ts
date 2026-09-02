@@ -39,6 +39,14 @@ export const shieldFor = (count: number): number =>
   E_BASE_SHIELD + Math.min(count, E_MAX_STACKS) * E_PER_ENEMY;
 
 export default class Pudge_E extends Spell {
+  /**
+   * The one ability in this pack where the inferred `Shield` half is
+   * honestly true: a real health-absorbing shield that grows with how many
+   * enemies are standing inside its radius. Declared rather than left to
+   * inference so the claim is on the record.
+   */
+  static aiRoles = api.enums.SpellRole.Shield | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_pudge_e');
   name = 'Chồng Thịt (Pudge_E)';
   description =

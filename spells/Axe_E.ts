@@ -101,6 +101,13 @@ export class Axe_E_Armed extends Buff {
 }
 
 export default class Axe_E extends Spell {
+  /**
+   * Told, not inferred. A costed SELF cast infers `Buff | Shield`, which
+   * scores 0 in a fight — and this one shields nothing: it arms a counter
+   * that answers every hit with physical damage in a real radius around him.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_axe_e');
   name = 'Xoáy Phản Đòn (Axe_E)';
   description =

@@ -66,6 +66,13 @@ export const E_WINDOW_HITS = Math.floor(
 export const E_WINDOW_BONUS = E_BONUS_DAMAGE * E_WINDOW_HITS;
 
 export default class Juggernaut_E extends Spell {
+  /**
+   * Told: an on-hit steroid that adds physical damage to every swing for the
+   * duration. It shields nothing, and it is sustained rather than a
+   * finisher, so no `Burst`.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Buff;
+
   image = api.asset('spell_juggernaut_e');
   name = 'Vũ Đao (Juggernaut_E)';
   description =

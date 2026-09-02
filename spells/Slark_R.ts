@@ -43,6 +43,13 @@ export const R_COOLDOWN_MS = 45_000;
 export const R_MANA = 50;
 
 export default class Slark_R extends Spell {
+  /**
+   * Told: it heals over its duration alongside the stealth and the speed.
+   * `Heal` is the honest flag even though it makes the bot value the ability
+   * most when it is losing — which, for this ultimate, it genuinely is.
+   */
+  static aiRoles = api.enums.SpellRole.Heal | api.enums.SpellRole.Buff;
+
   image = api.asset('spell_slark_r');
   name = 'Vũ Điệu Bóng Tối (Slark_R)';
   description =

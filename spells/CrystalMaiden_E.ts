@@ -52,6 +52,13 @@ export const E_TICKS = E_DURATION_MS / E_TICK_MS;
 export const E_TOTAL_PER_ALLY = E_TICKS * E_MANA_PER_TICK;
 
 export default class CrystalMaiden_E extends Spell {
+  /**
+   * `Buff` alone: the aura restores mana, and `scoreSpell` has no term for
+   * mana at all. Flat 5 is what a steroid is worth here, and 5 is a number a
+   * bot can act on — the inferred `Buff | Shield` came to 0.
+   */
+  static aiRoles = api.enums.SpellRole.Buff;
+
   image = api.asset('spell_crystalmaiden_e');
   name = 'Hào Quang Pháp Thuật (CrystalMaiden_E)';
   description =

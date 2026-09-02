@@ -95,6 +95,12 @@ export class Sniper_E_Armed extends Buff {
 }
 
 export default class Sniper_E extends Spell {
+  /**
+   * Told: every third landed attack deals damage and throws the victim,
+   * which is real crowd control. Nothing here is a shield.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Cc;
+
   image = api.asset('spell_sniper_e');
   name = 'Bắn Tỉa (Sniper_E)';
   description =

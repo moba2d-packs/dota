@@ -46,6 +46,12 @@ export const E_COOLDOWN_MS = 22_000;
 export const E_MANA = 40;
 
 export default class VengefulSpirit_E extends Spell {
+  /**
+   * `Buff` alone: an aura granting attack damage to whoever stands in it,
+   * herself included. It never touches an enemy, so no `Damage`.
+   */
+  static aiRoles = api.enums.SpellRole.Buff;
+
   image = api.asset('spell_vengefulspirit_e');
   name = 'Hào Quang Báo Thù (VengefulSpirit_E)';
   description =

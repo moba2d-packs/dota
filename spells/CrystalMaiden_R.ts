@@ -97,6 +97,13 @@ const channelBar =
     );
 
 export default class CrystalMaiden_R extends Spell {
+  /**
+   * Told: a channel that rains damage inside a declared radius. Deliberately
+   * not `Burst` — this ability's own header calls it a threat that clears a
+   * space rather than something to finish a kill with.
+   */
+  static aiRoles = api.enums.SpellRole.Damage | api.enums.SpellRole.Zone;
+
   image = api.asset('spell_crystalmaiden_r');
   name = 'Băng Trường (CrystalMaiden_R)';
   description =
