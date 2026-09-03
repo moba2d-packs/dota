@@ -8,6 +8,7 @@ const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
+const dmg = api.text.dmg;
 
 /**
  * Móc Thịt — a chain thrown in a straight line that drags the first thing it
@@ -217,7 +218,7 @@ export default class Pudge_Q extends Spell {
   name = 'Móc Thịt (Pudge_Q)';
   description =
     `Phóng móc câu theo hướng chỉ định. Kẻ địch đầu tiên trúng nhận ` +
-    `<span class="damage">${Q_DAMAGE} sát thương</span> và bị <span class="buff">kéo về</span> phía Pudge.`;
+    `${dmg(Q_DAMAGE, 'MAGIC')} và bị <span class="buff">kéo về</span> phía Pudge.`;
   coolDown = Q_COOLDOWN_MS;
   manaCost = Q_MANA;
   targetingMode = 'DIRECTION' as const;

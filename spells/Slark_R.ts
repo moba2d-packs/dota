@@ -8,6 +8,7 @@ const Phasing = api.buffs.Phasing;
 const Speedup = api.buffs.Speedup;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const BuffAddType = api.enums.BuffAddType;
+const heal = api.text.heal;
 
 /**
  * Vũ Điệu Bóng Tối — for five seconds he is not there: unseen, unblockable,
@@ -57,9 +58,9 @@ export default class Slark_R extends Spell {
     `<span class="time">${R_DURATION_MS / 1000} giây</span>, ` +
     `<span class="buff">đi xuyên qua các đơn vị</span>, ` +
     `<span class="buff">+${Math.round(R_SPEED_PCT * 100)}% tốc chạy</span> và hồi ` +
-    `<span class="heal">${R_REGEN_PER_TICK} máu</span> mỗi ` +
+    `${heal(R_REGEN_PER_TICK, ' máu')} mỗi ` +
     `<span class="time">${R_TICK_MS / 1000} giây</span> (tổng ` +
-    `<span class="heal">${R_TOTAL_REGEN}</span>).`;
+    `${heal(R_TOTAL_REGEN)}).`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;
   targetingMode = 'SELF' as const;

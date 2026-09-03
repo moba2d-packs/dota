@@ -10,6 +10,8 @@ const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
 const BuffAddType = api.enums.BuffAddType;
 const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Mảnh Đạn — a shell of scrap fired onto a patch of ground. Nothing dies to it;
@@ -57,9 +59,9 @@ export default class Sniper_Q extends Spell {
   description =
     `Bắn mảnh đạn xuống một vùng bán kính ${Q_RADIUS} trong ` +
     `<span class="time">${Q_LIFETIME_MS / 1000} giây</span>. Kẻ địch trong vùng nhận ` +
-    `<span class="damage">${Q_DAMAGE_PER_TICK} sát thương</span> mỗi ` +
+    `${dmg(Q_DAMAGE_PER_TICK, 'PHYSICAL')} mỗi ` +
     `<span class="time">${Q_TICK_MS / 1000} giây</span> (tổng ` +
-    `<span class="damage">${Q_TOTAL_DAMAGE}</span>) và bị ` +
+    `${dmgValue(Q_TOTAL_DAMAGE, 'PHYSICAL')}) và bị ` +
     `<span class="buff">làm chậm ${Math.round(Q_SLOW_PCT * 100)}%</span>.`;
   coolDown = Q_COOLDOWN_MS;
   manaCost = Q_MANA;

@@ -8,6 +8,7 @@ const Circle = api.utils.Quadtree.Circle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const SpellForm = api.enums.SpellForm;
 const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
+const dmg = api.text.dmg;
 
 /**
  * Rữa Nát — a cloud he carries, on until he turns it off, that hurts everything
@@ -53,9 +54,9 @@ export default class Pudge_W extends Spell {
   name = 'Rữa Nát (Pudge_W)';
   description =
     `Bật/tắt đám khí độc quanh Pudge: kẻ địch bên trong nhận ` +
-    `<span class="damage">${W_DAMAGE_PER_TICK} sát thương</span> mỗi ` +
+    `${dmg(W_DAMAGE_PER_TICK, 'MAGIC')} mỗi ` +
     `<span class="time">${W_TICK_MS / 1000} giây</span> và bị làm chậm ${Math.round(W_SLOW * 100)}%. ` +
-    `Chính Pudge cũng mất <span class="damage">${W_SELF_PER_TICK} máu</span> mỗi nhịp.`;
+    `Chính Pudge cũng mất <span class="buff">${W_SELF_PER_TICK} máu</span> mỗi nhịp.`;
   coolDown = W_COOLDOWN_MS;
   // Free at the door and paid for by the tick, in health. `manaCost` is the
   // engine's one resource question and the answer here is genuinely zero.

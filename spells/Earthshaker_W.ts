@@ -7,6 +7,7 @@ const Airborne = api.buffs.Airborne;
 const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
+const dmg = api.text.dmg;
 
 /**
  * Thần Chú Đá — he plants the totem and everything nearby leaves the ground.
@@ -41,7 +42,7 @@ export default class Earthshaker_W extends Spell {
   image = api.asset('spell_earthshaker_w');
   name = 'Thần Chú Đá (Earthshaker_W)';
   description =
-    `Nện totem xuống đất, gây <span class="damage">${W_DAMAGE} sát thương phép</span> và ` +
+    `Nện totem xuống đất, gây ${dmg(W_DAMAGE, 'MAGIC')} và ` +
     `<span class="buff">hất tung</span> mọi kẻ địch trong bán kính ${W_RADIUS} trong ` +
     `<span class="time">${W_AIRBORNE_MS / 1000} giây</span>.`;
   coolDown = W_COOLDOWN_MS;

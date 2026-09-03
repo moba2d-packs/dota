@@ -14,6 +14,7 @@ const hasFlag = api.utils.hasFlag;
 const ActionState = api.enums.ActionState;
 const slabVertices = api.terrain.slabVertices;
 const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
+const dmg = api.text.dmg;
 
 /**
  * Khe Nứt — the ground opens in a line. Everyone standing on it is thrown down
@@ -57,7 +58,7 @@ export default class Earthshaker_Q extends Spell {
   name = 'Khe Nứt (Earthshaker_Q)';
   description =
     `Xé toạc mặt đất theo hướng chỉ định, gây ` +
-    `<span class="damage">${Q_DAMAGE} sát thương phép</span> và ` +
+    `${dmg(Q_DAMAGE, 'MAGIC')} và ` +
     `<span class="buff">choáng ${Q_STUN_MS / 1000} giây</span> lên kẻ địch trên đường nứt. ` +
     `Bức tường đá chắn đường trong <span class="time">${Q_LIFETIME_MS / 1000} giây</span>.`;
   coolDown = Q_COOLDOWN_MS;

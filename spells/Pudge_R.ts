@@ -19,6 +19,8 @@ const Reach = api.combat.Reach;
 const CastBar = api.vfx.CastBar;
 const unitCastBarAnchor = api.vfx.unitCastBarAnchor;
 const Rectangle = api.utils.Quadtree.Rectangle;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Xẻ Thịt — he takes hold of one enemy and does not let go.
@@ -87,8 +89,8 @@ export default class Pudge_R extends Spell {
   name = 'Xẻ Thịt (Pudge_R)';
   description =
     `Pudge khóa chặt một tướng địch trong <span class="time">${R_DURATION_MS / 1000} giây</span>, ` +
-    `gây <span class="damage">${R_DAMAGE_PER_TICK} sát thương</span> mỗi nhịp ` +
-    `(tổng <span class="damage">${R_TOTAL_DAMAGE}</span>) và tự hồi ` +
+    `gây ${dmg(R_DAMAGE_PER_TICK, 'MAGIC')} mỗi nhịp ` +
+    `(tổng ${dmgValue(R_TOTAL_DAMAGE, 'MAGIC')}) và tự hồi ` +
     `<span class="buff">${R_HEAL_PER_TICK} máu</span> mỗi nhịp. Mục tiêu bị trói và câm lặng.`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;

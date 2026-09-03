@@ -6,6 +6,7 @@ const SpellObject = api.SpellObject;
 const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
+const dmg = api.text.dmg;
 
 /**
  * Khế Ước Hắc Ám — he opens a vein, waits, and the dark takes the debt out of
@@ -56,9 +57,9 @@ export default class Slark_Q extends Spell {
   name = 'Khế Ước Hắc Ám (Slark_Q)';
   description =
     `Sau <span class="time">${Q_DELAY_MS / 1000} giây</span>, bóng tối bùng lên gây ` +
-    `<span class="damage">${Q_DAMAGE} sát thương phép</span> lên kẻ địch trong bán kính ` +
+    `${dmg(Q_DAMAGE, 'MAGIC')} lên kẻ địch trong bán kính ` +
     `${Q_RADIUS} và <span class="buff">gỡ bỏ mọi hiệu ứng khống chế</span> đang đặt lên Slark. ` +
-    `Slark tự mất <span class="damage">${Q_SELF_DAMAGE} máu</span>.`;
+    `Slark tự chịu ${dmg(Q_SELF_DAMAGE, 'TRUE')}.`;
   coolDown = Q_COOLDOWN_MS;
   manaCost = Q_MANA;
   targetingMode = 'SELF' as const;

@@ -13,6 +13,8 @@ const AttackableUnit = api.units.AttackableUnit;
 const Root = api.buffs.Root;
 const TargetResolver = api.combat.TargetResolver;
 const Reach = api.combat.Reach;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Băng Giá — she picks one enemy and freezes their feet to the ground.
@@ -59,9 +61,9 @@ export default class CrystalMaiden_W extends Spell {
   name = 'Băng Giá (CrystalMaiden_W)';
   description =
     `Đóng băng chân một tướng địch trong <span class="time">${W_ROOT_MS / 1000} giây</span>, ` +
-    `gây <span class="damage">${W_DAMAGE_PER_TICK} sát thương</span> mỗi ` +
+    `gây ${dmg(W_DAMAGE_PER_TICK, 'MAGIC')} mỗi ` +
     `<span class="time">${W_TICK_MS / 1000} giây</span> ` +
-    `(tổng <span class="damage">${W_TOTAL_DAMAGE}</span>).`;
+    `(tổng ${dmgValue(W_TOTAL_DAMAGE, 'MAGIC')}).`;
   coolDown = W_COOLDOWN_MS;
   manaCost = W_MANA;
   range = W_RANGE;

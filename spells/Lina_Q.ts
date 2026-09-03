@@ -4,6 +4,7 @@ import { api } from '../packApi';
 const Spell = api.Spell;
 const MissileSpellObject = api.MissileSpellObject;
 const VectorUtils = api.utils.VectorUtils;
+const dmg = api.text.dmg;
 
 /**
  * Thiêu Rồng — a wave of fire that sweeps out in a straight line and does not
@@ -147,7 +148,7 @@ export default class Lina_Q extends Spell {
   name = 'Thiêu Rồng (Lina_Q)';
   description =
     `Quét một luồng lửa theo hướng chỉ định, <span class="buff">xuyên qua</span> mọi kẻ địch ` +
-    `trên đường đi và gây <span class="damage">${Q_DAMAGE} sát thương</span> cho mỗi mục tiêu.`;
+    `trên đường đi và gây ${dmg(Q_DAMAGE, 'MAGIC')} cho mỗi mục tiêu.`;
   coolDown = Q_COOLDOWN_MS;
   manaCost = Q_MANA;
   targetingMode = 'DIRECTION' as const;

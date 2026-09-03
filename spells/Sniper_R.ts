@@ -9,6 +9,8 @@ const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
 const acceleratedSpeed = api.combat.GlobalShot.acceleratedSpeed;
 const travelRamp = api.combat.GlobalShot.travelRamp;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Ám Sát — one round, fired down a line longer than anything else in this pack
@@ -58,8 +60,8 @@ export default class Sniper_R extends Spell {
   description =
     `Bắn một phát đạn xuyên qua ${R_RANGE} theo hướng chỉ định. Kẻ địch ` +
     `<span class="buff">đầu tiên</span> trúng đạn nhận từ ` +
-    `<span class="damage">${R_MIN_DAMAGE}</span> đến ` +
-    `<span class="damage">${R_MAX_DAMAGE} sát thương vật lý</span> — càng bay xa càng mạnh, ` +
+    `${dmgValue(R_MIN_DAMAGE, 'PHYSICAL')} đến ` +
+    `${dmg(R_MAX_DAMAGE, 'PHYSICAL')} — càng bay xa càng mạnh, ` +
     `đạt tối đa sau ${R_FULL_POWER_AT}.`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;

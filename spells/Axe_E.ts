@@ -7,6 +7,7 @@ const Buff = api.buffs.Buff;
 const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
+const dmg = api.text.dmg;
 
 /**
  * Xoáy Phản Đòn — armour that answers back. While it is armed, anything that
@@ -112,7 +113,7 @@ export default class Axe_E extends Spell {
   name = 'Xoáy Phản Đòn (Axe_E)';
   description =
     `Trong <span class="time">${E_DURATION_MS / 1000} giây</span>, mỗi lần Axe trúng đòn ` +
-    `hắn xoay rìu gây <span class="damage">${E_SPIN_DAMAGE} sát thương vật lý</span> ` +
+    `hắn xoay rìu gây ${dmg(E_SPIN_DAMAGE, 'PHYSICAL')} ` +
     `lên mọi kẻ địch trong bán kính ${E_RADIUS}. ` +
     `Mỗi vòng xoay cách nhau <span class="time">${E_SPIN_COOLDOWN_MS / 1000} giây</span>.`;
   coolDown = E_COOLDOWN_MS;

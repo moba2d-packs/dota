@@ -9,6 +9,7 @@ const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const EventType = api.enums.EventType;
+const dmg = api.text.dmg;
 
 /**
  * Dư Chấn — for fifteen seconds, everything else he does also shakes the
@@ -154,7 +155,7 @@ export default class Earthshaker_E extends Spell {
   name = 'Dư Chấn (Earthshaker_E)';
   description =
     `Trong <span class="time">${E_DURATION_MS / 1000} giây</span>, mỗi lần Earthshaker ` +
-    `dùng chiêu, mặt đất rung lên gây <span class="damage">${E_DAMAGE} sát thương phép</span> ` +
+    `dùng chiêu, mặt đất rung lên gây ${dmg(E_DAMAGE, 'MAGIC')} ` +
     `và <span class="buff">choáng ${E_STUN_MS / 1000} giây</span> lên kẻ địch trong bán kính ` +
     `${E_RADIUS}.`;
   coolDown = E_COOLDOWN_MS;

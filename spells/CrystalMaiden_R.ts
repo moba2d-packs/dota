@@ -15,6 +15,7 @@ const PredefinedFilters = api.combat.PredefinedFilters;
 const SpellForm = api.enums.SpellForm;
 const CastBar = api.vfx.CastBar;
 const unitCastBarAnchor = api.vfx.unitCastBarAnchor;
+const dmg = api.text.dmg;
 
 /**
  * Băng Trường — she plants her feet and the air around her starts exploding.
@@ -110,7 +111,7 @@ export default class CrystalMaiden_R extends Spell {
     `Crystal Maiden đứng yên và triệu hồi bão băng trong ` +
     `<span class="time">${R_CHANNEL_MS / 1000} giây</span>: mỗi ` +
     `<span class="time">${R_TICK_MS / 1000} giây</span> một vụ nổ rơi ngẫu nhiên trong vành đai ` +
-    `${R_RING_INNER}-${R_RING_OUTER}, gây <span class="damage">${R_BLAST_DAMAGE} sát thương</span> ` +
+    `${R_RING_INNER}-${R_RING_OUTER}, gây ${dmg(R_BLAST_DAMAGE, 'MAGIC')} ` +
     `trong bán kính ${R_BLAST_RADIUS} và làm chậm ${Math.round(R_SLOW * 100)}%. ` +
     `Di chuyển hoặc bị khống chế sẽ ngắt.`;
   coolDown = R_COOLDOWN_MS;

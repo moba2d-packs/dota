@@ -5,6 +5,7 @@ const Spell = api.Spell;
 const SpellObject = api.SpellObject;
 const Buff = api.buffs.Buff;
 const Rectangle = api.utils.Quadtree.Rectangle;
+const heal = api.text.heal;
 
 /**
  * Trái Tim Tarrasque's passive: leave him alone for five seconds and he starts
@@ -103,7 +104,7 @@ export default class Item_Heart extends Spell {
   name = 'Trái Tim Tarrasque (Item_Heart)';
   description =
     `Nội tại: sau <span class="time">${COMBAT_MS / 1000} giây</span> không trúng đòn, ` +
-    `hồi <span class="heal">${REGEN_PER_TICK} máu</span> mỗi ` +
+    `hồi ${heal(REGEN_PER_TICK, ' máu')} mỗi ` +
     `<span class="time">${TICK_MS / 1000} giây</span>. Trúng đòn sẽ đếm lại từ đầu.`;
   coolDown = 0;
   manaCost = 0;

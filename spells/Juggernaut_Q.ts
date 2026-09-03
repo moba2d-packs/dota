@@ -15,6 +15,8 @@ const Circle = api.utils.Quadtree.Circle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const SpellForm = api.enums.SpellForm;
 const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Cuồng Đao — he opens up into a spinning wall of blades and walks around
@@ -82,9 +84,9 @@ export default class Juggernaut_Q extends Spell {
   name = 'Cuồng Đao (Juggernaut_Q)';
   description =
     `Juggernaut xoay tròn trong <span class="time">${Q_DURATION_MS / 1000} giây</span>, ` +
-    `gây <span class="damage">${Q_DAMAGE_PER_TICK} sát thương</span> mỗi ` +
+    `gây ${dmg(Q_DAMAGE_PER_TICK, 'MAGIC')} mỗi ` +
     `<span class="time">${Q_TICK_MS / 1000} giây</span> cho mọi kẻ địch trong bán kính ` +
-    `${Q_RADIUS} (tối đa <span class="damage">${Q_MAX_TOTAL_DAMAGE}</span>). ` +
+    `${Q_RADIUS} (tối đa ${dmgValue(Q_MAX_TOTAL_DAMAGE, 'MAGIC')}). ` +
     `Trong lúc xoay anh không thể đánh thường.`;
   coolDown = Q_COOLDOWN_MS;
   manaCost = Q_MANA;

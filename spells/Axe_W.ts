@@ -14,6 +14,8 @@ const Speedup = api.buffs.Speedup;
 const TargetResolver = api.combat.TargetResolver;
 const Reach = api.combat.Reach;
 const BuffAddType = api.enums.BuffAddType;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Cơn Đói Chiến Trận — he marks one enemy as food, and the hunger eats at them
@@ -97,9 +99,9 @@ export default class Axe_W extends Spell {
   name = 'Cơn Đói Chiến Trận (Axe_W)';
   description =
     `Đánh dấu một tướng địch trong <span class="time">${W_DURATION_MS / 1000} giây</span>, ` +
-    `gây <span class="damage">${W_DAMAGE_PER_TICK} sát thương</span> mỗi ` +
+    `gây ${dmg(W_DAMAGE_PER_TICK, 'MAGIC')} mỗi ` +
     `<span class="time">${W_TICK_MS / 1000} giây</span> ` +
-    `(tổng <span class="damage">${W_TOTAL_DAMAGE}</span>), ` +
+    `(tổng ${dmgValue(W_TOTAL_DAMAGE, 'MAGIC')}), ` +
     `<span class="buff">làm chậm ${Math.round(W_SLOW_PCT * 100)}%</span> mục tiêu và ` +
     `<span class="buff">tăng ${Math.round(W_HASTE_PCT * 100)}% tốc chạy</span> cho Axe.`;
   coolDown = W_COOLDOWN_MS;

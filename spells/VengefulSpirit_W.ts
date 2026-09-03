@@ -9,6 +9,7 @@ const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
+const dmg = api.text.dmg;
 
 /**
  * Sóng Kinh Hoàng — a wave of dread rolled out in a straight line. What it
@@ -52,7 +53,7 @@ export default class VengefulSpirit_W extends Spell {
   name = 'Sóng Kinh Hoàng (VengefulSpirit_W)';
   description =
     `Tung một làn sóng kinh hoàng theo hướng chỉ định. Kẻ địch trúng phải nhận ` +
-    `<span class="damage">${W_DAMAGE} sát thương phép</span>, bị ` +
+    `${dmg(W_DAMAGE, 'MAGIC')}, bị ` +
     `<span class="buff">giảm ${W_ARMOR_SHRED} giáp</span> và ` +
     `<span class="buff">mù</span> trong <span class="time">${W_DEBUFF_MS / 1000} giây</span>.`;
   coolDown = W_COOLDOWN_MS;

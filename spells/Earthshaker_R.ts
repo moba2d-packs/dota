@@ -6,6 +6,7 @@ const SpellObject = api.SpellObject;
 const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
+const dmg = api.text.dmg;
 
 /**
  * Chấn Động Dư Âm — one slam, and then the slam bouncing off everybody it
@@ -60,9 +61,9 @@ export default class Earthshaker_R extends Spell {
   image = api.asset('spell_earthshaker_r');
   name = 'Chấn Động Dư Âm (Earthshaker_R)';
   description =
-    `Nện xuống gây <span class="damage">${R_BASE_DAMAGE} sát thương phép</span> lên kẻ địch ` +
+    `Nện xuống gây ${dmg(R_BASE_DAMAGE, 'MAGIC')} lên kẻ địch ` +
     `trong bán kính ${R_RADIUS}. Mỗi kẻ địch trúng đòn tạo thêm một dư âm gây ` +
-    `<span class="damage">+${R_ECHO_DAMAGE} sát thương</span> lên tất cả những kẻ còn lại ` +
+    `+${dmg(R_ECHO_DAMAGE, 'MAGIC')} lên tất cả những kẻ còn lại ` +
     `(tối đa ${R_MAX_ECHOES} dư âm).`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;

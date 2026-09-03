@@ -9,6 +9,7 @@ const Circle = api.utils.Quadtree.Circle;
 const Rectangle = api.utils.Quadtree.Rectangle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
+const dmg = api.text.dmg;
 
 /**
  * Vồ Mồi — he leaves the ground, and the first thing he lands on is not going
@@ -48,7 +49,7 @@ export default class Slark_W extends Spell {
   name = 'Vồ Mồi (Slark_W)';
   description =
     `Lao về phía trước ${W_DISTANCE}. Kẻ địch <span class="buff">đầu tiên</span> trên đường ` +
-    `nhận <span class="damage">${W_DAMAGE} sát thương vật lý</span> và bị ` +
+    `nhận ${dmg(W_DAMAGE, 'PHYSICAL')} và bị ` +
     `<span class="buff">trói chân</span> trong <span class="time">${W_LEASH_MS / 1000} giây</span>.`;
   coolDown = W_COOLDOWN_MS;
   manaCost = W_MANA;

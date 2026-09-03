@@ -394,6 +394,15 @@ export const data: ContentPackData = {
   // has neither, with nothing throwing and nothing to read. A floor is the
   // only way that becomes a sentence.
   //
+  // `>=1.22.0` is the loud kind again, and this time by construction. Every
+  // damage and heal figure in this pack is written by `api.text.dmg`/`heal`
+  // now instead of by a hand-typed `<span class="damage">`, and `api.text`
+  // does not exist on an older core — a spell module would throw reading it
+  // before the pack finished loading. See `combat/DamageText.ts` in core for
+  // what the helpers buy: the number and its damage type are arguments, so a
+  // description can no longer forget a type, break its own leading figure, or
+  // tag a number that is not a hit — the three ways spans in this pack were
+  // silently wrong before.
   // `>=1.16.0` is the loud kind, and it is the same argument `>=1.7.0` made.
   // Core replaced the capped `cooldownReduction` fraction with `abilityHaste`
   // in points, and `ITEM_STAT_KEYS` is an allow-list: the void stone and
@@ -407,7 +416,7 @@ export const data: ContentPackData = {
   manifest: {
     id: "dota",
     version: "1.2.0",
-    coreRange: ">=1.16.0",
+    coreRange: ">=1.22.0",
     assets: "dota",
   },
   archetypes: archetypeEntries(),

@@ -8,6 +8,7 @@ const Circle = api.utils.Quadtree.Circle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
 const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
+const dmg = api.text.dmg;
 
 /**
  * Trận Địa Sáng — a square of light drawn on the ground, and a little over
@@ -54,7 +55,7 @@ export default class Lina_W extends Spell {
   description =
     `Vẽ một trận địa lửa tại vị trí chỉ định. Sau ` +
     `<span class="time">${W_DELAY_MS / 1000} giây</span>, cột lửa bùng lên gây ` +
-    `<span class="damage">${W_DAMAGE} sát thương</span> và <span class="buff">choáng ` +
+    `${dmg(W_DAMAGE, 'MAGIC')} và <span class="buff">choáng ` +
     `${W_STUN_MS / 1000} giây</span> cho kẻ địch trong bán kính ${W_RADIUS}.`;
   coolDown = W_COOLDOWN_MS;
   manaCost = W_MANA;

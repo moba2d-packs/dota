@@ -8,6 +8,7 @@ const Circle = api.utils.Quadtree.Circle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const VectorUtils = api.utils.VectorUtils;
 const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
+const dmg = api.text.dmg;
 
 /**
  * Tân Tinh — she drops a star of ice on a patch of ground and everything
@@ -50,7 +51,7 @@ export default class CrystalMaiden_Q extends Spell {
   name = 'Tân Tinh (CrystalMaiden_Q)';
   description =
     `Gọi một vụ nổ băng xuống điểm chỉ định, gây ` +
-    `<span class="damage">${Q_DAMAGE} sát thương</span> cho mọi kẻ địch trong bán kính ` +
+    `${dmg(Q_DAMAGE, 'MAGIC')} cho mọi kẻ địch trong bán kính ` +
     `${Q_RADIUS} và làm chậm ${Math.round(Q_SLOW * 100)}% trong ` +
     `<span class="time">${Q_SLOW_MS / 1000} giây</span>.`;
   coolDown = Q_COOLDOWN_MS;

@@ -5,6 +5,7 @@ const Spell = api.Spell;
 const Buff = api.buffs.Buff;
 const Airborne = api.buffs.Airborne;
 const Dash = api.buffs.Dash;
+const dmg = api.text.dmg;
 
 /**
  * Bắn Tỉa — every third round goes somewhere that hurts, and puts them on
@@ -106,7 +107,7 @@ export default class Sniper_E extends Spell {
   description =
     `Trong <span class="time">${E_DURATION_MS / 1000} giây</span>, mỗi ` +
     `<span class="buff">${E_EVERY} đòn đánh</span> trúng đích thì đòn cuối gây thêm ` +
-    `<span class="damage">${E_DAMAGE} sát thương vật lý</span>, ` +
+    `${dmg(E_DAMAGE, 'PHYSICAL')}, ` +
     `<span class="buff">hất tung</span> và <span class="buff">đẩy lùi</span> mục tiêu.`;
   coolDown = E_COOLDOWN_MS;
   manaCost = E_MANA;

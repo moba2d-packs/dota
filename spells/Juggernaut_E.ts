@@ -14,6 +14,7 @@ const EventType = api.enums.EventType;
 const SpellForm = api.enums.SpellForm;
 const DEFAULT_CHAMPION_ATTACK = api.units.DEFAULT_CHAMPION_ATTACK;
 const RectangleArea = api.utils.Quadtree.Rectangle;
+const dmg = api.text.dmg;
 
 /**
  * Vũ Đao — for eight seconds his sword bites deeper. Nothing else changes: he
@@ -77,7 +78,7 @@ export default class Juggernaut_E extends Spell {
   name = 'Vũ Đao (Juggernaut_E)';
   description =
     `Trong <span class="time">${E_DURATION_MS / 1000} giây</span>, mỗi đòn đánh thường của ` +
-    `Juggernaut gây thêm <span class="damage">${E_BONUS_DAMAGE} sát thương vật lý</span>.`;
+    `Juggernaut gây thêm ${dmg(E_BONUS_DAMAGE, 'PHYSICAL')}.`;
   coolDown = E_COOLDOWN_MS;
   manaCost = E_MANA;
   targetingMode = 'SELF' as const;

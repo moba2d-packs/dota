@@ -139,6 +139,6 @@ describe('the shop', () => {
    * the two items that name it.
    */
   it('declares a core floor that actually has a shop in it', () => {
-    expect(data.manifest.coreRange).toBe('>=1.16.0');
+    expect(data.manifest.coreRange).toBe('>=1.22.0');
   });
 });

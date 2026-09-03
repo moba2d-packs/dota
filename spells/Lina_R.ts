@@ -13,6 +13,7 @@ const AttackableUnit = api.units.AttackableUnit;
 const TargetResolver = api.combat.TargetResolver;
 const Reach = api.combat.Reach;
 const Rectangle = api.utils.Quadtree.Rectangle;
+const dmg = api.text.dmg;
 
 /**
  * Lôi Quang Kiếm — one enemy, one bolt, no travel time and no dodge.
@@ -55,7 +56,7 @@ export default class Lina_R extends Spell {
   name = 'Lôi Quang Kiếm (Lina_R)';
   description =
     `Giáng một tia sét vào một tướng địch trong tầm ${R_RANGE}, gây ngay lập tức ` +
-    `<span class="damage">${R_DAMAGE} sát thương</span>.`;
+    `${dmg(R_DAMAGE, 'MAGIC')}.`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;
   range = R_RANGE;

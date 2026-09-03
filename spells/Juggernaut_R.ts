@@ -19,6 +19,8 @@ const PredefinedFilters = api.combat.PredefinedFilters;
 const TargetResolver = api.combat.TargetResolver;
 const Reach = api.combat.Reach;
 const SpellForm = api.enums.SpellForm;
+const dmg = api.text.dmg;
+const dmgValue = api.text.dmgValue;
 
 /**
  * Đao Vô Song — he vanishes, and for a second and a bit he is only ever beside
@@ -80,10 +82,10 @@ export default class Juggernaut_R extends Spell {
   image = api.asset('spell_juggernaut_r');
   name = 'Đao Vô Song (Juggernaut_R)';
   description =
-    `Juggernaut lao đến mục tiêu và chém <span class="damage">${R_STRIKES} lần</span> trong ` +
+    `Juggernaut lao đến mục tiêu và chém <span class="buff">${R_STRIKES} lần</span> trong ` +
     `<span class="time">${R_DURATION_MS / 1000} giây</span>, mỗi nhát ` +
-    `<span class="damage">${R_DAMAGE_PER_STRIKE} sát thương vật lý</span> lên kẻ địch gần nhất ` +
-    `(tổng <span class="damage">${R_TOTAL_DAMAGE}</span>). Trong lúc đó anh không thể bị chọn làm mục tiêu.`;
+    `${dmg(R_DAMAGE_PER_STRIKE, 'PHYSICAL')} lên kẻ địch gần nhất ` +
+    `(tổng ${dmgValue(R_TOTAL_DAMAGE, 'PHYSICAL')}). Trong lúc đó anh không thể bị chọn làm mục tiêu.`;
   coolDown = R_COOLDOWN_MS;
   manaCost = R_MANA;
   range = R_RANGE;

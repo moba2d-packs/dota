@@ -12,6 +12,7 @@ const Unit = api.units.AttackableUnit;
 const Stun = api.buffs.Stun;
 const TargetResolver = api.combat.TargetResolver;
 const Reach = api.combat.Reach;
+const dmg = api.text.dmg;
 
 /**
  * Tên Lửa Phép — a bolt of spite that does not miss.
@@ -47,7 +48,7 @@ export default class VengefulSpirit_Q extends Spell {
   name = 'Tên Lửa Phép (VengefulSpirit_Q)';
   description =
     `Bắn một tia phép đuổi theo một tướng địch, gây ` +
-    `<span class="damage">${Q_DAMAGE} sát thương phép</span> và ` +
+    `${dmg(Q_DAMAGE, 'MAGIC')} và ` +
     `<span class="buff">choáng ${Q_STUN_MS / 1000} giây</span>. Tia phép không bao giờ trượt.`;
   coolDown = Q_COOLDOWN_MS;
   manaCost = Q_MANA;

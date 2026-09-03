@@ -11,3 +11,6 @@ generated/
 # that has moved on, until someone remembers to reinstall. CI installs fresh
 # every run for the same reason.
 package-lock.json
+
+# CodeGraph index — a local search cache, rebuilt by `codegraph init`.
+.codegraph/

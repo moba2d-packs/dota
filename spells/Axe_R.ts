@@ -17,6 +17,7 @@ const Reach = api.combat.Reach;
 const effectiveHealth = api.combat.ExecuteTargeting.effectiveHealth;
 const pickExecuteTarget = api.combat.ExecuteTargeting.pickExecuteTarget;
 const BuffAddType = api.enums.BuffAddType;
+const dmg = api.text.dmg;
 
 /**
  * Lưỡi Hái Tử Thần — one swing that is a formality against anyone already
@@ -71,9 +72,9 @@ export default class Axe_R extends Spell implements ExecuteSpell {
   name = 'Lưỡi Hái Tử Thần (Axe_R)';
   description =
     `Chém một đòn quyết định vào kẻ địch gần nhất trong tầm ${R_RANGE}. ` +
-    `Nếu mục tiêu còn <span class="damage">${R_THRESHOLD} máu</span> trở xuống, ` +
+    `Nếu mục tiêu còn <span class="buff">${R_THRESHOLD} máu</span> trở xuống, ` +
     `<span class="buff">hành quyết ngay lập tức</span>; nếu không, gây ` +
-    `<span class="damage">${R_DAMAGE} sát thương</span>. ` +
+    `${dmg(R_DAMAGE, 'MAGIC')}. ` +
     `Giết được mục tiêu sẽ <span class="buff">tăng ${Math.round(R_HASTE_PCT * 100)}% tốc chạy</span> ` +
     `cho Axe và đồng đội trong <span class="time">${R_HASTE_MS / 1000} giây</span>.`;
   coolDown = R_COOLDOWN_MS;
