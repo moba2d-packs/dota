@@ -77,7 +77,7 @@ const displayData = (): Record<string, SpellDisplayData> => {
 };
 
 /**
- * The shop: nine components and the five things they build into.
+ * The shop: fourteen components and the fourteen things they build into.
  *
  * ## `cost` is the total, and it is written exactly once
  *
@@ -259,6 +259,48 @@ const itemEntries = (): Record<string, ItemDef> => ({
     cost: 500,
     stats: { maxHealth: 30 },
   },
+  ring_of_health: {
+    id: "ring_of_health",
+    name: "Nhẫn Sức Sống",
+    icon: "item_ring_of_health",
+    cost: 400,
+    // +2.4/s against a champion's own 3.6/s base — Dota's Ring of Health is
+    // the same idea, a regen component that two different tank lines share.
+    stats: { healthRegen: perSecond(2.4) },
+  },
+  cloak: {
+    id: "cloak",
+    name: "Áo Khoác Kháng Phép",
+    icon: "item_cloak",
+    cost: 400,
+    stats: { magicResist: 22 },
+  },
+  boots_of_speed: {
+    id: "boots_of_speed",
+    name: "Giày Thần Tốc",
+    icon: "item_boots_of_speed",
+    cost: 500,
+    // Dota's +45 on a ~300 base, converted per `docs/STATS_VS_DOTA.md`:
+    // divide the flat figure by 100 for this engine's base of 3.
+    stats: { speed: 0.45 },
+  },
+  gloves_of_haste: {
+    id: "gloves_of_haste",
+    name: "Găng Tay Nhanh Nhẹn",
+    icon: "item_gloves_of_haste",
+    cost: 450,
+    // The shop's first attack speed, so the conversion is worth restating:
+    // this is a share of the wearer's own base rate (IAS 20 -> 0.2), never
+    // swings. `tests/statConversion.test.ts` rails it.
+    stats: { attackSpeed: 0.2 },
+  },
+  blades_of_attack: {
+    id: "blades_of_attack",
+    name: "Lưỡi Dao Tấn Công",
+    icon: "item_blades_of_attack",
+    cost: 380,
+    stats: { attackDamage: 6 },
+  },
 
   // ---- Finished --------------------------------------------------------
   blade_mail: {
@@ -350,6 +392,86 @@ const itemEntries = (): Record<string, ItemDef> => ({
     passive: "Item_Heart",
     buildsFrom: ["vitality_booster", "ogre_axe"],
   },
+  // The 2026-09-05 defensive shelf. The shop sold five finished damage or
+  // utility pieces against two real tank items, and an ability build had no
+  // answer at all beyond flat resistance — these four are barriers, in two
+  // deliberate pairs: a personal wall that rebuilds (Tiên Phong / Mũ Kháng
+  // Cự) and a team wall on a button (Vệ Binh Đỏ / Tẩu Thông Tuệ), each pair
+  // split physical/magic so which one to buy is a decision about who is
+  // killing you.
+  vanguard: {
+    id: "vanguard",
+    name: "Vanguard",
+    icon: "item_vanguard",
+    cost: 1_100,
+    description:
+      'Nội tại: mang một lá chắn hấp thụ <span class="buff">12</span> sát thương vật lý; vỡ rồi thì <span class="time">8 giây</span> sau dựng lại.',
+    stats: { maxHealth: 35, healthRegen: perSecond(2.4) },
+    passive: "Item_Vanguard",
+    buildsFrom: ["vitality_booster", "ring_of_health"],
+  },
+  hood_of_defiance: {
+    id: "hood_of_defiance",
+    name: "Hood of Defiance",
+    icon: "item_hood_of_defiance",
+    cost: 1_000,
+    description:
+      'Nội tại: mang một lá chắn hấp thụ <span class="buff">14</span> sát thương phép; vỡ rồi thì <span class="time">9 giây</span> sau dệt lại.',
+    stats: { magicResist: 30, healthRegen: perSecond(2.4) },
+    passive: "Item_Hood",
+    buildsFrom: ["cloak", "ring_of_health"],
+  },
+  crimson_guard: {
+    id: "crimson_guard",
+    name: "Crimson Guard",
+    icon: "item_crimson_guard",
+    cost: 1_300,
+    description:
+      'Kích hoạt: bản thân và đồng minh gần nhận lá chắn hấp thụ <span class="buff">15</span> sát thương vật lý trong <span class="time">5 giây</span>.',
+    stats: { maxHealth: 35, armor: 40 },
+    active: "Item_CrimsonGuard",
+    buildsFrom: ["vitality_booster", "platemail"],
+  },
+  pipe_of_insight: {
+    id: "pipe_of_insight",
+    name: "Pipe of Insight",
+    icon: "item_pipe_of_insight",
+    cost: 1_250,
+    description:
+      'Kích hoạt: bản thân và đồng minh gần nhận lá chắn hấp thụ <span class="buff">15</span> sát thương phép trong <span class="time">5 giây</span>.',
+    stats: { magicResist: 50, abilityPower: 0.18 },
+    active: "Item_Pipe",
+    buildsFrom: ["cloak", "robe_of_the_magi"],
+  },
+  satanic: {
+    id: "satanic",
+    name: "Satanic",
+    icon: "item_satanic",
+    cost: 1_300,
+    description:
+      'Kích hoạt: trong <span class="time">4 giây</span>, đòn đánh thường hút thêm <span class="buff">50%</span> sát thương gây ra thành máu.',
+    stats: { maxHealth: 30, attackDamage: 12, lifesteal: 0.15 },
+    active: "Item_Satanic",
+    buildsFrom: ["ogre_axe", "broadsword"],
+  },
+  power_treads: {
+    id: "power_treads",
+    name: "Power Treads",
+    icon: "item_power_treads",
+    cost: 1_150,
+    // A pure stat item with a recipe — the stat list is the whole card.
+    stats: { speed: 0.45, attackSpeed: 0.25, maxHealth: 15 },
+    buildsFrom: ["boots_of_speed", "gloves_of_haste"],
+  },
+  crystalys: {
+    id: "crystalys",
+    name: "Crystalys",
+    icon: "item_crystalys",
+    cost: 1_050,
+    // Crit chance is a fraction: 0.2 is a one-in-five crit, not 20 points.
+    stats: { attackDamage: 15, critChance: 0.2 },
+    buildsFrom: ["broadsword", "blades_of_attack"],
+  },
 });
 
 export const data: ContentPackData = {
@@ -415,7 +537,7 @@ export const data: ContentPackData = {
   // this pack nothing, and `Lina_E` already granted it that way.
   manifest: {
     id: "dota",
-    version: "1.2.0",
+    version: "1.3.0",
     coreRange: ">=1.22.0",
     assets: "dota",
   },

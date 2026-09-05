@@ -97,6 +97,15 @@ export const ITEMS = [
   { slug: 'heart', local: 'heart_of_tarrasque' },
   { slug: 'spirit_vessel', local: 'spirit_vessel' },
   { slug: 'desolator', local: 'desolator' },
+  { slug: 'hood_of_defiance', local: 'hood_of_defiance' },
+  // Pipe of Insight is filed as `pipe`, Crystalys as `lesser_crit` — Valve's
+  // internal name for it, from the days it was Lesser Critical Strike.
+  { slug: 'pipe', local: 'pipe_of_insight' },
+  { slug: 'vanguard', local: 'vanguard' },
+  { slug: 'crimson_guard', local: 'crimson_guard' },
+  { slug: 'power_treads', local: 'power_treads' },
+  { slug: 'lesser_crit', local: 'crystalys' },
+  { slug: 'satanic', local: 'satanic' },
   // Components
   { slug: 'broadsword', local: 'broadsword' },
   { slug: 'chainmail', local: 'chainmail' },
@@ -107,6 +116,12 @@ export const ITEMS = [
   { slug: 'platemail', local: 'platemail' },
   { slug: 'robe', local: 'robe_of_the_magi' },
   { slug: 'vitality_booster', local: 'vitality_booster' },
+  { slug: 'ring_of_health', local: 'ring_of_health' },
+  { slug: 'cloak', local: 'cloak' },
+  // Boots of Speed is filed as `boots`, Gloves of Haste as `gloves`.
+  { slug: 'boots', local: 'boots_of_speed' },
+  { slug: 'gloves', local: 'gloves_of_haste' },
+  { slug: 'blades_of_attack', local: 'blades_of_attack' },
 ];
 
 const SLOTS = ['q', 'w', 'e', 'r'];

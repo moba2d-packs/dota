@@ -61,4 +61,9 @@ export { default as Item_ShivasGuard } from './Item_ShivasGuard';
 export { default as Item_Heart } from './Item_Heart';
 export { default as Item_SpiritVessel } from './Item_SpiritVessel';
 export { default as Item_Desolator } from './Item_Desolator';
+export { default as Item_Hood } from './Item_Hood';
+export { default as Item_Pipe } from './Item_Pipe';
+export { default as Item_Vanguard } from './Item_Vanguard';
+export { default as Item_CrimsonGuard } from './Item_CrimsonGuard';
+export { default as Item_Satanic } from './Item_Satanic';
 // moba2d-pack-add spell: new barrel entries go above this line

@@ -38,15 +38,28 @@ const finished = () => items().filter(item => item.buildsFrom !== undefined);
 const components = () => items().filter(item => item.buildsFrom === undefined);
 
 describe('the shop', () => {
-  it('ships the seven items this pack claims, and the parts they need', () => {
+  // Grown from seven on 2026-09-05: the shop had five damage/utility pieces
+  // against two real tank items, so an ability build had no answer beyond
+  // flat resistance. The seven new rows are defence-first — two rebuilding
+  // personal barriers (vanguard/hood), two team barriers on a button
+  // (crimson_guard/pipe), each pair split physical/magic — plus satanic,
+  // power_treads and crystalys to round the offence shelf out.
+  it('ships the fourteen items this pack claims, and the parts they need', () => {
     expect(finished().map(item => item.id).sort()).toEqual([
       'black_king_bar',
       'blade_mail',
+      'crimson_guard',
+      'crystalys',
       'desolator',
       'euls_scepter',
       'heart_of_tarrasque',
+      'hood_of_defiance',
+      'pipe_of_insight',
+      'power_treads',
+      'satanic',
       'shivas_guard',
       'spirit_vessel',
+      'vanguard',
     ]);
     expect(components().length).toBeGreaterThan(0);
   });
