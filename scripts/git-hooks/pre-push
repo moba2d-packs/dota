@@ -23,6 +23,22 @@ while read -r local_ref local_sha remote_ref remote_sha; do
 done
 [ "$updates" = "1" ] || exit 0
 
+
+# The performance guard, before the long verify so a spell problem is reported
+# in seconds rather than after a full build. It measures only the spell files
+# this push adds; anything else and it exits immediately. Core is reached
+# through node_modules when installed, or the sibling checkout when linked.
+#   MOBA2D_PERF_GUARD_SKIP=1 git push   # bypass, on purpose
+for guard in \
+  "node_modules/@moba2d/core/scripts/perf-guard.mjs" \
+  "../moba2d-core/scripts/perf-guard.mjs"
+do
+  if [ -f "$guard" ]; then
+    node "$guard" --repo "$(pwd)" || exit 1
+    break
+  fi
+done
+
 echo "pre-push: running npm run verify (git push --no-verify skips this once)"
 npm run verify && exit 0
 
