@@ -39,7 +39,8 @@ export const E_EVERY = 3;
 export const E_DAMAGE = 14;
 export const E_KNOCKBACK = 140;
 export const E_AIRBORNE_MS = 500;
-export const E_COOLDOWN_MS = 20_000;
+/** Was 20s. The practice room's 20s ceiling and Ngắm Bắn's already-compliant 18s cooldown left no round-thousand slot above it, so this now settles below Ngắm Bắn instead of above it. */
+export const E_COOLDOWN_MS = 17_000;
 export const E_MANA = 30;
 
 /** The armed state, and the counter. Core walks the attacker's buffs per swing. */

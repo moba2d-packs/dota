@@ -38,7 +38,8 @@ const Rectangle = api.utils.Quadtree.Rectangle;
 export const DURATION_MS = 4_500;
 /** Share of each incoming hit sent home. */
 export const REFLECT_PERCENT = 0.7;
-export const COOLDOWN_MS = 25_000;
+/** Trimmed under the practice room's 20s cooldown ceiling. */
+export const COOLDOWN_MS = 12_000;
 export const STACK_ID = 'dota_item_blade_mail';
 
 export default class Item_BladeMail extends Spell {

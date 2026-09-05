@@ -70,7 +70,8 @@ export const R_DAMAGE_PER_STRIKE = 14;
 export const R_STRIKE_RADIUS = 220;
 /** Where he lands relative to the body he is cutting — beside it, not on it. */
 export const R_BLINK_OFFSET_PX = 46;
-export const R_COOLDOWN_MS = 60_000;
+/** Was 60s; the practice room's 20s ceiling compresses it to the top of the band — Vũ Đao's already-compliant 18s cooldown left only this one slot above it. */
+export const R_COOLDOWN_MS = 19_000;
 export const R_MANA = 100;
 
 /** 1200 / 4 — the first lands on the press, the rest at 300, 600 and 900. */

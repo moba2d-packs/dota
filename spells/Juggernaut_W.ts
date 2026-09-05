@@ -61,7 +61,8 @@ export const W_HEALTH = 20;
 export const W_TICK_MS = 600;
 export const W_HEAL_PER_TICK = 4;
 export const W_HEAL_RADIUS = 260;
-export const W_COOLDOWN_MS = 30_000;
+/** Was 30s. The practice room's 20s ceiling and Vũ Đao's already-compliant 18s cooldown left no round-thousand slot above it for both this and the ultimate, so this settles below Vũ Đao instead — the room went to the ultimate. */
+export const W_COOLDOWN_MS = 16_000;
 export const W_MANA = 55;
 
 /** One at birth and one every `W_TICK_MS` after — `ceil`, because the first is free. */

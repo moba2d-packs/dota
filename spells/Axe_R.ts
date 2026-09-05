@@ -56,7 +56,8 @@ export const R_HASTE_MS = 6_000;
 export const R_HASTE_PCT = 0.3;
 /** How far the kill's rush carries to his own side. */
 export const R_HASTE_RADIUS = 700;
-export const R_COOLDOWN_MS = 30_000;
+/** Was 30s; the practice room's 20s cooldown ceiling pulled it down, and it stays the longest cooldown in his kit. */
+export const R_COOLDOWN_MS = 18_000;
 export const R_MANA = 50;
 
 export default class Axe_R extends Spell implements ExecuteSpell {

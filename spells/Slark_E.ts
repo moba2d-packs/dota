@@ -44,7 +44,8 @@ export const E_STEAL = 3;
 export const E_STEAL_MS = 8_000;
 /** Enough thefts that a long fight matters, few enough that it cannot run away. */
 export const E_MAX_STACKS = 20;
-export const E_COOLDOWN_MS = 20_000;
+/** Was 20s; trimmed for the practice room's 20s ceiling, kept just above the 14s duration so Rút Tinh Túy still lapses instead of running continuously. */
+export const E_COOLDOWN_MS = 16_000;
 export const E_MANA = 25;
 
 /**

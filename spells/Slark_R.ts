@@ -40,7 +40,8 @@ export const R_TICK_MS = 500;
 export const R_REGEN_PER_TICK = 4;
 /** `R_REGEN_PER_TICK * (R_DURATION_MS / R_TICK_MS)` — 40 over the full dance. */
 export const R_TOTAL_REGEN = R_REGEN_PER_TICK * (R_DURATION_MS / R_TICK_MS);
-export const R_COOLDOWN_MS = 45_000;
+/** Was 45s; cut for the practice room's 20s ceiling, kept as the highest cooldown in his kit. */
+export const R_COOLDOWN_MS = 17_000;
 export const R_MANA = 50;
 
 export default class Slark_R extends Spell {

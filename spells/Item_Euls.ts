@@ -44,7 +44,8 @@ const Reach = api.combat.Reach;
  */
 export const CYCLONE_MS = 1_500;
 export const RANGE = 550;
-export const COOLDOWN_MS = 23_000;
+/** Trimmed under the practice room's 20s cooldown ceiling, kept just under Blade Mail's so the two items keep their relative order. */
+export const COOLDOWN_MS = 11_000;
 /** How high the wind takes them. `Airborne`'s own default is a gentler 20. */
 export const LIFT = 34;
 

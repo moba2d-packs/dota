@@ -41,7 +41,8 @@ const BuffAddType = api.enums.BuffAddType;
 export const DURATION_MS = 6_000;
 /** Flat magic resistance while the wall is up. */
 export const MAGIC_RESIST = 65;
-export const COOLDOWN_MS = 60_000;
+/** Was 60s, the longest cooldown in the pack; the practice room's 20s ceiling compresses it, but it stays the pack's longest. */
+export const COOLDOWN_MS = 19_000;
 export const STACK_ID = 'dota_item_black_king_bar';
 
 export default class Item_BlackKingBar extends Spell {

@@ -44,7 +44,8 @@ export const R_DAMAGE_PER_TICK = 12;
 export const R_HEAL_PER_TICK = 6;
 export const R_DURATION_MS = R_TICK_MS * R_TICKS;
 export const R_RANGE = 190;
-export const R_COOLDOWN_MS = 45_000;
+/** Was 45s; cut for the practice room's 20s ceiling, kept as the highest cooldown in his kit. */
+export const R_COOLDOWN_MS = 17_000;
 export const R_MANA = 100;
 
 /** `R_DAMAGE_PER_TICK * R_TICKS` — 60, the top of the ultimate band against a ~100 pool. */

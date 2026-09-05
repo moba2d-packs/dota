@@ -37,7 +37,8 @@ const dmg = api.text.dmg;
  */
 export const R_DAMAGE = 55;
 export const R_RANGE = 420;
-export const R_COOLDOWN_MS = 50_000;
+/** Was 50s; cut for the practice room's 20s ceiling, kept above the rest of her kit so it still reads as the ultimate. */
+export const R_COOLDOWN_MS = 18_000;
 export const R_MANA = 100;
 
 /** How long the bolt takes to come down. Drawn only; the damage is already done. */

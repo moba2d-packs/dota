@@ -42,7 +42,8 @@ export const E_DURATION_MS = 12_000;
 export const E_TICK_MS = 200;
 /** How long a grant outlives the tick that made it — the beat a leaver keeps it. */
 export const E_LINGER_MS = 250;
-export const E_COOLDOWN_MS = 22_000;
+/** Was 22s; trimmed for the practice room's 20s ceiling. */
+export const E_COOLDOWN_MS = 16_000;
 export const E_MANA = 40;
 
 export default class VengefulSpirit_E extends Spell {

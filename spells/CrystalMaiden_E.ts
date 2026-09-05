@@ -43,7 +43,8 @@ export const E_RADIUS = 400;
 export const E_DURATION_MS = 8_000;
 export const E_TICK_MS = 500;
 export const E_MANA_PER_TICK = 3;
-export const E_COOLDOWN_MS = 20_000;
+/** Trimmed under the practice room's 20s cooldown ceiling. */
+export const E_COOLDOWN_MS = 15_000;
 export const E_MANA = 30;
 
 /** 16 pulses over the life of one cast. Exported so the test never restates the arithmetic. */

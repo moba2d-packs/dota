@@ -65,7 +65,8 @@ export const E_DURATION_MS = 15_000;
 export const E_RADIUS = 200;
 export const E_DAMAGE = 10;
 export const E_STUN_MS = 500;
-export const E_COOLDOWN_MS = 22_000;
+/** Was 22s; cut for the practice room's 20s ceiling, kept just above the 15s armed window so Dư Chấn still lapses instead of staying armed. */
+export const E_COOLDOWN_MS = 18_000;
 export const E_MANA = 25;
 
 /**

@@ -47,7 +47,8 @@ const BuffAddType = api.enums.BuffAddType;
 export const R_RANGE = 650;
 export const R_SLOW_PCT = 0.35;
 export const R_SLOW_MS = 1_500;
-export const R_COOLDOWN_MS = 40_000;
+/** Was 40s; cut for the practice room's 20s ceiling, kept as the highest cooldown in her kit. */
+export const R_COOLDOWN_MS = 17_000;
 export const R_MANA = 60;
 
 export default class VengefulSpirit_R extends Spell {

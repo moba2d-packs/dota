@@ -44,7 +44,8 @@ export const R_BASE_DAMAGE = 44;
 export const R_ECHO_DAMAGE = 6;
 /** Where the crowd bonus stops. See the header — this is not a tuning knob. */
 export const R_MAX_ECHOES = 4;
-export const R_COOLDOWN_MS = 40_000;
+/** Was 40s; the practice room's 20s ceiling compresses it to the top of his kit's band. */
+export const R_COOLDOWN_MS = 19_000;
 export const R_MANA = 60;
 
 export default class Earthshaker_R extends Spell {

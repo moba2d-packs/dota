@@ -51,7 +51,8 @@ export const R_SPEED_FROM = 16;
 export const R_SPEED_TO = 46;
 /** The round's own catch radius, on top of the victim's body. */
 export const R_CALIBRE = 20;
-export const R_COOLDOWN_MS = 40_000;
+/** Was 40s; the practice room's 20s ceiling compresses it to the top of the band — Ngắm Bắn's already-compliant 18s cooldown left only this one slot above it. */
+export const R_COOLDOWN_MS = 19_000;
 export const R_MANA = 60;
 
 export default class Sniper_R extends Spell {
