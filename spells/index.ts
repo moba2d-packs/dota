@@ -66,4 +66,15 @@ export { default as Item_Pipe } from './Item_Pipe';
 export { default as Item_Vanguard } from './Item_Vanguard';
 export { default as Item_CrimsonGuard } from './Item_CrimsonGuard';
 export { default as Item_Satanic } from './Item_Satanic';
+export { default as Item_ForceStaff } from './Item_ForceStaff';
+export { default as Item_BlinkDagger } from './Item_BlinkDagger';
+export { default as Item_BlinkGate } from './Item_BlinkGate';
+export { default as Item_Mekansm } from './Item_Mekansm';
+export { default as Item_Drum } from './Item_Drum';
+export { default as Item_Radiance } from './Item_Radiance';
+export { default as Item_Skadi } from './Item_Skadi';
+export { default as Item_Basher } from './Item_Basher';
+export { default as Item_Maelstrom } from './Item_Maelstrom';
+export { default as Item_Halberd } from './Item_Halberd';
+export { default as Item_Vladmir } from './Item_Vladmir';
 // moba2d-pack-add spell: new barrel entries go above this line

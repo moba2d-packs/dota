@@ -34,32 +34,58 @@ import { spellCatalog } from '../generated/spellCatalog';
 describeItemShop({ data, assetManifest, spellCatalog });
 
 const items = () => Object.values(data.items ?? {});
-const finished = () => items().filter(item => item.buildsFrom !== undefined);
-const components = () => items().filter(item => item.buildsFrom === undefined);
+
+/**
+ * The shop's one standalone finished item. Blink Dagger has no recipe — the
+ * source item has none either, and inventing parts for it would be a recipe
+ * nobody recognises — but it is priced and listed with the finished shelf,
+ * not the component one. Added 2026-09-05 with the movement shelf. A second
+ * entry here should prompt the question of whether it really has no recipe,
+ * rather than being waved through on this one's precedent.
+ */
+const STANDALONE_FINISHED = new Set(['blink_dagger']);
+const finished = () =>
+  items().filter(item => item.buildsFrom !== undefined || STANDALONE_FINISHED.has(item.id));
+const components = () =>
+  items().filter(item => item.buildsFrom === undefined && !STANDALONE_FINISHED.has(item.id));
 
 describe('the shop', () => {
-  // Grown from seven on 2026-09-05: the shop had five damage/utility pieces
-  // against two real tank items, so an ability build had no answer beyond
-  // flat resistance. The seven new rows are defence-first — two rebuilding
-  // personal barriers (vanguard/hood), two team barriers on a button
-  // (crimson_guard/pipe), each pair split physical/magic — plus satanic,
-  // power_treads and crystalys to round the offence shelf out.
-  it('ships the fourteen items this pack claims, and the parts they need', () => {
+  // Grown from seven on 2026-09-05 (the defensive shelf), then from fourteen
+  // the same evening (the movement-and-teamplay shelf): legs on a button
+  // (force_staff always works, blink_dagger refuses after a hit), two more
+  // team buttons (mekansm answers damage taken, drum_of_endurance chooses the
+  // fight), the aura family grown to three (radiance out, vladmirs_offering
+  // in, beside shivas_guard), the right-click line completed (eye_of_skadi,
+  // skull_basher, maelstrom, daedalus) with heavens_halberd to switch it off,
+  // and octarine_core for the casters.
+  it('ships the twenty-six items this pack claims, and the parts they need', () => {
     expect(finished().map(item => item.id).sort()).toEqual([
       'black_king_bar',
       'blade_mail',
+      'blink_dagger',
       'crimson_guard',
       'crystalys',
+      'daedalus',
       'desolator',
+      'drum_of_endurance',
       'euls_scepter',
+      'eye_of_skadi',
+      'force_staff',
       'heart_of_tarrasque',
+      'heavens_halberd',
       'hood_of_defiance',
+      'maelstrom',
+      'mekansm',
+      'octarine_core',
       'pipe_of_insight',
       'power_treads',
+      'radiance',
       'satanic',
       'shivas_guard',
+      'skull_basher',
       'spirit_vessel',
       'vanguard',
+      'vladmirs_offering',
     ]);
     expect(components().length).toBeGreaterThan(0);
   });

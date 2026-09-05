@@ -106,6 +106,24 @@ export const ITEMS = [
   { slug: 'power_treads', local: 'power_treads' },
   { slug: 'lesser_crit', local: 'crystalys' },
   { slug: 'satanic', local: 'satanic' },
+  // The movement-and-teamplay shelf. Valve files the Drum of Endurance under
+  // its lore name `ancient_janggo`, Daedalus as `greater_crit` (Crystalys is
+  // `lesser_crit`, same naming era), the Blink Dagger as plain `blink`, the
+  // Skull Basher as `basher`, Eye of Skadi as `skadi`, and Vladmir's Offering
+  // as `vladmir` — six more rows where a derivation rule would need six
+  // exceptions.
+  { slug: 'force_staff', local: 'force_staff' },
+  { slug: 'blink', local: 'blink_dagger' },
+  { slug: 'mekansm', local: 'mekansm' },
+  { slug: 'ancient_janggo', local: 'drum_of_endurance' },
+  { slug: 'radiance', local: 'radiance' },
+  { slug: 'skadi', local: 'eye_of_skadi' },
+  { slug: 'greater_crit', local: 'daedalus' },
+  { slug: 'basher', local: 'skull_basher' },
+  { slug: 'octarine_core', local: 'octarine_core' },
+  { slug: 'maelstrom', local: 'maelstrom' },
+  { slug: 'heavens_halberd', local: 'heavens_halberd' },
+  { slug: 'vladmir', local: 'vladmirs_offering' },
   // Components
   { slug: 'broadsword', local: 'broadsword' },
   { slug: 'chainmail', local: 'chainmail' },
@@ -122,6 +140,7 @@ export const ITEMS = [
   { slug: 'boots', local: 'boots_of_speed' },
   { slug: 'gloves', local: 'gloves_of_haste' },
   { slug: 'blades_of_attack', local: 'blades_of_attack' },
+  { slug: 'energy_booster', local: 'energy_booster' },
 ];
 
 const SLOTS = ['q', 'w', 'e', 'r'];

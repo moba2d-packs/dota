@@ -77,7 +77,7 @@ const displayData = (): Record<string, SpellDisplayData> => {
 };
 
 /**
- * The shop: fourteen components and the fourteen things they build into.
+ * The shop: fifteen components and the twenty-six things they build into.
  *
  * ## `cost` is the total, and it is written exactly once
  *
@@ -301,6 +301,13 @@ const itemEntries = (): Record<string, ItemDef> => ({
     cost: 380,
     stats: { attackDamage: 6 },
   },
+  energy_booster: {
+    id: "energy_booster",
+    name: "Ngọc Năng Lượng",
+    icon: "item_energy_booster",
+    cost: 500,
+    stats: { maxMana: 30 },
+  },
 
   // ---- Finished --------------------------------------------------------
   blade_mail: {
@@ -472,6 +479,164 @@ const itemEntries = (): Record<string, ItemDef> => ({
     stats: { attackDamage: 15, critChance: 0.2 },
     buildsFrom: ["broadsword", "blades_of_attack"],
   },
+  // The 2026-09-05 movement-and-teamplay shelf, landed the same evening as
+  // the defensive one. Twelve more rows in four deliberate groups: legs on a
+  // button (Force Staff always works, Blink Dagger refuses after a hit — one
+  // line, both sides of it), two more team buttons (Mekansm answers damage
+  // taken, Drum chooses the fight), the aura family grown to three (Radiance
+  // burns outward, Vladmir's feeds inward, beside Shiva's cold), and the
+  // right-click shelf completed with Skadi, Basher, Maelstrom, Daedalus and
+  // the halberd that switches all four of them off. Octarine Core rounds out
+  // the caster line.
+  force_staff: {
+    id: "force_staff",
+    name: "Force Staff",
+    icon: "item_force_staff",
+    cost: 1_150,
+    description:
+      'Kích hoạt: đẩy bản thân đi đúng <span class="buff">480</span> theo hướng ' +
+      "con trỏ — kể cả khi hướng đó là một sai lầm.",
+    stats: { maxMana: 20, abilityPower: 0.25, healthRegen: perSecond(2.4) },
+    active: "Item_ForceStaff",
+    buildsFrom: ["staff_of_wizardry", "ring_of_health"],
+  },
+  blink_dagger: {
+    id: "blink_dagger",
+    name: "Blink Dagger",
+    icon: "item_blink_dagger",
+    cost: 1_000,
+    description:
+      'Kích hoạt: dịch chuyển tức thời tới điểm đã chọn, xa nhất <span class="buff">700</span>. ' +
+      '<span class="buff">Không dùng được</span> trong <span class="time">3 giây</span> ' +
+      "sau khi trúng đòn của kẻ địch.",
+    // No stats and no recipe, exactly like the source item: the whole price
+    // is the jump. The passive half is the damage sensor the active reads —
+    // see `Item_BlinkGate.ts` for why the gate cannot live inside the active.
+    passive: "Item_BlinkGate",
+    active: "Item_BlinkDagger",
+  },
+  mekansm: {
+    id: "mekansm",
+    name: "Mekansm",
+    icon: "item_mekansm",
+    cost: 1_100,
+    description:
+      'Kích hoạt: hồi <span class="buff">15</span> máu ngay lập tức cho bản thân ' +
+      'và đồng minh trong bán kính <span class="buff">400</span>.',
+    stats: { armor: 20, healthRegen: perSecond(2.4) },
+    active: "Item_Mekansm",
+    buildsFrom: ["chainmail", "ring_of_health"],
+  },
+  drum_of_endurance: {
+    id: "drum_of_endurance",
+    name: "Drum of Endurance",
+    icon: "item_drum_of_endurance",
+    cost: 1_200,
+    description:
+      'Kích hoạt: bản thân và đồng minh trong bán kính <span class="buff">450</span> ' +
+      'chạy nhanh thêm <span class="buff">15%</span> trong <span class="time">5 giây</span>.',
+    // Carries the void stone's regen and haste unchanged, plus the ogre axe's
+    // bulk — the drum is the tanky caster's second buy, not a boot.
+    stats: { maxHealth: 30, manaRegen: perSecond(6), abilityHaste: 12 },
+    active: "Item_Drum",
+    buildsFrom: ["ogre_axe", "void_stone"],
+  },
+  radiance: {
+    id: "radiance",
+    name: "Radiance",
+    icon: "item_radiance",
+    cost: 1_300,
+    description:
+      'Nội tại: thiêu đốt mọi kẻ địch trong bán kính <span class="buff">450</span> — ' +
+      '<span class="buff">2</span> sát thương phép mỗi <span class="time">0.5 giây</span>.',
+    stats: { attackDamage: 18 },
+    passive: "Item_Radiance",
+    buildsFrom: ["mithril_hammer", "blades_of_attack"],
+  },
+  eye_of_skadi: {
+    id: "eye_of_skadi",
+    name: "Eye of Skadi",
+    icon: "item_eye_of_skadi",
+    cost: 1_300,
+    description:
+      'Nội tại: đòn đánh thường <span class="buff">làm chậm 25%</span> mục tiêu ' +
+      'trong <span class="time">2.5 giây</span>.',
+    stats: { maxHealth: 35, maxMana: 30, attackDamage: 8 },
+    passive: "Item_Skadi",
+    buildsFrom: ["vitality_booster", "energy_booster"],
+  },
+  daedalus: {
+    id: "daedalus",
+    name: "Daedalus",
+    icon: "item_daedalus",
+    cost: 1_300,
+    // A pure stat upgrade of Crystalys, and the shop's only single-part
+    // recipe: the crit knife sharpened, not a new idea. `critDamage` is a
+    // bonus on core's own 1.75x, so this crits at 2.1x.
+    stats: { attackDamage: 20, critChance: 0.25, critDamage: 0.35 },
+    buildsFrom: ["crystalys"],
+  },
+  skull_basher: {
+    id: "skull_basher",
+    name: "Skull Basher",
+    icon: "item_skull_basher",
+    cost: 1_200,
+    description:
+      'Nội tại: mỗi đòn đánh thường <span class="buff">thứ 4</span> làm ' +
+      '<span class="buff">choáng</span> mục tiêu <span class="time">0.5 giây</span>.',
+    stats: { attackDamage: 12, maxHealth: 25 },
+    passive: "Item_Basher",
+    buildsFrom: ["mithril_hammer", "ogre_axe"],
+  },
+  octarine_core: {
+    id: "octarine_core",
+    name: "Octarine Core",
+    icon: "item_octarine_core",
+    cost: 1_300,
+    // The caster's capstone, all on core's own stats — the shop's biggest
+    // haste and its first spell vamp, so an ability build finally has a
+    // second buy after Eul's. `spellVamp` is a fraction, like the other vamps.
+    stats: { maxMana: 55, abilityPower: 0.2, abilityHaste: 30, spellVamp: 0.12 },
+    buildsFrom: ["energy_booster", "staff_of_wizardry"],
+  },
+  maelstrom: {
+    id: "maelstrom",
+    name: "Maelstrom",
+    icon: "item_maelstrom",
+    cost: 1_150,
+    description:
+      'Nội tại: mỗi đòn đánh thường <span class="buff">thứ 3</span> phóng sét — ' +
+      '<span class="buff">8</span> sát thương phép lên mục tiêu và tối đa ' +
+      '<span class="buff">2</span> kẻ địch đứng gần mục tiêu.',
+    stats: { attackDamage: 10, attackSpeed: 0.2 },
+    passive: "Item_Maelstrom",
+    buildsFrom: ["mithril_hammer", "gloves_of_haste"],
+  },
+  heavens_halberd: {
+    id: "heavens_halberd",
+    name: "Heaven's Halberd",
+    icon: "item_heavens_halberd",
+    cost: 1_200,
+    description:
+      'Kích hoạt: <span class="buff">tước vũ khí</span> một tướng địch trong ' +
+      '<span class="time">2 giây</span> — không đánh thường được, nhưng vẫn ' +
+      "đi lại và dùng chiêu.",
+    stats: { maxHealth: 30, armor: 16, tenacity: 0.15 },
+    active: "Item_Halberd",
+    buildsFrom: ["ogre_axe", "chainmail"],
+  },
+  vladmirs_offering: {
+    id: "vladmirs_offering",
+    name: "Vladmir's Offering",
+    icon: "item_vladmirs_offering",
+    cost: 1_100,
+    description:
+      'Nội tại: bản thân và đồng minh trong bán kính <span class="buff">450</span> ' +
+      'được <span class="buff">12%</span> hút máu từ đòn đánh thường.',
+    stats: { attackDamage: 8, healthRegen: perSecond(2.4) },
+    passive: "Item_Vladmir",
+    buildsFrom: ["broadsword", "ring_of_health"],
+  },
 });
 
 export const data: ContentPackData = {
@@ -537,7 +702,7 @@ export const data: ContentPackData = {
   // this pack nothing, and `Lina_E` already granted it that way.
   manifest: {
     id: "dota",
-    version: "1.3.0",
+    version: "1.4.0",
     coreRange: ">=1.22.0",
     assets: "dota",
   },
