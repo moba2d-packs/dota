@@ -3,6 +3,7 @@ import { api } from '../packApi';
 
 const Spell = api.Spell;
 const Shield = api.buffs.Shield;
+const heal = api.text.heal;
 const Circle = api.utils.Quadtree.Circle;
 const PredefinedFilters = api.combat.PredefinedFilters;
 const AoePulse = api.AoePulse;
@@ -50,8 +51,8 @@ export default class Pudge_E extends Spell {
   image = api.asset('spell_pudge_e');
   name = 'Chồng Thịt (Pudge_E)';
   description =
-    `Pudge gồng mình, nhận <span class="buff">Lá Chắn ${E_BASE_SHIELD}</span> cộng thêm ` +
-    `<span class="buff">${E_PER_ENEMY}</span> cho mỗi kẻ địch trong bán kính ${E_COUNT_RADIUS} ` +
+    `Pudge gồng mình, nhận Lá Chắn ${heal(E_BASE_SHIELD)} cộng thêm ` +
+    `${heal(E_PER_ENEMY)} cho mỗi kẻ địch trong bán kính ${E_COUNT_RADIUS} ` +
     `(tối đa ${E_MAX_STACKS}), kéo dài <span class="time">${E_DURATION_MS / 1000} giây</span>.`;
   coolDown = E_COOLDOWN_MS;
   manaCost = E_MANA;
