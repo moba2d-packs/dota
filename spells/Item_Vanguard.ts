@@ -54,9 +54,15 @@ export class Item_Vanguard_Block extends Buff {
 
   onUpdate(): void {
     if (this.targetUnit.isDead) return;
-    if (this.wall && !this.wall.toRemove) return;
+    this.rearmTotalMs = REARM_MS;
+    if (this.wall && !this.wall.toRemove) {
+      this.rearmMsLeft = 0;
+      return;
+    }
 
     this.downMs += Math.max(0, deltaTime);
+    // The slot's countdown — see core Buff.rearmMsLeft.
+    this.rearmMsLeft = Math.max(0, REARM_MS - this.downMs);
     if (this.downMs < REARM_MS) return;
     this.raise();
   }

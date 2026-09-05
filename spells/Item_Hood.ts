@@ -53,9 +53,15 @@ export class Item_Hood_Ward extends Buff {
 
   onUpdate(): void {
     if (this.targetUnit.isDead) return;
-    if (this.ward && !this.ward.toRemove) return;
+    this.rearmTotalMs = REARM_MS;
+    if (this.ward && !this.ward.toRemove) {
+      this.rearmMsLeft = 0;
+      return;
+    }
 
     this.downMs += Math.max(0, deltaTime);
+    // The slot's countdown — see core Buff.rearmMsLeft.
+    this.rearmMsLeft = Math.max(0, REARM_MS - this.downMs);
     if (this.downMs < REARM_MS) return;
     this.weave();
   }
