@@ -307,26 +307,32 @@ export class Juggernaut_W_Ring extends SpellObject {
     // whether they are in it. Dashed rather than solid because it is a friendly
     // area and Q's solid jade rim is a hostile one — two rings on the same
     // champion in the same colour must not read as the same rule.
-    const dashes = 42;
-    for (let i = 0; i < dashes; i++) {
-      const start = (i / dashes) * TWO_PI;
-      const finish = start + TWO_PI / dashes / 2;
-      stroke(15, 45, 38, 120);
-      strokeWeight(5);
-      line(
-        centre.x + Math.cos(start) * edge,
-        centre.y + Math.sin(start) * edge,
-        centre.x + Math.cos(finish) * edge,
-        centre.y + Math.sin(finish) * edge
-      );
-      stroke(140, 250, 205, 150 + mended * 80);
-      strokeWeight(2.5);
-      line(
-        centre.x + Math.cos(start) * edge,
-        centre.y + Math.sin(start) * edge,
-        centre.x + Math.cos(finish) * edge,
-        centre.y + Math.sin(finish) * edge
-      );
+    //
+    // The rim is drawn as one dashed arc rather than as its dashes. It used to
+    // be a 42-iteration loop laying down two `line()`s with their own `stroke`
+    // and `strokeWeight` in front of each — **252 p5 calls every frame a totem
+    // stood**, and p5 charges 6-10x the raw canvas call underneath it, which is
+    // most of why this ability measured 11ms a frame. Canvas dashes are
+    // measured in pixels *along the path*, so half a segment on and half off
+    // around a circle of circumference `TWO_PI * edge` is the same forty-two
+    // dashes in the same places, not an approximation of them: same picture,
+    // ten calls. The two passes share one `beginPath`, which is the other half
+    // of the saving — the bed and the rim are the same circle stroked twice.
+    if (edge > 0.5) {
+      const ctx = drawingContext;
+      const segment = (TWO_PI * edge) / 42;
+      ctx.save();
+      ctx.setLineDash([segment / 2, segment / 2]);
+      ctx.beginPath();
+      ctx.arc(centre.x, centre.y, edge, 0, TWO_PI);
+      // the dark bed, so the bright rim reads against pale ground too
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = 'rgba(15, 45, 38, 0.47)';
+      ctx.stroke();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = `rgba(140, 250, 205, ${(150 + mended * 80) / 255})`;
+      ctx.stroke();
+      ctx.restore();
     }
 
     // The pulse lands **on** each ally it reached, not in a ring around the
