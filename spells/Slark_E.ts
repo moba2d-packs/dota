@@ -37,7 +37,15 @@ const BuffAddType = api.enums.BuffAddType;
  * for a permanent uniform stack, and an array is for N stacks that must expire
  * at N different moments. This is the second.
  */
-export const E_DURATION_MS = 14_000;
+/**
+ * Was 14s. Shortening the cooldown to 16s for the practice room's pace lifted
+ * the share of the time this is armed from 70% to **87.5%** without anyone
+ * deciding it should be — a duty cycle is duration over cooldown, and only one
+ * of the two numbers moved. Eleven seconds against the new 16s puts it back at
+ * 69%, the cadence it was drawn with: long enough that a fight is spent inside
+ * it, short enough that it lapses and has to be pressed again.
+ */
+export const E_DURATION_MS = 11_000;
 /** Attack damage moved per landed swing — off them, onto him. */
 export const E_STEAL = 3;
 /** How long one theft lasts before it goes home. */

@@ -33,7 +33,12 @@ const dmg = api.text.dmg;
  * itself in `Dash`'s own interrupt list, so a cancellable knock-back is one
  * that its own knock-up cancels on the frame it starts.
  */
-export const E_DURATION_MS = 12_000;
+/**
+ * Was 12s. The cooldown went 20s -> 17s for the practice room's pace, taking
+ * the armed share from 60% to 71%; ten seconds restores 59%. See `Slark_E` for
+ * why the two numbers have to move together.
+ */
+export const E_DURATION_MS = 10_000;
 /** Every Nth landed shot. See the header on why this is a count and not a chance. */
 export const E_EVERY = 3;
 export const E_DAMAGE = 14;

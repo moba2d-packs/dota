@@ -61,7 +61,13 @@ const dmg = api.text.dmg;
  * and core already keeps it for the unrelated purpose of dropping an item's
  * buffs when the item is sold.
  */
-export const E_DURATION_MS = 15_000;
+/**
+ * Was 15s, against a 22s cooldown that is now 18s — which silently took the
+ * armed share from 68% to 83%. Twelve seconds restores the 67% it was drawn
+ * with. See `Slark_E`'s note: the practice-room cooldown pass moved cooldowns
+ * only, and a duty cycle is both numbers.
+ */
+export const E_DURATION_MS = 12_000;
 export const E_RADIUS = 200;
 export const E_DAMAGE = 10;
 export const E_STUN_MS = 500;

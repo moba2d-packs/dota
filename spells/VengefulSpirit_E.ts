@@ -37,7 +37,12 @@ const GROUND_Z_INDEX = api.layers.GROUND_Z_INDEX;
  */
 export const E_RADIUS = 500;
 export const E_BONUS_DAMAGE = 6;
-export const E_DURATION_MS = 12_000;
+/**
+ * Was 12s. The cooldown went 22s -> 16s for the practice room's pace, which
+ * took the field's share of the time from 55% to 75%; nine seconds puts it back
+ * at 56%. See `Slark_E` for why the two numbers have to move together.
+ */
+export const E_DURATION_MS = 9_000;
 /** How often membership is re-checked. See the header on why not every frame. */
 export const E_TICK_MS = 200;
 /** How long a grant outlives the tick that made it — the beat a leaver keeps it. */
